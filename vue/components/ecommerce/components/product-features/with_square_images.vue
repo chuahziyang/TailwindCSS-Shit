@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,21 +14,21 @@
 -->
 <template>
   <div class="bg-white">
-    <div class="max-w-2xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
       <div class="max-w-3xl">
         <h2 id="features-heading" class="font-medium text-gray-500">Focus</h2>
-        <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Simple productivity</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple productivity</p>
         <p class="mt-4 text-gray-500">Focus allows you to plan 10 daily tasks, while also thinking ahead about what's next. Forget distracting digital apps and embrace these small, sturdy pieces of paper.</p>
       </div>
 
-      <div class="mt-11 grid items-start grid-cols-1 gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
+      <div class="mt-11 grid grid-cols-1 items-start gap-x-6 gap-y-16 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
         <div v-for="feature in features" :key="feature.name" class="flex flex-col-reverse">
           <div class="mt-6">
             <h3 class="text-sm font-medium text-gray-900">{{ feature.name }}</h3>
             <p class="mt-2 text-sm text-gray-500">{{ feature.description }}</p>
           </div>
-          <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden">
-            <img :src="feature.imageSrc" :alt="feature.imageAlt" class="object-center object-cover" />
+          <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100">
+            <img :src="feature.imageSrc" :alt="feature.imageAlt" class="object-cover object-center" />
           </div>
         </div>
       </div>
@@ -38,7 +36,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 const features = [
   {
     name: 'Three card types',
@@ -65,12 +63,4 @@ const features = [
     imageAlt: 'Stack of three green cardstock boxes with 3 hole cutouts showing cards inside.',
   },
 ]
-
-export default {
-  setup() {
-    return {
-      features,
-    }
-  },
-}
 </script>

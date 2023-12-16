@@ -1,30 +1,15 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <button type="button" class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <PlusSmIconSolid class="h-5 w-5" aria-hidden="true" />
+  <button type="button" class="rounded-full bg-indigo-600 p-1 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    <PlusIcon class="h-5 w-5" aria-hidden="true" />
   </button>
-  <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <PlusSmIconSolid class="h-5 w-5" aria-hidden="true" />
+  <button type="button" class="rounded-full bg-indigo-600 p-1.5 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    <PlusIcon class="h-5 w-5" aria-hidden="true" />
   </button>
-  <button type="button" class="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <PlusSmIconSolid class="h-5 w-5" aria-hidden="true" />
-  </button>
-  <button type="button" class="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <PlusSmIconOutline class="h-6 w-6" aria-hidden="true" />
-  </button>
-  <button type="button" class="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <PlusSmIconOutline class="h-6 w-6" aria-hidden="true" />
+  <button type="button" class="rounded-full bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    <PlusIcon class="h-5 w-5" aria-hidden="true" />
   </button>
 </template>
 
-<script>
-import { PlusSmIcon as PlusSmIconSolid } from '@heroicons/vue/solid'
-import { PlusSmIcon as PlusSmIconOutline } from '@heroicons/vue/outline'
-
-export default {
-  components: {
-    PlusSmIconOutline,
-    PlusSmIconSolid,
-  },
-}
+<script setup>
+import { PlusIcon } from '@heroicons/vue/20/solid'
 </script>

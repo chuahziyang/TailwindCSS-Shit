@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,22 +14,16 @@
 -->
 <template>
   <div>
-    <label for="account-number" class="block text-sm font-medium text-gray-700">Account number</label>
-    <div class="mt-1 relative rounded-md shadow-sm">
-      <input type="text" name="account-number" id="account-number" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md" placeholder="000-00-0000" />
-      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+    <label for="account-number" class="block text-sm font-medium leading-6 text-gray-900">Account number</label>
+    <div class="relative mt-2 rounded-md shadow-sm">
+      <input type="text" name="account-number" id="account-number" class="block w-full rounded-md border-0 py-1.5 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="000-00-0000" />
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
         <QuestionMarkCircleIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { QuestionMarkCircleIcon } from '@heroicons/vue/solid'
-
-export default {
-  components: {
-    QuestionMarkCircleIcon,
-  },
-}
+<script setup>
+import { QuestionMarkCircleIcon } from '@heroicons/vue/20/solid'
 </script>

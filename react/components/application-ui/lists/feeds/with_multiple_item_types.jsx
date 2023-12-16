@@ -1,26 +1,5 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          rose: colors.rose,
-        },
-      },
-    },
-  }
-  ```
-*/
 import { Fragment } from 'react'
-import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
+import { ChatBubbleLeftEllipsisIcon, TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 
 const activity = [
   {
@@ -45,8 +24,8 @@ const activity = [
     type: 'tags',
     person: { name: 'Hilary Mahy', href: '#' },
     tags: [
-      { name: 'Bug', href: '#', color: 'bg-rose-500' },
-      { name: 'Accessibility', href: '#', color: 'bg-indigo-500' },
+      { name: 'Bug', href: '#', color: 'fill-red-500' },
+      { name: 'Accessibility', href: '#', color: 'fill-indigo-500' },
     ],
     date: '6h ago',
   },
@@ -74,20 +53,20 @@ export default function Example() {
           <li key={activityItem.id}>
             <div className="relative pb-8">
               {activityItemIdx !== activity.length - 1 ? (
-                <span className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
+                <span className="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
               ) : null}
               <div className="relative flex items-start space-x-3">
                 {activityItem.type === 'comment' ? (
                   <>
                     <div className="relative">
                       <img
-                        className="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white"
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 ring-8 ring-white"
                         src={activityItem.imageUrl}
                         alt=""
                       />
 
-                      <span className="absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px">
-                        <ChatAltIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <span className="absolute -bottom-0.5 -right-1 rounded-tl bg-white px-0.5 py-px">
+                        <ChatBubbleLeftEllipsisIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                       </span>
                     </div>
                     <div className="min-w-0 flex-1">
@@ -108,7 +87,7 @@ export default function Example() {
                   <>
                     <div>
                       <div className="relative px-1">
-                        <div className="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white">
                           <UserCircleIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
                         </div>
                       </div>
@@ -130,7 +109,7 @@ export default function Example() {
                   <>
                     <div>
                       <div className="relative px-1">
-                        <div className="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white">
                           <TagIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
                         </div>
                       </div>
@@ -148,15 +127,16 @@ export default function Example() {
                             <Fragment key={tag.name}>
                               <a
                                 href={tag.href}
-                                className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm"
+                                className="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200"
                               >
-                                <span className="absolute flex-shrink-0 flex items-center justify-center">
-                                  <span
-                                    className={classNames(tag.color, 'h-1.5 w-1.5 rounded-full')}
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                                <span className="ml-3.5 font-medium text-gray-900">{tag.name}</span>
+                                <svg
+                                  className={classNames(tag.color, 'h-1.5 w-1.5')}
+                                  viewBox="0 0 6 6"
+                                  aria-hidden="true"
+                                >
+                                  <circle cx={3} cy={3} r={3} />
+                                </svg>
+                                {tag.name}
                               </a>{' '}
                             </Fragment>
                           ))}

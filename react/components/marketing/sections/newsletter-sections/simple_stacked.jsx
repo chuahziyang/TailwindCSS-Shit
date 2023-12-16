@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,35 +14,40 @@
 */
 export default function Example() {
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <h2 className="inline text-3xl font-extrabold tracking-tight text-gray-900 sm:block sm:text-4xl">
-          Want product news and updates?
-        </h2>
-        <p className="inline text-3xl font-extrabold tracking-tight text-indigo-600 sm:block sm:text-4xl">
-          Sign up for our newsletter.
-        </p>
-        <form className="mt-8 sm:flex">
-          <label htmlFor="email-address" className="sr-only">
-            Email address
-          </label>
-          <input
-            id="email-address"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="w-full px-5 py-3 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs border-gray-300 rounded-md"
-            placeholder="Enter your email"
-          />
-          <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+    <div className="bg-white py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="inline sm:block">Want product news and updates?</h2>{' '}
+          <p className="inline sm:block">Sign up for our newsletter.</p>
+        </div>
+        <form className="mt-10 max-w-md">
+          <div className="flex gap-x-4">
+            <label htmlFor="email-address" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="email-address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="min-w-0 flex-auto rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter your email"
+            />
             <button
               type="submit"
-              className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="flex-none rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Notify me
+              Subscribe
             </button>
           </div>
+          <p className="mt-4 text-sm leading-6 text-gray-900">
+            We care about your data. Read our{' '}
+            <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              privacy&nbsp;policy
+            </a>
+            .
+          </p>
         </form>
       </div>
     </div>

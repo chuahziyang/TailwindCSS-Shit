@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { StarIcon } from '@heroicons/react/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 
 const reviews = [
   {
@@ -52,7 +51,7 @@ export default function Example() {
         <div className="space-y-10">
           {reviews.map((review) => (
             <div key={review.id} className="flex flex-col sm:flex-row">
-              <div className="mt-6 order-2 sm:mt-0 sm:ml-16">
+              <div className="order-2 mt-6 sm:ml-16 sm:mt-0">
                 <h3 className="text-sm font-medium text-gray-900">{review.title}</h3>
                 <p className="sr-only">{review.rating} out of 5 stars</p>
 

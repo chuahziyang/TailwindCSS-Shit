@@ -4,20 +4,20 @@
   The alpine.js code is *NOT* production ready and is included to preview
   possible interactivity
 -->
-<div class="p-8 flex items-center justify-center bg-white">
-    <div class="w-full max-w-xs mx-auto">
+<div class="flex items-center justify-center bg-white p-8">
+    <div class="mx-auto w-full max-w-xs">
       
   <div>
-    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-    <div class="mt-1 relative rounded-md shadow-sm">
-      <input type="email" name="email" id="email" class="block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md" placeholder="you@example.com" value="adamwathan" aria-invalid="true" aria-describedby="email-error">
-      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-        <svg class="h-5 w-5 text-red-500" x-description="Heroicon name: solid/exclamation-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+    <div class="relative mt-2 rounded-md shadow-sm">
+      <input type="email" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 pr-10 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6" placeholder="you@example.com" value="adamwathan" aria-invalid="true" aria-describedby="email-error">
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
 </svg>
       </div>
     </div>
-    <p class="mt-2 text-sm text-red-600" id="email-error">Your password must be less than 4 characters.</p>
+    <p class="mt-2 text-sm text-red-600" id="email-error">Not a valid email address.</p>
   </div>
 
     </div>

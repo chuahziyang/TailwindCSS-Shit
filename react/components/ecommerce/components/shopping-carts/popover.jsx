@@ -1,6 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
-import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline'
+import { MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Popover, Transition } from '@headlessui/react'
 
 const navigation = [
@@ -33,23 +32,23 @@ const products = [
 export default function Example() {
   return (
     <header className="relative bg-white">
-      <nav aria-label="Top" className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <nav aria-label="Top" className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="relative border-b border-gray-200 px-4 pb-14 sm:static sm:px-0 sm:pb-0">
-          <div className="h-16 flex items-center justify-between">
+          <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex-1 flex">
+            <div className="flex flex-1">
               <a href="#">
-                <span className="sr-only">Workflow</span>
+                <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                   alt=""
                 />
               </a>
             </div>
 
-            <div className="absolute bottom-0 inset-x-0 border-t overflow-x-auto sm:static sm:border-t-0">
-              <div className="h-14 flex items-center px-4 space-x-8 sm:h-auto">
+            <div className="absolute inset-x-0 bottom-0 overflow-x-auto border-t sm:static sm:border-t-0">
+              <div className="flex h-14 items-center space-x-8 px-4 sm:h-auto">
                 {navigation.map((item) => (
                   <a key={item.name} href={item.href} className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     {item.name}
@@ -58,18 +57,18 @@ export default function Example() {
               </div>
             </div>
 
-            <div className="flex-1 flex items-center justify-end">
+            <div className="flex flex-1 items-center justify-end">
               {/* Search */}
               <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Search</span>
-                <SearchIcon className="w-6 h-6" aria-hidden="true" />
+                <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
               </a>
 
               {/* Cart */}
               <Popover className="ml-4 flow-root text-sm lg:relative lg:ml-8">
-                <Popover.Button className="group -m-2 p-2 flex items-center">
+                <Popover.Button className="group -m-2 flex items-center p-2">
                   <ShoppingBagIcon
-                    className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
@@ -84,17 +83,17 @@ export default function Example() {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="absolute top-16 inset-x-0 mt-px pb-6 bg-white shadow-lg sm:px-2 lg:top-full lg:left-auto lg:right-0 lg:mt-3 lg:-mr-1.5 lg:w-80 lg:rounded-lg lg:ring-1 lg:ring-black lg:ring-opacity-5">
+                  <Popover.Panel className="absolute inset-x-0 top-16 mt-px bg-white pb-6 shadow-lg sm:px-2 lg:left-auto lg:right-0 lg:top-full lg:-mr-1.5 lg:mt-3 lg:w-80 lg:rounded-lg lg:ring-1 lg:ring-black lg:ring-opacity-5">
                     <h2 className="sr-only">Shopping Cart</h2>
 
-                    <form className="max-w-2xl mx-auto px-4">
+                    <form className="mx-auto max-w-2xl px-4">
                       <ul role="list" className="divide-y divide-gray-200">
                         {products.map((product) => (
-                          <li key={product.id} className="py-6 flex items-center">
+                          <li key={product.id} className="flex items-center py-6">
                             <img
                               src={product.imageSrc}
                               alt={product.imageAlt}
-                              className="flex-none w-16 h-16 rounded-md border border-gray-200"
+                              className="h-16 w-16 flex-none rounded-md border border-gray-200"
                             />
                             <div className="ml-4 flex-auto">
                               <h3 className="font-medium text-gray-900">
@@ -108,7 +107,7 @@ export default function Example() {
 
                       <button
                         type="submit"
-                        className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+                        className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                       >
                         Checkout
                       </button>

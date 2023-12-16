@@ -1,37 +1,16 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          rose: colors.rose,
-        },
-      },
-    },
-  }
-  ```
--->
 <template>
   <div class="flow-root">
     <ul role="list" class="-mb-8">
       <li v-for="(activityItem, activityItemIdx) in activity" :key="activityItem.id">
         <div class="relative pb-8">
-          <span v-if="activityItemIdx !== activity.length - 1" class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
+          <span v-if="activityItemIdx !== activity.length - 1" class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
           <div class="relative flex items-start space-x-3">
             <template v-if="activityItem.type === 'comment'">
               <div class="relative">
-                <img class="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white" :src="activityItem.imageUrl" alt="" />
+                <img class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 ring-8 ring-white" :src="activityItem.imageUrl" alt="" />
 
-                <span class="absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px">
-                  <ChatAltIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-white px-0.5 py-px">
+                  <ChatBubbleLeftEllipsisIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </span>
               </div>
               <div class="min-w-0 flex-1">
@@ -42,16 +21,14 @@
                   <p class="mt-0.5 text-sm text-gray-500">Commented {{ activityItem.date }}</p>
                 </div>
                 <div class="mt-2 text-sm text-gray-700">
-                  <p>
-                    {{ activityItem.comment }}
-                  </p>
+                  <p>{{ activityItem.comment }}</p>
                 </div>
               </div>
             </template>
             <template v-else-if="activityItem.type === 'assignment'" condition="activityItem.type === 'assignment'">
               <div>
                 <div class="relative px-1">
-                  <div class="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white">
                     <UserCircleIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
                   </div>
                 </div>
@@ -71,7 +48,7 @@
             <template v-else-if="activityItem.type === 'tags'" condition="activityItem.type === 'tags'">
               <div>
                 <div class="relative px-1">
-                  <div class="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white">
                     <TagIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
                   </div>
                 </div>
@@ -86,11 +63,11 @@
                   {{ ' ' }}
                   <span class="mr-0.5">
                     <template v-for="tag in activityItem.tags" :key="tag.name">
-                      <a :href="tag.href" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
-                        <span class="absolute flex-shrink-0 flex items-center justify-center">
-                          <span :class="[tag.color, 'h-1.5 w-1.5 rounded-full']" aria-hidden="true" />
-                        </span>
-                        <span class="ml-3.5 font-medium text-gray-900">{{ tag.name }}</span>
+                      <a :href="tag.href" class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+                        <svg :class="[tag.color, 'h-1.5 w-1.5']" viewBox="0 0 6 6" aria-hidden="true">
+                          <circle cx="3" cy="3" r="3" />
+                        </svg>
+                        {{ tag.name }}
                       </a>
                       {{ ' ' }}
                     </template>
@@ -106,8 +83,8 @@
   </div>
 </template>
 
-<script>
-import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/vue/solid'
+<script setup>
+import { ChatBubbleLeftEllipsisIcon, TagIcon, UserCircleIcon } from '@heroicons/vue/20/solid'
 
 const activity = [
   {
@@ -132,8 +109,8 @@ const activity = [
     type: 'tags',
     person: { name: 'Hilary Mahy', href: '#' },
     tags: [
-      { name: 'Bug', href: '#', color: 'bg-rose-500' },
-      { name: 'Accessibility', href: '#', color: 'bg-indigo-500' },
+      { name: 'Bug', href: '#', color: 'fill-red-500' },
+      { name: 'Accessibility', href: '#', color: 'fill-indigo-500' },
     ],
     date: '6h ago',
   },
@@ -148,17 +125,4 @@ const activity = [
     date: '2h ago',
   },
 ]
-
-export default {
-  components: {
-    ChatAltIcon,
-    TagIcon,
-    UserCircleIcon,
-  },
-  setup() {
-    return {
-      activity,
-    }
-  },
-}
 </script>

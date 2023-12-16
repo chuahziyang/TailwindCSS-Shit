@@ -1,17 +1,16 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div>
     <div class="relative grid grid-cols-1 gap-x-14 md:grid-cols-2">
-      <button type="button" class="absolute -top-1 -left-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
+      <button type="button" class="absolute -left-1.5 -top-1 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
         <span class="sr-only">Previous month</span>
         <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
       </button>
-      <button type="button" class="absolute -top-1 -right-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
+      <button type="button" class="absolute -right-1.5 -top-1 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
         <span class="sr-only">Next month</span>
         <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
       </button>
       <section v-for="(month, monthIdx) in months" :key="monthIdx" :class="[monthIdx === months.length - 1 && 'hidden md:block', 'text-center']">
-        <h2 class="font-semibold text-gray-900">{{ month.name }}</h2>
+        <h2 class="text-sm font-semibold text-gray-900">{{ month.name }}</h2>
         <div class="mt-6 grid grid-cols-7 text-xs leading-6 text-gray-500">
           <div>M</div>
           <div>T</div>
@@ -29,7 +28,7 @@
       </section>
     </div>
     <section class="mt-12">
-      <h2 class="font-semibold text-gray-900">Upcoming events</h2>
+      <h2 class="text-base font-semibold leading-6 text-gray-900">Upcoming events</h2>
       <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500">
         <li class="py-4 sm:flex">
           <time datetime="2022-01-17" class="w-28 flex-none">Wed, Jan 12</time>
@@ -61,8 +60,8 @@
   </div>
 </template>
 
-<script>
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
+<script setup>
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 const months = [
   {
@@ -160,16 +159,4 @@ const months = [
     ],
   },
 ]
-
-export default {
-  components: {
-    ChevronLeftIcon,
-    ChevronRightIcon,
-  },
-  setup() {
-    return {
-      months,
-    }
-  },
-}
 </script>

@@ -1,7 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
 export default function Example() {
   return (
-    <a href="#" className="flex-shrink-0 group block">
+    <a href="#" className="group block flex-shrink-0">
       <div className="flex items-center">
         <div>
           <img

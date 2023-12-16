@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,14 +14,14 @@
 -->
 <template>
   <div class="bg-white">
-    <div class="max-w-xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-      <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Collection</h2>
+    <div class="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
       <p class="mt-4 text-base text-gray-500">Each season, we collaborate with world-class designers to create a collection inspired by the natural world.</p>
 
-      <div class="mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+      <div class="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
         <a v-for="category in categories" :key="category.name" :href="category.href" class="group block">
-          <div aria-hidden="true" class="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6">
-            <img :src="category.imageSrc" :alt="category.imageAlt" class="w-full h-full object-center object-cover" />
+          <div aria-hidden="true" class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5 group-hover:opacity-75">
+            <img :src="category.imageSrc" :alt="category.imageAlt" class="h-full w-full object-cover object-center" />
           </div>
           <h3 class="mt-4 text-base font-semibold text-gray-900">{{ category.name }}</h3>
           <p class="mt-2 text-sm text-gray-500">{{ category.description }}</p>
@@ -33,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 const categories = [
   {
     name: 'Handcrafted Collection',
@@ -57,12 +55,4 @@ const categories = [
     description: 'Be more productive than enterprise project managers with a single piece of paper.',
   },
 ]
-
-export default {
-  setup() {
-    return {
-      categories,
-    }
-  },
-}
 </script>

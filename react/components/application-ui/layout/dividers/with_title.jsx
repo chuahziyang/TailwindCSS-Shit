@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 export default function Example() {
   return (
     <div className="relative">
@@ -6,7 +5,7 @@ export default function Example() {
         <div className="w-full border-t border-gray-300" />
       </div>
       <div className="relative flex justify-center">
-        <span className="px-3 bg-white text-lg font-medium text-gray-900">Projects</span>
+        <span className="bg-white px-3 text-base font-semibold leading-6 text-gray-900">Projects</span>
       </div>
     </div>
   )

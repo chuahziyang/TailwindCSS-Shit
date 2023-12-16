@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -20,9 +18,9 @@
       <h2 class="sr-only">Customer Reviews</h2>
 
       <div class="-my-10">
-        <div v-for="(review, reviewIdx) in reviews" :key="review.id" class="flex text-sm text-gray-500 space-x-4">
+        <div v-for="(review, reviewIdx) in reviews" :key="review.id" class="flex space-x-4 text-sm text-gray-500">
           <div class="flex-none py-10">
-            <img :src="review.avatarSrc" alt="" class="w-10 h-10 bg-gray-100 rounded-full" />
+            <img :src="review.avatarSrc" alt="" class="h-10 w-10 rounded-full bg-gray-100" />
           </div>
           <div :class="[reviewIdx === 0 ? '' : 'border-t border-gray-200', 'flex-1 py-10']">
             <h3 class="font-medium text-gray-900">{{ review.author }}</h3>
@@ -30,12 +28,12 @@
               <time :datetime="review.datetime">{{ review.date }}</time>
             </p>
 
-            <div class="flex items-center mt-4">
+            <div class="mt-4 flex items-center">
               <StarIcon v-for="rating in [0, 1, 2, 3, 4]" :key="rating" :class="[review.rating > rating ? 'text-yellow-400' : 'text-gray-300', 'h-5 w-5 flex-shrink-0']" aria-hidden="true" />
             </div>
             <p class="sr-only">{{ review.rating }} out of 5 stars</p>
 
-            <div class="mt-4 prose prose-sm max-w-none text-gray-500" v-html="review.content" />
+            <div class="prose prose-sm mt-4 max-w-none text-gray-500" v-html="review.content" />
           </div>
         </div>
       </div>
@@ -43,8 +41,8 @@
   </div>
 </template>
 
-<script>
-import { StarIcon } from '@heroicons/vue/solid'
+<script setup>
+import { StarIcon } from '@heroicons/vue/20/solid'
 
 const reviews = [
   {
@@ -73,15 +71,4 @@ const reviews = [
   },
   // More reviews...
 ]
-
-export default {
-  components: {
-    StarIcon,
-  },
-  setup() {
-    return {
-      reviews,
-    }
-  },
-}
 </script>

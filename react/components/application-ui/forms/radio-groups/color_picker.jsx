@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 
@@ -19,7 +18,9 @@ export default function Example() {
 
   return (
     <RadioGroup value={selectedColor} onChange={setSelectedColor}>
-      <RadioGroup.Label className="block text-sm font-medium text-gray-700">Choose a label color</RadioGroup.Label>
+      <RadioGroup.Label className="block text-sm font-medium leading-6 text-gray-900">
+        Choose a label color
+      </RadioGroup.Label>
       <div className="mt-4 flex items-center space-x-3">
         {colors.map((color) => (
           <RadioGroup.Option
@@ -30,16 +31,16 @@ export default function Example() {
                 color.selectedColor,
                 active && checked ? 'ring ring-offset-1' : '',
                 !active && checked ? 'ring-2' : '',
-                '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
               )
             }
           >
-            <RadioGroup.Label as="p" className="sr-only">
+            <RadioGroup.Label as="span" className="sr-only">
               {color.name}
             </RadioGroup.Label>
             <span
               aria-hidden="true"
-              className={classNames(color.bgColor, 'h-8 w-8 border border-black border-opacity-10 rounded-full')}
+              className={classNames(color.bgColor, 'h-8 w-8 rounded-full border border-black border-opacity-10')}
             />
           </RadioGroup.Option>
         ))}

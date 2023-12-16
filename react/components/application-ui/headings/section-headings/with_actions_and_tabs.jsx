@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -28,19 +26,19 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="relative pb-5 border-b border-gray-200 sm:pb-0">
+    <div className="relative border-b border-gray-200 pb-5 sm:pb-0">
       <div className="md:flex md:items-center md:justify-between">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">Candidates</h3>
-        <div className="mt-3 flex md:mt-0 md:absolute md:top-3 md:right-0">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">Candidates</h3>
+        <div className="mt-3 flex md:absolute md:right-0 md:top-3 md:mt-0">
           <button
             type="button"
-            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
           >
             Share
           </button>
           <button
             type="button"
-            className="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Create
           </button>
@@ -54,7 +52,7 @@ export default function Example() {
           <select
             id="current-tab"
             name="current-tab"
-            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
             defaultValue={tabs.find((tab) => tab.current).name}
           >
             {tabs.map((tab) => (
@@ -71,8 +69,8 @@ export default function Example() {
                 className={classNames(
                   tab.current
                     ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                  'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm'
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  'whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}
               >

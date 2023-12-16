@@ -1,16 +1,15 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import {
-  ArchiveIcon,
-  ArrowCircleRightIcon,
+  ArchiveBoxIcon,
+  ArrowRightCircleIcon,
   ChevronDownIcon,
-  DuplicateIcon,
+  DocumentDuplicateIcon,
   HeartIcon,
-  PencilAltIcon,
+  PencilSquareIcon,
   TrashIcon,
-  UserAddIcon,
-} from '@heroicons/react/solid'
+  UserPlusIcon,
+} from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -20,9 +19,9 @@ export default function Example() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
           Options
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -35,7 +34,7 @@ export default function Example() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
@@ -46,7 +45,10 @@ export default function Example() {
                     'group flex items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <PencilAltIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                  <PencilSquareIcon
+                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    aria-hidden="true"
+                  />
                   Edit
                 </a>
               )}
@@ -60,7 +62,10 @@ export default function Example() {
                     'group flex items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <DuplicateIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                  <DocumentDuplicateIcon
+                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    aria-hidden="true"
+                  />
                   Duplicate
                 </a>
               )}
@@ -76,7 +81,7 @@ export default function Example() {
                     'group flex items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <ArchiveIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                  <ArchiveBoxIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   Archive
                 </a>
               )}
@@ -90,7 +95,7 @@ export default function Example() {
                     'group flex items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <ArrowCircleRightIcon
+                  <ArrowRightCircleIcon
                     className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
@@ -109,7 +114,7 @@ export default function Example() {
                     'group flex items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <UserAddIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                  <UserPlusIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   Share
                 </a>
               )}

@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -14,7 +12,7 @@
   }
   ```
 */
-import { StarIcon } from '@heroicons/react/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 
 const reviews = [
   {
@@ -56,9 +54,9 @@ export default function Example() {
 
         <div className="-my-10">
           {reviews.map((review, reviewIdx) => (
-            <div key={review.id} className="flex text-sm text-gray-500 space-x-4">
+            <div key={review.id} className="flex space-x-4 text-sm text-gray-500">
               <div className="flex-none py-10">
-                <img src={review.avatarSrc} alt="" className="w-10 h-10 bg-gray-100 rounded-full" />
+                <img src={review.avatarSrc} alt="" className="h-10 w-10 rounded-full bg-gray-100" />
               </div>
               <div className={classNames(reviewIdx === 0 ? '' : 'border-t border-gray-200', 'flex-1 py-10')}>
                 <h3 className="font-medium text-gray-900">{review.author}</h3>
@@ -66,7 +64,7 @@ export default function Example() {
                   <time dateTime={review.datetime}>{review.date}</time>
                 </p>
 
-                <div className="flex items-center mt-4">
+                <div className="mt-4 flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
@@ -81,7 +79,7 @@ export default function Example() {
                 <p className="sr-only">{review.rating} out of 5 stars</p>
 
                 <div
-                  className="mt-4 prose prose-sm max-w-none text-gray-500"
+                  className="prose prose-sm mt-4 max-w-none text-gray-500"
                   dangerouslySetInnerHTML={{ __html: review.content }}
                 />
               </div>

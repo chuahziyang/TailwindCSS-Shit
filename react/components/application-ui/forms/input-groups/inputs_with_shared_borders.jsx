@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -18,8 +16,8 @@ export default function Example() {
   return (
     <div>
       <fieldset>
-        <legend className="block text-sm font-medium text-gray-700">Card Details</legend>
-        <div className="mt-1 bg-white rounded-md shadow-sm -space-y-px">
+        <legend className="block text-sm font-medium leading-6 text-gray-900">Card Details</legend>
+        <div className="mt-2 -space-y-px rounded-md bg-white shadow-sm">
           <div>
             <label htmlFor="card-number" className="sr-only">
               Card number
@@ -28,12 +26,12 @@ export default function Example() {
               type="text"
               name="card-number"
               id="card-number"
-              className="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm border-gray-300"
+              className="relative block w-full rounded-none rounded-t-md border-0 bg-transparent py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Card number"
             />
           </div>
           <div className="flex -space-x-px">
-            <div className="w-1/2 flex-1 min-w-0">
+            <div className="w-1/2 min-w-0 flex-1">
               <label htmlFor="card-expiration-date" className="sr-only">
                 Expiration date
               </label>
@@ -41,11 +39,11 @@ export default function Example() {
                 type="text"
                 name="card-expiration-date"
                 id="card-expiration-date"
-                className="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-bl-md bg-transparent focus:z-10 sm:text-sm border-gray-300"
+                className="relative block w-full rounded-none rounded-bl-md border-0 bg-transparent py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="MM / YY"
               />
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="min-w-0 flex-1">
               <label htmlFor="card-cvc" className="sr-only">
                 CVC
               </label>
@@ -53,7 +51,7 @@ export default function Example() {
                 type="text"
                 name="card-cvc"
                 id="card-cvc"
-                className="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-br-md bg-transparent focus:z-10 sm:text-sm border-gray-300"
+                className="relative block w-full rounded-none rounded-br-md border-0 bg-transparent py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="CVC"
               />
             </div>
@@ -61,8 +59,8 @@ export default function Example() {
         </div>
       </fieldset>
       <fieldset className="mt-6 bg-white">
-        <legend className="block text-sm font-medium text-gray-700">Billing address</legend>
-        <div className="mt-1 rounded-md shadow-sm -space-y-px">
+        <legend className="block text-sm font-medium leading-6 text-gray-900">Billing address</legend>
+        <div className="mt-2 -space-y-px rounded-md shadow-sm">
           <div>
             <label htmlFor="country" className="sr-only">
               Country
@@ -71,7 +69,7 @@ export default function Example() {
               id="country"
               name="country"
               autoComplete="country-name"
-              className="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm border-gray-300"
+              className="relative block w-full rounded-none rounded-t-md border-0 bg-transparent py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             >
               <option>United States</option>
               <option>Canada</option>
@@ -87,7 +85,7 @@ export default function Example() {
               name="postal-code"
               id="postal-code"
               autoComplete="postal-code"
-              className="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm border-gray-300"
+              className="relative block w-full rounded-none rounded-b-md border-0 bg-transparent py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="ZIP / Postal code"
             />
           </div>

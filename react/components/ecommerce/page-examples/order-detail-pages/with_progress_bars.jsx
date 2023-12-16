@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -17,7 +15,8 @@
 */
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/react/outline'
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -160,7 +159,7 @@ export default function Example() {
     <div className="bg-gray-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -170,187 +169,175 @@ export default function Example() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <Transition.Child
-            as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="-translate-x-full"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo="-translate-x-full"
-          >
-            <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
-              <div className="px-4 pt-5 pb-2 flex">
-                <button
-                  type="button"
-                  className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400"
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-
-              {/* Links */}
-              <Tab.Group as="div" className="mt-2">
-                <div className="border-b border-gray-200">
-                  <Tab.List className="-mb-px flex px-4 space-x-8">
-                    {navigation.categories.map((category) => (
-                      <Tab
-                        key={category.name}
-                        className={({ selected }) =>
-                          classNames(
-                            selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
-                            'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium'
-                          )
-                        }
-                      >
-                        {category.name}
-                      </Tab>
-                    ))}
-                  </Tab.List>
+          <div className="fixed inset-0 z-40 flex">
+            <Transition.Child
+              as={Fragment}
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
+            >
+              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+                <div className="flex px-4 pb-2 pt-5">
+                  <button
+                    type="button"
+                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
                 </div>
-                <Tab.Panels as={Fragment}>
-                  {navigation.categories.map((category, categoryIdx) => (
-                    <Tab.Panel key={category.name} className="px-4 pt-10 pb-6 space-y-12">
-                      <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6">
-                        <div className="grid grid-cols-1 gap-y-10 gap-x-6">
-                          <div>
-                            <p id={`mobile-featured-heading-${categoryIdx}`} className="font-medium text-gray-900">
-                              Featured
-                            </p>
-                            <ul
-                              role="list"
-                              aria-labelledby={`mobile-featured-heading-${categoryIdx}`}
-                              className="mt-6 space-y-6"
-                            >
-                              {category.featured.map((item) => (
-                                <li key={item.name} className="flex">
-                                  <a href={item.href} className="text-gray-500">
-                                    {item.name}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <p id="mobile-categories-heading" className="font-medium text-gray-900">
-                              Categories
-                            </p>
-                            <ul role="list" aria-labelledby="mobile-categories-heading" className="mt-6 space-y-6">
-                              {category.categories.map((item) => (
-                                <li key={item.name} className="flex">
-                                  <a href={item.href} className="text-gray-500">
-                                    {item.name}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-1 gap-y-10 gap-x-6">
-                          <div>
-                            <p id="mobile-collection-heading" className="font-medium text-gray-900">
-                              Collection
-                            </p>
-                            <ul role="list" aria-labelledby="mobile-collection-heading" className="mt-6 space-y-6">
-                              {category.collection.map((item) => (
-                                <li key={item.name} className="flex">
-                                  <a href={item.href} className="text-gray-500">
-                                    {item.name}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
 
-                          <div>
-                            <p id="mobile-brand-heading" className="font-medium text-gray-900">
-                              Brands
-                            </p>
-                            <ul role="list" aria-labelledby="mobile-brand-heading" className="mt-6 space-y-6">
-                              {category.brands.map((item) => (
-                                <li key={item.name} className="flex">
-                                  <a href={item.href} className="text-gray-500">
-                                    {item.name}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
+                {/* Links */}
+                <Tab.Group as="div" className="mt-2">
+                  <div className="border-b border-gray-200">
+                    <Tab.List className="-mb-px flex space-x-8 px-4">
+                      {navigation.categories.map((category) => (
+                        <Tab
+                          key={category.name}
+                          className={({ selected }) =>
+                            classNames(
+                              selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
+                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
+                            )
+                          }
+                        >
+                          {category.name}
+                        </Tab>
+                      ))}
+                    </Tab.List>
+                  </div>
+                  <Tab.Panels as={Fragment}>
+                    {navigation.categories.map((category, categoryIdx) => (
+                      <Tab.Panel key={category.name} className="space-y-12 px-4 pb-6 pt-10">
+                        <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10">
+                          <div className="grid grid-cols-1 gap-x-6 gap-y-10">
+                            <div>
+                              <p id={`mobile-featured-heading-${categoryIdx}`} className="font-medium text-gray-900">
+                                Featured
+                              </p>
+                              <ul
+                                role="list"
+                                aria-labelledby={`mobile-featured-heading-${categoryIdx}`}
+                                className="mt-6 space-y-6"
+                              >
+                                {category.featured.map((item) => (
+                                  <li key={item.name} className="flex">
+                                    <a href={item.href} className="text-gray-500">
+                                      {item.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <p id="mobile-categories-heading" className="font-medium text-gray-900">
+                                Categories
+                              </p>
+                              <ul role="list" aria-labelledby="mobile-categories-heading" className="mt-6 space-y-6">
+                                {category.categories.map((item) => (
+                                  <li key={item.name} className="flex">
+                                    <a href={item.href} className="text-gray-500">
+                                      {item.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-1 gap-x-6 gap-y-10">
+                            <div>
+                              <p id="mobile-collection-heading" className="font-medium text-gray-900">
+                                Collection
+                              </p>
+                              <ul role="list" aria-labelledby="mobile-collection-heading" className="mt-6 space-y-6">
+                                {category.collection.map((item) => (
+                                  <li key={item.name} className="flex">
+                                    <a href={item.href} className="text-gray-500">
+                                      {item.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div>
+                              <p id="mobile-brand-heading" className="font-medium text-gray-900">
+                                Brands
+                              </p>
+                              <ul role="list" aria-labelledby="mobile-brand-heading" className="mt-6 space-y-6">
+                                {category.brands.map((item) => (
+                                  <li key={item.name} className="flex">
+                                    <a href={item.href} className="text-gray-500">
+                                      {item.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Tab.Panel>
+                      </Tab.Panel>
+                    ))}
+                  </Tab.Panels>
+                </Tab.Group>
+
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  {navigation.pages.map((page) => (
+                    <div key={page.name} className="flow-root">
+                      <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                        {page.name}
+                      </a>
+                    </div>
                   ))}
-                </Tab.Panels>
-              </Tab.Group>
+                </div>
 
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                {navigation.pages.map((page) => (
-                  <div key={page.name} className="flow-root">
-                    <a href={page.href} className="-m-2 p-2 block font-medium text-gray-900">
-                      {page.name}
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  <div className="flow-root">
+                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                      Create an account
                     </a>
                   </div>
-                ))}
-              </div>
-
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                <div className="flow-root">
-                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create an account
-                  </a>
+                  <div className="flow-root">
+                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                      Sign in
+                    </a>
+                  </div>
                 </div>
-                <div className="flow-root">
-                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Sign in
-                  </a>
-                </div>
-              </div>
 
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                {/* Currency selector */}
-                <form>
-                  <div className="inline-block">
-                    <label htmlFor="mobile-currency" className="sr-only">
-                      Currency
-                    </label>
-                    <div className="-ml-2 group relative border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
-                      <select
-                        id="mobile-currency"
-                        name="currency"
-                        className="bg-none border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-gray-700 group-hover:text-gray-800 focus:outline-none focus:ring-0 focus:border-transparent"
-                      >
-                        {currencies.map((currency) => (
-                          <option key={currency}>{currency}</option>
-                        ))}
-                      </select>
-                      <div className="absolute right-0 inset-y-0 flex items-center pointer-events-none">
-                        <svg
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 20 20"
-                          className="w-5 h-5 text-gray-500"
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  {/* Currency selector */}
+                  <form>
+                    <div className="inline-block">
+                      <label htmlFor="mobile-currency" className="sr-only">
+                        Currency
+                      </label>
+                      <div className="group relative -ml-2 rounded-md border-transparent focus-within:ring-2 focus-within:ring-white">
+                        <select
+                          id="mobile-currency"
+                          name="currency"
+                          className="flex items-center rounded-md border-transparent bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-gray-700 focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-800"
                         >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="1.5"
-                            d="M6 8l4 4 4-4"
-                          />
-                        </svg>
+                          {currencies.map((currency) => (
+                            <option key={currency}>{currency}</option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+                          <ChevronDownIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </Transition.Child>
+                  </form>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
         </Dialog>
       </Transition.Root>
 
@@ -358,39 +345,25 @@ export default function Example() {
         <nav aria-label="Top">
           {/* Top navigation */}
           <div className="bg-gray-900">
-            <div className="max-w-7xl mx-auto h-10 px-4 flex items-center justify-between sm:px-6 lg:px-8">
+            <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               {/* Currency selector */}
               <form className="hidden lg:block lg:flex-1">
                 <div className="flex">
                   <label htmlFor="desktop-currency" className="sr-only">
                     Currency
                   </label>
-                  <div className="-ml-2 group relative bg-gray-900 border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
+                  <div className="group relative -ml-2 rounded-md border-transparent bg-gray-900 focus-within:ring-2 focus-within:ring-white">
                     <select
                       id="desktop-currency"
                       name="currency"
-                      className="bg-none bg-gray-900 border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-white group-hover:text-gray-100 focus:outline-none focus:ring-0 focus:border-transparent"
+                      className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
                     >
                       {currencies.map((currency) => (
                         <option key={currency}>{currency}</option>
                       ))}
                     </select>
-                    <div className="absolute right-0 inset-y-0 flex items-center pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                        className="w-5 h-5 text-gray-300"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                          d="M6 8l4 4 4-4"
-                        />
-                      </svg>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+                      <ChevronDownIcon className="h-5 w-5 text-gray-300" aria-hidden="true" />
                     </div>
                   </div>
                 </div>
@@ -413,16 +386,16 @@ export default function Example() {
           </div>
 
           {/* Secondary navigation */}
-          <div className="bg-white border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="h-16 flex items-center justify-between">
+          <div className="border-b border-gray-200 bg-white">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="flex h-16 items-center justify-between">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:items-center">
                   <a href="#">
-                    <span className="sr-only">Workflow</span>
+                    <span className="sr-only">Your Company</span>
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                       alt=""
                     />
                   </a>
@@ -431,7 +404,7 @@ export default function Example() {
                 <div className="hidden h-full lg:flex">
                   {/* Mega menus */}
                   <Popover.Group className="ml-8">
-                    <div className="h-full flex justify-center space-x-8">
+                    <div className="flex h-full justify-center space-x-8">
                       {navigation.categories.map((category, categoryIdx) => (
                         <Popover key={category.name} className="flex">
                           {({ open }) => (
@@ -442,7 +415,7 @@ export default function Example() {
                                     open
                                       ? 'border-indigo-600 text-indigo-600'
                                       : 'border-transparent text-gray-700 hover:text-gray-800',
-                                    'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
+                                    'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                                   )}
                                 >
                                   {category.name}
@@ -458,26 +431,26 @@ export default function Example() {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                               >
-                                <Popover.Panel className="absolute top-full inset-x-0 bg-white text-gray-500 text-sm transform -translate-y-px">
+                                <Popover.Panel className="absolute inset-x-0 top-full -translate-y-px transform bg-white text-sm text-gray-500">
                                   {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                                   <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
                                   {/* Fake border when menu is open */}
                                   <div
-                                    className="absolute inset-0 z-10 top-0 h-px max-w-7xl mx-auto px-8"
+                                    className="absolute inset-0 top-0 z-10 mx-auto h-px max-w-7xl px-8"
                                     aria-hidden="true"
                                   >
                                     <div
                                       className={classNames(
                                         open ? 'bg-gray-200' : 'bg-transparent',
-                                        'w-full h-px transition-colors ease-out duration-200'
+                                        'h-px w-full transition-colors duration-200 ease-out'
                                       )}
                                     />
                                   </div>
 
                                   <div className="relative">
-                                    <div className="max-w-7xl mx-auto px-8">
-                                      <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
-                                        <div className="grid grid-cols-2 gap-y-10 gap-x-8">
+                                    <div className="mx-auto max-w-7xl px-8">
+                                      <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 pb-12 pt-10">
+                                        <div className="grid grid-cols-2 gap-x-8 gap-y-10">
                                           <div>
                                             <p
                                               id={`desktop-featured-heading-${categoryIdx}`}
@@ -518,7 +491,7 @@ export default function Example() {
                                             </ul>
                                           </div>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-y-10 gap-x-8">
+                                        <div className="grid grid-cols-2 gap-x-8 gap-y-10">
                                           <div>
                                             <p id="desktop-collection-heading" className="font-medium text-gray-900">
                                               Collection
@@ -581,47 +554,47 @@ export default function Example() {
                 </div>
 
                 {/* Mobile menu and search (lg-) */}
-                <div className="flex-1 flex items-center lg:hidden">
+                <div className="flex flex-1 items-center lg:hidden">
                   <button
                     type="button"
-                    className="-ml-2 bg-white p-2 rounded-md text-gray-400"
+                    className="-ml-2 rounded-md bg-white p-2 text-gray-400"
                     onClick={() => setOpen(true)}
                   >
                     <span className="sr-only">Open menu</span>
-                    <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                    <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                   </button>
 
                   {/* Search */}
                   <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
-                    <SearchIcon className="w-6 h-6" aria-hidden="true" />
+                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                   </a>
                 </div>
 
                 {/* Logo (lg-) */}
                 <a href="#" className="lg:hidden">
-                  <span className="sr-only">Workflow</span>
+                  <span className="sr-only">Your Company</span>
                   <img
-                    src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
                     className="h-8 w-auto"
                   />
                 </a>
 
-                <div className="flex-1 flex items-center justify-end">
+                <div className="flex flex-1 items-center justify-end">
                   <div className="flex items-center lg:ml-8">
                     <div className="flex space-x-8">
                       <div className="hidden lg:flex">
                         <a href="#" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
                           <span className="sr-only">Search</span>
-                          <SearchIcon className="w-6 h-6" aria-hidden="true" />
+                          <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                         </a>
                       </div>
 
                       <div className="flex">
                         <a href="#" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
                           <span className="sr-only">Account</span>
-                          <UserIcon className="w-6 h-6" aria-hidden="true" />
+                          <UserIcon className="h-6 w-6" aria-hidden="true" />
                         </a>
                       </div>
                     </div>
@@ -629,9 +602,9 @@ export default function Example() {
                     <span className="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
 
                     <div className="flow-root">
-                      <a href="#" className="group -m-2 p-2 flex items-center">
+                      <a href="#" className="group -m-2 flex items-center p-2">
                         <ShoppingCartIcon
-                          className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                           aria-hidden="true"
                         />
                         <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
@@ -646,12 +619,13 @@ export default function Example() {
         </nav>
       </header>
 
-      <main className="max-w-2xl mx-auto pt-8 pb-24 sm:pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="px-4 space-y-2 sm:px-0 sm:flex sm:items-baseline sm:justify-between sm:space-y-0">
+      <main className="mx-auto max-w-2xl pb-24 pt-8 sm:px-6 sm:pt-16 lg:max-w-7xl lg:px-8">
+        <div className="space-y-2 px-4 sm:flex sm:items-baseline sm:justify-between sm:space-y-0 sm:px-0">
           <div className="flex sm:items-baseline sm:space-x-4">
-            <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Order #54879</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Order #54879</h1>
             <a href="#" className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:block">
-              View invoice<span aria-hidden="true"> &rarr;</span>
+              View invoice
+              <span aria-hidden="true"> &rarr;</span>
             </a>
           </div>
           <p className="text-sm text-gray-600">
@@ -661,7 +635,8 @@ export default function Example() {
             </time>
           </p>
           <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:hidden">
-            View invoice<span aria-hidden="true"> &rarr;</span>
+            View invoice
+            <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
 
@@ -675,19 +650,19 @@ export default function Example() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white border-t border-b border-gray-200 shadow-sm sm:border sm:rounded-lg"
+                className="border-b border-t border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border"
               >
-                <div className="py-6 px-4 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:p-8">
+                <div className="px-4 py-6 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:p-8">
                   <div className="sm:flex lg:col-span-7">
-                    <div className="flex-shrink-0 w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden sm:aspect-none sm:w-40 sm:h-40">
+                    <div className="aspect-h-1 aspect-w-1 w-full flex-shrink-0 overflow-hidden rounded-lg sm:aspect-none sm:h-40 sm:w-40">
                       <img
                         src={product.imageSrc}
                         alt={product.imageAlt}
-                        className="w-full h-full object-center object-cover sm:w-full sm:h-full"
+                        className="h-full w-full object-cover object-center sm:h-full sm:w-full"
                       />
                     </div>
 
-                    <div className="mt-6 sm:mt-0 sm:ml-6">
+                    <div className="mt-6 sm:ml-6 sm:mt-0">
                       <h3 className="text-base font-medium text-gray-900">
                         <a href={product.href}>{product.name}</a>
                       </h3>
@@ -696,7 +671,7 @@ export default function Example() {
                     </div>
                   </div>
 
-                  <div className="mt-6 lg:mt-0 lg:col-span-5">
+                  <div className="mt-6 lg:col-span-5 lg:mt-0">
                     <dl className="grid grid-cols-2 gap-x-6 text-sm">
                       <div>
                         <dt className="font-medium text-gray-900">Delivery address</dt>
@@ -708,7 +683,7 @@ export default function Example() {
                       </div>
                       <div>
                         <dt className="font-medium text-gray-900">Shipping updates</dt>
-                        <dd className="mt-3 text-gray-500 space-y-3">
+                        <dd className="mt-3 space-y-3 text-gray-500">
                           <p>{product.email}</p>
                           <p>{product.phone}</p>
                           <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -720,19 +695,19 @@ export default function Example() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 py-6 px-4 sm:px-6 lg:p-8">
+                <div className="border-t border-gray-200 px-4 py-6 sm:px-6 lg:p-8">
                   <h4 className="sr-only">Status</h4>
                   <p className="text-sm font-medium text-gray-900">
                     {product.status} on <time dateTime={product.datetime}>{product.date}</time>
                   </p>
                   <div className="mt-6" aria-hidden="true">
-                    <div className="bg-gray-200 rounded-full overflow-hidden">
+                    <div className="overflow-hidden rounded-full bg-gray-200">
                       <div
-                        className="h-2 bg-indigo-600 rounded-full"
+                        className="h-2 rounded-full bg-indigo-600"
                         style={{ width: `calc((${product.step} * 2 + 1) / 8 * 100%)` }}
                       />
                     </div>
-                    <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-6">
+                    <div className="mt-6 hidden grid-cols-4 text-sm font-medium text-gray-600 sm:grid">
                       <div className="text-indigo-600">Order placed</div>
                       <div className={classNames(product.step > 0 ? 'text-indigo-600' : '', 'text-center')}>
                         Processing
@@ -757,7 +732,7 @@ export default function Example() {
             Billing Summary
           </h2>
 
-          <div className="bg-gray-100 py-6 px-4 sm:px-6 sm:rounded-lg lg:px-8 lg:py-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
+          <div className="bg-gray-100 px-4 py-6 sm:rounded-lg sm:px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-8">
             <dl className="grid grid-cols-2 gap-6 text-sm sm:grid-cols-2 md:gap-x-8 lg:col-span-7">
               <div>
                 <dt className="font-medium text-gray-900">Billing address</dt>
@@ -769,48 +744,39 @@ export default function Example() {
               </div>
               <div>
                 <dt className="font-medium text-gray-900">Payment information</dt>
-                <div className="mt-3">
-                  <dd className="-ml-4 -mt-4 flex flex-wrap">
-                    <div className="ml-4 mt-4 flex-shrink-0">
-                      <svg
-                        aria-hidden="true"
-                        width={36}
-                        height={24}
-                        viewBox="0 0 36 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-auto"
-                      >
-                        <rect width={36} height={24} rx={4} fill="#224DBA" />
-                        <path
-                          d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z"
-                          fill="#fff"
-                        />
-                      </svg>
-                      <p className="sr-only">Visa</p>
-                    </div>
-                    <div className="ml-4 mt-4">
-                      <p className="text-gray-900">Ending with 4242</p>
-                      <p className="text-gray-600">Expires 02 / 24</p>
-                    </div>
-                  </dd>
-                </div>
+                <dd className="-ml-4 -mt-1 flex flex-wrap">
+                  <div className="ml-4 mt-4 flex-shrink-0">
+                    <svg aria-hidden="true" width={36} height={24} viewBox="0 0 36 24" className="h-6 w-auto">
+                      <rect width={36} height={24} rx={4} fill="#224DBA" />
+                      <path
+                        d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z"
+                        fill="#fff"
+                      />
+                    </svg>
+                    <p className="sr-only">Visa</p>
+                  </div>
+                  <div className="ml-4 mt-4">
+                    <p className="text-gray-900">Ending with 4242</p>
+                    <p className="text-gray-600">Expires 02 / 24</p>
+                  </div>
+                </dd>
               </div>
             </dl>
 
-            <dl className="mt-8 divide-y divide-gray-200 text-sm lg:mt-0 lg:col-span-5">
-              <div className="pb-4 flex items-center justify-between">
+            <dl className="mt-8 divide-y divide-gray-200 text-sm lg:col-span-5 lg:mt-0">
+              <div className="flex items-center justify-between pb-4">
                 <dt className="text-gray-600">Subtotal</dt>
                 <dd className="font-medium text-gray-900">$72</dd>
               </div>
-              <div className="py-4 flex items-center justify-between">
+              <div className="flex items-center justify-between py-4">
                 <dt className="text-gray-600">Shipping</dt>
                 <dd className="font-medium text-gray-900">$5</dd>
               </div>
-              <div className="py-4 flex items-center justify-between">
+              <div className="flex items-center justify-between py-4">
                 <dt className="text-gray-600">Tax</dt>
                 <dd className="font-medium text-gray-900">$6.16</dd>
               </div>
-              <div className="pt-4 flex items-center justify-between">
+              <div className="flex items-center justify-between pt-4">
                 <dt className="font-medium text-gray-900">Order total</dt>
                 <dd className="font-medium text-indigo-600">$83.16</dd>
               </div>
@@ -819,13 +785,13 @@ export default function Example() {
         </section>
       </main>
 
-      <footer aria-labelledby="footer-heading" className="bg-white border-t border-gray-200">
+      <footer aria-labelledby="footer-heading" className="border-t border-gray-200 bg-white">
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-20 grid grid-cols-2 gap-8 sm:gap-y-0 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-y-0 lg:gap-x-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 py-20 sm:grid-cols-2 sm:gap-y-0 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0">
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Account</h3>
                 <ul role="list" className="mt-6 space-y-6">
@@ -851,7 +817,7 @@ export default function Example() {
                 </ul>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-y-0 lg:gap-x-8">
+            <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0">
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Company</h3>
                 <ul role="list" className="mt-6 space-y-6">
@@ -884,7 +850,7 @@ export default function Example() {
               <p>Shipping to Canada ($CAD)</p>
               <p className="ml-3 border-l border-gray-200 pl-3">English</p>
             </div>
-            <p className="mt-6 text-sm text-gray-500 text-center sm:mt-0">&copy; 2021 Clothing Company, Ltd.</p>
+            <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">&copy; 2021 Your Company, Inc.</p>
           </div>
         </div>
       </footer>

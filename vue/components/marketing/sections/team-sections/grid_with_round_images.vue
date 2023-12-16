@@ -1,31 +1,22 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="bg-white">
-    <div class="max-w-7xl mx-auto py-12 px-4 text-center sm:px-6 lg:px-8 lg:py-24">
-      <div class="space-y-8 sm:space-y-12">
-        <div class="space-y-5 sm:mx-auto sm:max-w-xl sm:space-y-4 lg:max-w-5xl">
-          <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">The People</h2>
-          <p class="text-xl text-gray-500">Risus velit condimentum vitae tincidunt tincidunt. Mauris ridiculus fusce amet urna nunc. Ut nisl ornare diam in.</p>
-        </div>
-        <ul role="list" class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6">
-          <li v-for="person in people" :key="person.name">
-            <div class="space-y-4">
-              <img class="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24" :src="person.imageUrl" alt="" />
-              <div class="space-y-2">
-                <div class="text-xs font-medium lg:text-sm">
-                  <h3>{{ person.name }}</h3>
-                  <p class="text-indigo-600">{{ person.role }}</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+  <div class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our team</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.</p>
       </div>
+      <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-4 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:grid-cols-6">
+        <li v-for="person in people" :key="person.name">
+          <img class="mx-auto h-24 w-24 rounded-full" :src="person.imageUrl" alt="" />
+          <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">{{ person.name }}</h3>
+          <p class="text-sm leading-6 text-gray-600">{{ person.role }}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 const people = [
   {
     name: 'Michael Foster',
@@ -35,12 +26,4 @@ const people = [
   },
   // More people...
 ]
-
-export default {
-  setup() {
-    return {
-      people,
-    }
-  },
-}
 </script>

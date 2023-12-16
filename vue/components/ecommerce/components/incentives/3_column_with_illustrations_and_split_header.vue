@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,29 +14,25 @@
 -->
 <template>
   <div class="bg-gray-50">
-    <div class="max-w-7xl mx-auto py-24 sm:px-2 sm:py-32 lg:px-4">
-      <div class="max-w-2xl mx-auto px-4 lg:max-w-none">
-        <div class="grid grid-cols-1 items-center gap-y-10 gap-x-16 lg:grid-cols-2">
+    <div class="mx-auto max-w-7xl py-24 sm:px-2 sm:py-32 lg:px-4">
+      <div class="mx-auto max-w-2xl px-4 lg:max-w-none">
+        <div class="grid grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-2">
           <div>
-            <h2 class="text-4xl font-extrabold tracking-tight text-gray-900">We built our business on great customer service</h2>
+            <h2 class="text-4xl font-bold tracking-tight text-gray-900">We built our business on great customer service</h2>
             <p class="mt-4 text-gray-500">At the beginning at least, but then we realized we could make a lot more money if we kinda stopped caring about that. Our new strategy is to write a bunch of things that look really good in the headlines, then clarify in the small print but hope people don't actually read it.</p>
           </div>
-          <div class="aspect-w-3 aspect-h-2 bg-gray-100 rounded-lg overflow-hidden">
-            <img src="https://tailwindui.com/img/ecommerce-images/incentives-07-hero.jpg" alt="" class="object-center object-cover" />
+          <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://tailwindui.com/img/ecommerce-images/incentives-07-hero.jpg" alt="" class="object-cover object-center" />
           </div>
         </div>
-        <div class="mt-16 grid grid-cols-1 gap-y-10 gap-x-8 lg:grid-cols-3">
+        <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
           <div v-for="incentive in incentives" :key="incentive.name" class="sm:flex lg:block">
             <div class="sm:flex-shrink-0">
-              <img class="w-16 h-16" :src="incentive.imageSrc" alt="" />
+              <img class="h-16 w-16" :src="incentive.imageSrc" alt="" />
             </div>
-            <div class="mt-4 sm:mt-0 sm:ml-6 lg:mt-6 lg:ml-0">
-              <h3 class="text-sm font-medium text-gray-900">
-                {{ incentive.name }}
-              </h3>
-              <p class="mt-2 text-sm text-gray-500">
-                {{ incentive.description }}
-              </p>
+            <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
+              <h3 class="text-sm font-medium text-gray-900">{{ incentive.name }}</h3>
+              <p class="mt-2 text-sm text-gray-500">{{ incentive.description }}</p>
             </div>
           </div>
         </div>
@@ -47,7 +41,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 const incentives = [
   {
     name: 'Free shipping',
@@ -66,12 +60,4 @@ const incentives = [
       "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
   },
 ]
-
-export default {
-  setup() {
-    return {
-      incentives,
-    }
-  },
-}
 </script>

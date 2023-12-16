@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,28 +14,22 @@
 -->
 <template>
   <div class="bg-white">
-    <div class="max-w-7xl mx-auto py-16 px-4 overflow-hidden sm:py-24 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+    <div class="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
         <a v-for="product in products" :key="product.id" :href="product.href" class="group text-sm">
-          <div class="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100 group-hover:opacity-75">
-            <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover" />
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+            <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center" />
           </div>
-          <h3 class="mt-4 font-medium text-gray-900">
-            {{ product.name }}
-          </h3>
-          <p class="text-gray-500 italic">
-            {{ product.availability }}
-          </p>
-          <p class="mt-2 font-medium text-gray-900">
-            {{ product.price }}
-          </p>
+          <h3 class="mt-4 font-medium text-gray-900">{{ product.name }}</h3>
+          <p class="italic text-gray-500">{{ product.availability }}</p>
+          <p class="mt-2 font-medium text-gray-900">{{ product.price }}</p>
         </a>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 const products = [
   {
     id: 1,
@@ -69,12 +61,4 @@ const products = [
   },
   // More products...
 ]
-
-export default {
-  setup() {
-    return {
-      products,
-    }
-  },
-}
 </script>

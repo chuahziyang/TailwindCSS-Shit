@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="sm:flex">
     <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">

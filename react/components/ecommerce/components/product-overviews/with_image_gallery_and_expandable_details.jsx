@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -17,8 +15,8 @@
 */
 import { useState } from 'react'
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
-import { StarIcon } from '@heroicons/react/solid'
-import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
+import { StarIcon } from '@heroicons/react/20/solid'
+import { HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 const product = {
   name: 'Zip Tote Basket',
@@ -67,28 +65,28 @@ export default function Example() {
 
   return (
     <div className="bg-white">
-      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
           {/* Image gallery */}
           <Tab.Group as="div" className="flex flex-col-reverse">
             {/* Image selector */}
-            <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
               <Tab.List className="grid grid-cols-4 gap-6">
                 {product.images.map((image) => (
                   <Tab
                     key={image.id}
-                    className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                    className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                   >
                     {({ selected }) => (
                       <>
                         <span className="sr-only">{image.name}</span>
-                        <span className="absolute inset-0 rounded-md overflow-hidden">
-                          <img src={image.src} alt="" className="w-full h-full object-center object-cover" />
+                        <span className="absolute inset-0 overflow-hidden rounded-md">
+                          <img src={image.src} alt="" className="h-full w-full object-cover object-center" />
                         </span>
                         <span
                           className={classNames(
                             selected ? 'ring-indigo-500' : 'ring-transparent',
-                            'absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none'
+                            'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2'
                           )}
                           aria-hidden="true"
                         />
@@ -99,13 +97,13 @@ export default function Example() {
               </Tab.List>
             </div>
 
-            <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
+            <Tab.Panels className="aspect-h-1 aspect-w-1 w-full">
               {product.images.map((image) => (
                 <Tab.Panel key={image.id}>
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-center object-cover sm:rounded-lg"
+                    className="h-full w-full object-cover object-center sm:rounded-lg"
                   />
                 </Tab.Panel>
               ))}
@@ -113,12 +111,12 @@ export default function Example() {
           </Tab.Group>
 
           {/* Product info */}
-          <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
+          <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">{product.name}</h1>
 
             <div className="mt-3">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">{product.price}</p>
+              <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
             </div>
 
             {/* Reviews */}
@@ -145,7 +143,7 @@ export default function Example() {
               <h3 className="sr-only">Description</h3>
 
               <div
-                className="text-base text-gray-700 space-y-6"
+                className="space-y-6 text-base text-gray-700"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
@@ -157,7 +155,7 @@ export default function Example() {
 
                 <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
                   <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                  <div className="flex items-center space-x-3">
+                  <span className="flex items-center space-x-3">
                     {product.colors.map((color) => (
                       <RadioGroup.Option
                         key={color.name}
@@ -167,37 +165,37 @@ export default function Example() {
                             color.selectedColor,
                             active && checked ? 'ring ring-offset-1' : '',
                             !active && checked ? 'ring-2' : '',
-                            '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                            'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
                           )
                         }
                       >
-                        <RadioGroup.Label as="p" className="sr-only">
+                        <RadioGroup.Label as="span" className="sr-only">
                           {color.name}
                         </RadioGroup.Label>
                         <span
                           aria-hidden="true"
                           className={classNames(
                             color.bgColor,
-                            'h-8 w-8 border border-black border-opacity-10 rounded-full'
+                            'h-8 w-8 rounded-full border border-black border-opacity-10'
                           )}
                         />
                       </RadioGroup.Option>
                     ))}
-                  </div>
+                  </span>
                 </RadioGroup>
               </div>
 
-              <div className="mt-10 flex sm:flex-col1">
+              <div className="mt-10 flex">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                 >
                   Add to bag
                 </button>
 
                 <button
                   type="button"
-                  className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
+                  className="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500"
                 >
                   <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                   <span className="sr-only">Add to favorites</span>
@@ -210,13 +208,13 @@ export default function Example() {
                 Additional details
               </h2>
 
-              <div className="border-t divide-y divide-gray-200">
+              <div className="divide-y divide-gray-200 border-t">
                 {product.details.map((detail) => (
                   <Disclosure as="div" key={detail.name}>
                     {({ open }) => (
                       <>
                         <h3>
-                          <Disclosure.Button className="group relative w-full py-6 flex justify-between items-center text-left">
+                          <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
                             <span
                               className={classNames(open ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-medium')}
                             >
@@ -224,12 +222,12 @@ export default function Example() {
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
-                                <MinusSmIcon
+                                <MinusIcon
                                   className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
                                   aria-hidden="true"
                                 />
                               ) : (
-                                <PlusSmIcon
+                                <PlusIcon
                                   className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
                                   aria-hidden="true"
                                 />
@@ -237,7 +235,7 @@ export default function Example() {
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
+                        <Disclosure.Panel as="div" className="prose prose-sm pb-6">
                           <ul role="list">
                             {detail.items.map((item) => (
                               <li key={item}>{item}</li>

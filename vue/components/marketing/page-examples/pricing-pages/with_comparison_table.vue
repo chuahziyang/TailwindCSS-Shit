@@ -1,586 +1,378 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          orange: colors.orange,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <template>
   <div class="bg-white">
-    <div class="bg-indigo-900">
-      <!-- Header -->
-      <Popover class="relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="flex justify-between items-center border-b border-indigo-400 border-opacity-25 py-6 md:justify-start md:space-x-10">
-            <div class="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#">
-                <span class="sr-only">Workflow</span>
-                <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-orange-400-to-pink-500-gradient.svg" alt="" />
-              </a>
-            </div>
-            <div class="-mr-2 -my-2 md:hidden">
-              <PopoverButton class="bg-indigo-900 rounded-md p-2 inline-flex items-center justify-center text-indigo-300 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                <span class="sr-only">Open menu</span>
-                <MenuIcon class="h-6 w-6" aria-hidden="true" />
-              </PopoverButton>
-            </div>
-            <PopoverGroup as="nav" class="hidden md:flex space-x-10">
-              <Popover class="relative" v-slot="{ open }">
-                <PopoverButton :class="[open ? 'text-white' : 'text-indigo-300', 'group bg-indigo-900 rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-900 focus:ring-white']">
-                  <span>Solutions</span>
-                  <ChevronDownIcon :class="[open ? 'text-white' : 'text-indigo-300', 'ml-2 h-5 w-5 group-hover:text-white']" aria-hidden="true" />
-                </PopoverButton>
-
-                <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-                  <PopoverPanel class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md px-2 sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                      <div class="relative bg-white py-6 px-5 grid gap-6 sm:gap-8 sm:p-8">
-                        <a v-for="item in solutions" :key="item.name" :href="item.href" class="-m-3 rounded-lg p-3 flex items-start hover:bg-gray-50">
-                          <component :is="item.icon" class="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">
-                              {{ item.name }}
-                            </p>
-                            <p class="mt-1 text-sm text-gray-500">
-                              {{ item.description }}
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                        <div v-for="item in callsToAction" :key="item.name" class="flow-root">
-                          <a :href="item.href" class="-m-3 rounded-md p-3 flex items-center text-base font-medium text-gray-900 hover:bg-gray-100">
-                            <component :is="item.icon" class="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
-                            <span class="ml-3">{{ item.name }}</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </PopoverPanel>
-                </transition>
-              </Popover>
-
-              <a href="#" class="text-base font-medium text-indigo-300 hover:text-white"> Pricing </a>
-              <a href="#" class="text-base font-medium text-indigo-300 hover:text-white"> Docs </a>
-
-              <Popover class="relative" v-slot="{ open }">
-                <PopoverButton :class="[open ? 'text-white' : 'text-indigo-300', 'group bg-indigo-900 rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-900 focus:ring-white']">
-                  <span>More</span>
-                  <ChevronDownIcon :class="[open ? 'text-white' : 'text-indigo-300', 'ml-2 h-5 w-5 group-hover:text-white']" aria-hidden="true" />
-                </PopoverButton>
-
-                <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-                  <PopoverPanel class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0">
-                    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                      <div class="relative bg-white py-6 px-5 grid gap-6 sm:gap-8 sm:p-8">
-                        <a v-for="item in resources" :key="item.name" :href="item.href" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                          <component :is="item.icon" class="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">
-                              {{ item.name }}
-                            </p>
-                            <p class="mt-1 text-sm text-gray-500">
-                              {{ item.description }}
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-                        <div>
-                          <h3 class="text-sm tracking-wide font-medium text-gray-500 uppercase">Recent Posts</h3>
-                          <ul role="list" class="mt-4 space-y-4">
-                            <li v-for="post in recentPosts" :key="post.id" class="text-base truncate">
-                              <a :href="post.href" class="font-medium text-gray-900 hover:text-gray-700">
-                                {{ post.name }}
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="mt-5 text-sm">
-                          <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View all posts <span aria-hidden="true">&rarr;</span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </PopoverPanel>
-                </transition>
-              </Popover>
-            </PopoverGroup>
-            <div class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
-              <a href="#" class="whitespace-nowrap text-base font-medium text-indigo-300 hover:text-white"> Sign in </a>
-              <a href="#" class="whitespace-nowrap bg-white border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex items-center justify-center text-base font-medium text-indigo-600 hover:bg-indigo-50"> Sign up </a>
-            </div>
-          </div>
-        </div>
-
-        <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
-          <PopoverPanel focus class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-            <div class="rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
-              <div class="pt-5 pb-6 px-5 space-y-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-orange-400-to-pink-500-gradient.svg" alt="Workflow" />
-                  </div>
-                  <div class="-mr-2">
-                    <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                      <span class="sr-only">Close menu</span>
-                      <XIcon class="h-6 w-6" aria-hidden="true" />
-                    </PopoverButton>
-                  </div>
-                </div>
-                <div class="mt-6">
-                  <nav class="grid gap-y-8">
-                    <a v-for="item in solutions" :key="item.name" :href="item.href" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-                      <component :is="item.icon" class="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
-                      <span class="ml-3 text-base font-medium text-gray-900">
-                        {{ item.name }}
-                      </span>
-                    </a>
-                  </nav>
-                </div>
-              </div>
-              <div class="py-6 px-5 space-y-6">
-                <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Pricing </a>
-
-                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Docs </a>
-
-                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Blog </a>
-
-                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Contact Sales </a>
-                  <a v-for="item in resources" :key="item.name" :href="item.href" class="text-base font-medium text-gray-900 hover:text-gray-700">
-                    {{ item.name }}
-                  </a>
-                </div>
-                <div>
-                  <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
-                  <p class="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?
-                    <a href="#" class="text-indigo-600 hover:text-indigo-500"> Sign in </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </PopoverPanel>
-        </transition>
-      </Popover>
-
-      <!-- Header section with select menu -->
-      <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl">
-        <div class="px-0 sm:px-4 lg:px-0 lg:flex lg:justify-between lg:items-center">
-          <div class="max-w-xl">
-            <h2 class="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">Pricing Plans</h2>
-            <p class="mt-5 text-xl text-indigo-300">Start building for free, then add a site plan to go live. Account plans unlock additional features.</p>
-          </div>
-          <div class="mt-10 w-full max-w-xs lg:mt-0">
-            <label for="currency" class="block text-base font-medium text-indigo-300">Currency</label>
-            <div class="mt-1.5 relative">
-              <select id="currency" name="currency" class="block w-full bg-none bg-indigo-400 bg-opacity-25 border border-transparent text-white focus:ring-white focus:border-white rounded-md">
-                <option class="bg-gray-900">Argentina (ARS)</option>
-                <option class="bg-gray-900">Australia (AUD)</option>
-                <option class="bg-gray-900" selected="">United States (USD)</option>
-                <option class="bg-gray-900">Canada (CAD)</option>
-                <option class="bg-gray-900">France (EUR)</option>
-                <option class="bg-gray-900">Japan (JPY)</option>
-                <option class="bg-gray-900">Nigeria (NGN)</option>
-                <option class="bg-gray-900">Switzerland (CHF)</option>
-                <option class="bg-gray-900">United Kingdom (GBP)</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
-                <ChevronDownIcon class="h-4 w-4 text-indigo-300" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Comparison table -->
-    <div class="max-w-2xl mx-auto bg-white py-16 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-      <!-- xs to lg -->
-      <div class="space-y-24 lg:hidden">
-        <section v-for="tier in tiers" :key="tier.name">
-          <div class="px-4 mb-8">
-            <h2 class="text-lg leading-6 font-medium text-gray-900">{{ tier.name }}</h2>
-            <p class="mt-4">
-              <span class="text-4xl font-extrabold text-gray-900">${{ tier.priceMonthly }}</span>
-              <span class="text-base font-medium text-gray-500">/mo</span>
-            </p>
-            <p class="mt-4 text-sm text-gray-500">{{ tier.description }}</p>
-            <a :href="tier.href" class="mt-6 block w-full bg-gradient-to-r from-orange-500 to-pink-500 border border-transparent rounded-md shadow py-2 text-sm font-semibold text-white text-center hover:to-pink-600">Buy {{ tier.name }}</a>
-          </div>
-
-          <table v-for="section in sections" :key="section.name" class="w-full">
-            <caption class="bg-gray-50 border-t border-gray-200 py-3 px-4 text-sm font-medium text-gray-900 text-left">
-              {{
-                section.name
-              }}
-            </caption>
-            <thead>
-              <tr>
-                <th class="sr-only" scope="col">Feature</th>
-                <th class="sr-only" scope="col">Included</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr v-for="feature in section.features" :key="feature.name" class="border-t border-gray-200">
-                <th class="py-5 px-4 text-sm font-normal text-gray-500 text-left" scope="row">{{ feature.name }}</th>
-                <td class="py-5 pr-4">
-                  <span v-if="typeof feature.tiers[tier.name] === 'string'" class="block text-sm text-gray-700 text-right">{{ feature.tiers[tier.name] }}</span>
-                  <template v-else>
-                    <CheckIcon v-if="feature.tiers[tier.name] === true" class="ml-auto h-5 w-5 text-green-500" aria-hidden="true" />
-                    <MinusIcon v-else class="ml-auto h-5 w-5 text-gray-400" aria-hidden="true" />
-                    <span class="sr-only">{{ feature.tiers[tier.name] === true ? 'Yes' : 'No' }}</span>
-                  </template>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="border-t border-gray-200 px-4 pt-5">
-            <a href="#" class="block w-full bg-gradient-to-r from-orange-500 to-pink-500 border border-transparent rounded-md shadow py-2 text-sm font-semibold text-white text-center hover:to-pink-600">Buy {{ tier.name }}</a>
-          </div>
-        </section>
-      </div>
-
-      <!-- lg+ -->
-      <div class="hidden lg:block">
-        <table class="w-full h-px table-fixed">
-          <caption class="sr-only">
-            Pricing plan comparison
-          </caption>
-          <thead>
-            <tr>
-              <th class="pb-4 pl-6 pr-6 text-sm font-medium text-gray-900 text-left" scope="col">
-                <span class="sr-only">Feature by</span>
-                <span>Plans</span>
-              </th>
-              <th v-for="tier in tiers" :key="tier.name" class="w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-900 text-left" scope="col">{{ tier.name }}</th>
-            </tr>
-          </thead>
-          <tbody class="border-t border-gray-200 divide-y divide-gray-200">
-            <tr>
-              <th class="py-8 pl-6 pr-6 align-top text-sm font-medium text-gray-900 text-left" scope="row">Pricing</th>
-              <td v-for="tier in tiers" :key="tier.name" class="h-full py-8 px-6 align-top">
-                <div class="h-full flex flex-col justify-between">
-                  <div>
-                    <p>
-                      <span class="text-4xl font-extrabold text-gray-900">${{ tier.priceMonthly }}</span>
-                      <span class="text-base font-medium text-gray-500">/mo</span>
-                    </p>
-                    <p class="mt-4 text-sm text-gray-500">{{ tier.description }}</p>
-                  </div>
-                  <a :href="tier.href" class="mt-6 block w-full bg-gradient-to-r from-orange-500 to-pink-500 border border-transparent rounded-md shadow py-2 text-sm font-semibold text-white text-center hover:to-pink-600">Buy {{ tier.name }}</a>
-                </div>
-              </td>
-            </tr>
-            <template v-for="section in sections" :key="section.name">
-              <tr>
-                <th class="py-3 pl-6 bg-gray-50 text-sm font-medium text-gray-900 text-left" colspan="4" scope="colgroup">{{ section.name }}</th>
-              </tr>
-              <tr v-for="feature in section.features" :key="feature.name">
-                <th class="py-5 pl-6 pr-6 text-sm font-normal text-gray-500 text-left" scope="row">{{ feature.name }}</th>
-                <td v-for="tier in tiers" :key="tier.name" class="py-5 px-6">
-                  <span v-if="typeof feature.tiers[tier.name] === 'string'" class="block text-sm text-gray-700">{{ feature.tiers[tier.name] }}</span>
-                  <template v-else>
-                    <CheckIcon v-if="feature.tiers[tier.name] === true" class="h-5 w-5 text-green-500" aria-hidden="true" />
-                    <MinusIcon v-else class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                    <span class="sr-only">{{ feature.tiers[tier.name] === true ? 'Included' : 'Not included' }} in {{ tier.name }}</span>
-                  </template>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-          <tfoot>
-            <tr class="border-t border-gray-200">
-              <th class="sr-only" scope="row">Choose your plan</th>
-              <td v-for="tier in tiers" :key="tier.name" class="pt-5 px-6">
-                <a href="#" class="block w-full bg-gradient-to-r from-orange-500 to-pink-500 border border-transparent rounded-md shadow py-2 text-sm font-semibold text-white text-center hover:to-pink-600">Buy {{ tier.name }}</a>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-
-    <!-- Logo cloud -->
-    <div class="max-w-7xl mx-auto border-t border-gray-200 py-12 px-4 sm:px-6 lg:py-20 lg:px-8">
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
-        </div>
-        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
-        </div>
-        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" alt="StaticKit" />
-        </div>
-        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-          <img class="h-12" src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg" alt="Transistor" />
-        </div>
-        <div class="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
-          <img class="h-12" src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg" alt="Workcation" />
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-gray-50">
-      <!-- FAQ -->
-      <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-extrabold text-gray-900 text-center">Frequently asked questions</h2>
-        <div class="mt-12">
-          <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
-            <div v-for="faq in faqs" :key="faq.id" class="space-y-2">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                {{ faq.question }}
-              </dt>
-              <dd class="text-base text-gray-500">
-                {{ faq.answer }}
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <!-- Feature section with brand panel -->
-    <div class="relative">
-      <div class="absolute inset-0 flex flex-col" aria-hidden="true">
-        <div class="flex-1 bg-gray-50" />
-        <div class="flex-1" />
-      </div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-orange-400 to-pink-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
-          <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
-            <div class="lg:self-center">
-              <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                <span class="block">Ready to dive in?</span>
-                <span class="block text-red-900">Start your free trial today.</span>
-              </h2>
-              <p class="mt-4 text-lg leading-6 text-orange-50">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
-              <a href="#" class="mt-8 bg-orange-100 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-red-600 hover:text-red-500">Sign up for free</a>
-            </div>
-          </div>
-          <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-            <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="https://tailwindui.com/img/component-images/full-width-with-sidebar.jpg" alt="App screenshot" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="mt-12 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-      <h2 class="sr-only">Footer</h2>
-      <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-        <div class="grid grid-cols-2 gap-8 xl:col-span-2">
-          <div class="md:grid md:grid-cols-2 md:gap-8">
-            <div>
-              <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Solutions</h4>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in footerNavigation.solutions" :key="item.name">
-                  <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-12 md:mt-0">
-              <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h4>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in footerNavigation.support" :key="item.name">
-                  <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="md:grid md:grid-cols-2 md:gap-8">
-            <div>
-              <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h4>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in footerNavigation.company" :key="item.name">
-                  <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-12 md:mt-0">
-              <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h4>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in footerNavigation.legal" :key="item.name">
-                  <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 xl:mt-0">
-          <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Subscribe to our newsletter</h4>
-          <p class="mt-4 text-gray-500 text-base">The latest news, articles, and resources, sent to your inbox weekly.</p>
-          <form class="mt-4 sm:flex sm:max-w-md">
-            <label for="email-address" class="sr-only">Email address</label>
-            <input type="email" name="email-address" id="email-address" autocomplete="email" required="" class="min-w-0 w-full bg-white shadow-sm py-2 px-4 placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 border-gray-300 rounded-md" placeholder="Enter your email" />
-            <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-              <button type="submit" class="w-full bg-orange-100 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-red-600 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
-        <div class="flex space-x-6 md:order-2">
-          <a v-for="item in footerNavigation.social" :key="item.name" :href="item.href" class="text-gray-400 hover:text-gray-500">
-            <span class="sr-only">{{ item.name }}</span>
-            <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+    <!-- Header -->
+    <header class="bg-gray-900">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Your Company</span>
+            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="" />
           </a>
         </div>
-        <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+        <div class="flex lg:hidden">
+          <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400" @click="mobileMenuOpen = true">
+            <span class="sr-only">Open main menu</span>
+            <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+          <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-sm font-semibold leading-6 text-white">{{ item.name }}</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+          <a href="#" class="text-sm font-semibold leading-6 text-white">Log in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+      <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+        <div class="fixed inset-0 z-50" />
+        <DialogPanel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+          <div class="flex items-center justify-between">
+            <a href="#" class="-m-1.5 p-1.5">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="" />
+            </a>
+            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400" @click="mobileMenuOpen = false">
+              <span class="sr-only">Close menu</span>
+              <XMarkIconOutline class="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <div class="mt-6 flow-root">
+            <div class="-my-6 divide-y divide-gray-500/25">
+              <div class="space-y-2 py-6">
+                <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">{{ item.name }}</a>
+              </div>
+              <div class="py-6">
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Log in</a>
+              </div>
+            </div>
+          </div>
+        </DialogPanel>
+      </Dialog>
+    </header>
+
+    <main>
+      <!-- Pricing section -->
+      <div class="isolate overflow-hidden">
+        <div class="flow-root bg-gray-900 py-16 sm:pt-32 lg:pb-0">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="relative z-10">
+              <h1 class="mx-auto max-w-4xl text-center text-5xl font-bold tracking-tight text-white">Simple pricing, no commitment</h1>
+              <p class="mx-auto mt-4 max-w-2xl text-center text-lg leading-8 text-white/60">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos odit doloribus molestiae voluptatum quos odit doloribus.</p>
+              <div class="mt-16 flex justify-center">
+                <RadioGroup v-model="frequency" class="grid grid-cols-2 gap-x-1 rounded-full bg-white/5 p-1 text-center text-xs font-semibold leading-5 text-white">
+                  <RadioGroupLabel class="sr-only">Payment frequency</RadioGroupLabel>
+                  <RadioGroupOption as="template" v-for="option in pricing.frequencies" :key="option.value" :value="option" v-slot="{ checked }">
+                    <div :class="[checked ? 'bg-indigo-500' : '', 'cursor-pointer rounded-full px-2.5 py-1']">
+                      <span>{{ option.label }}</span>
+                    </div>
+                  </RadioGroupOption>
+                </RadioGroup>
+              </div>
+            </div>
+            <div class="relative mx-auto mt-10 grid max-w-md grid-cols-1 gap-y-8 lg:mx-0 lg:-mb-14 lg:max-w-none lg:grid-cols-3">
+              <svg viewBox="0 0 1208 1024" aria-hidden="true" class="absolute -bottom-48 left-1/2 h-[64rem] -translate-x-1/2 translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] lg:-top-48 lg:bottom-auto lg:translate-y-0">
+                <ellipse cx="604" cy="512" fill="url(#d25c25d4-6d43-4bf9-b9ac-1842a30a4867)" rx="604" ry="512" />
+                <defs>
+                  <radialGradient id="d25c25d4-6d43-4bf9-b9ac-1842a30a4867">
+                    <stop stop-color="#7775D6" />
+                    <stop offset="1" stop-color="#E935C1" />
+                  </radialGradient>
+                </defs>
+              </svg>
+              <div class="hidden lg:absolute lg:inset-x-px lg:bottom-0 lg:top-4 lg:block lg:rounded-t-2xl lg:bg-gray-800/80 lg:ring-1 lg:ring-white/10" aria-hidden="true" />
+              <div v-for="tier in pricing.tiers" :key="tier.id" :class="[tier.featured ? 'z-10 bg-white shadow-xl ring-1 ring-gray-900/10' : 'bg-gray-800/80 ring-1 ring-white/10 lg:bg-transparent lg:pb-14 lg:ring-0', 'relative rounded-2xl']">
+                <div class="p-8 lg:pt-12 xl:p-10 xl:pt-14">
+                  <h2 :id="tier.id" :class="[tier.featured ? 'text-gray-900' : 'text-white', 'text-sm font-semibold leading-6']">{{ tier.name }}</h2>
+                  <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-stretch">
+                    <div class="mt-2 flex items-center gap-x-4">
+                      <p :class="[tier.featured ? 'text-gray-900' : 'text-white', 'text-4xl font-bold tracking-tight']">{{ tier.price[frequency.value] }}</p>
+                      <div class="text-sm leading-5">
+                        <p :class="tier.featured ? 'text-gray-900' : 'text-white'">USD</p>
+                        <p :class="tier.featured ? 'text-gray-500' : 'text-gray-400'">{{ `Billed ${frequency.value}` }}</p>
+                      </div>
+                    </div>
+                    <a :href="tier.href" :aria-describedby="tier.id" :class="[tier.featured ? 'bg-indigo-600 shadow-sm hover:bg-indigo-500 focus-visible:outline-indigo-600' : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white', 'rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2']">Buy this plan</a>
+                  </div>
+                  <div class="mt-8 flow-root sm:mt-10">
+                    <ul role="list" :class="[tier.featured ? 'divide-gray-900/5 border-gray-900/5 text-gray-600' : 'divide-white/5 border-white/5 text-white', '-my-2 divide-y border-t text-sm leading-6 lg:border-t-0']">
+                      <li v-for="mainFeature in tier.mainFeatures" :key="mainFeature" class="flex gap-x-3 py-2">
+                        <CheckIcon :class="[tier.featured ? 'text-indigo-600' : 'text-gray-500', 'h-6 w-5 flex-none']" aria-hidden="true" />
+                        {{ mainFeature }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative bg-gray-50 lg:pt-14">
+          <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+            <!-- Feature comparison (up to lg) -->
+            <section aria-labelledby="mobile-comparison-heading" class="lg:hidden">
+              <h2 id="mobile-comparison-heading" class="sr-only">Feature comparison</h2>
+
+              <div class="mx-auto max-w-2xl space-y-16">
+                <div v-for="tier in pricing.tiers" :key="tier.id" class="border-t border-gray-900/10">
+                  <div :class="[tier.featured ? 'border-indigo-600' : 'border-transparent', '-mt-px w-72 border-t-2 pt-10 md:w-80']">
+                    <h3 :class="[tier.featured ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-semibold leading-6']">{{ tier.name }}</h3>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">{{ tier.description }}</p>
+                  </div>
+
+                  <div class="mt-10 space-y-10">
+                    <div v-for="section in pricing.sections" :key="section.name">
+                      <h4 class="text-sm font-semibold leading-6 text-gray-900">{{ section.name }}</h4>
+                      <div class="relative mt-6">
+                        <!-- Fake card background -->
+                        <div aria-hidden="true" class="absolute inset-y-0 right-0 hidden w-1/2 rounded-lg bg-white shadow-sm sm:block" />
+
+                        <div :class="[tier.featured ? 'ring-2 ring-indigo-600' : 'ring-1 ring-gray-900/10', 'relative rounded-lg bg-white shadow-sm sm:rounded-none sm:bg-transparent sm:shadow-none sm:ring-0']">
+                          <dl class="divide-y divide-gray-200 text-sm leading-6">
+                            <div v-for="feature in section.features" :key="feature.name" class="flex items-center justify-between px-4 py-3 sm:grid sm:grid-cols-2 sm:px-0">
+                              <dt class="pr-4 text-gray-600">{{ feature.name }}</dt>
+                              <dd class="flex items-center justify-end sm:justify-center sm:px-4">
+                                <span v-if="typeof feature.tiers[tier.name] === 'string'" :class="tier.featured ? 'font-semibold text-indigo-600' : 'text-gray-900'">{{ feature.tiers[tier.name] }}</span>
+                                <template v-else>
+                                  <CheckIcon v-if="feature.tiers[tier.name] === true" class="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                  <XMarkIconMini v-else class="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
+                                  <span class="sr-only">{{ feature.tiers[tier.name] === true ? 'Yes' : 'No' }}</span>
+                                </template>
+                              </dd>
+                            </div>
+                          </dl>
+                        </div>
+
+                        <!-- Fake card border -->
+                        <div aria-hidden="true" :class="[tier.featured ? 'ring-2 ring-indigo-600' : 'ring-1 ring-gray-900/10', 'pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 rounded-lg sm:block']" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Feature comparison (lg+) -->
+            <section aria-labelledby="comparison-heading" class="hidden lg:block">
+              <h2 id="comparison-heading" class="sr-only">Feature comparison</h2>
+
+              <div class="grid grid-cols-4 gap-x-8 border-t border-gray-900/10 before:block">
+                <div v-for="tier in pricing.tiers" :key="tier.id" aria-hidden="true" class="-mt-px">
+                  <div :class="[tier.featured ? 'border-indigo-600' : 'border-transparent', 'border-t-2 pt-10']">
+                    <p :class="[tier.featured ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-semibold leading-6']">{{ tier.name }}</p>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">{{ tier.description }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="-mt-6 space-y-16">
+                <div v-for="section in pricing.sections" :key="section.name">
+                  <h3 class="text-sm font-semibold leading-6 text-gray-900">{{ section.name }}</h3>
+                  <div class="relative -mx-8 mt-10">
+                    <!-- Fake card backgrounds -->
+                    <div class="absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block" aria-hidden="true">
+                      <div class="h-full w-full rounded-lg bg-white shadow-sm" />
+                      <div class="h-full w-full rounded-lg bg-white shadow-sm" />
+                      <div class="h-full w-full rounded-lg bg-white shadow-sm" />
+                    </div>
+
+                    <table class="relative w-full border-separate border-spacing-x-8">
+                      <thead>
+                        <tr class="text-left">
+                          <th scope="col">
+                            <span class="sr-only">Feature</span>
+                          </th>
+                          <th v-for="tier in pricing.tiers" :key="tier.id" scope="col">
+                            <span class="sr-only">{{ tier.name }} tier</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(feature, featureIdx) in section.features" :key="feature.name">
+                          <th scope="row" class="w-1/4 py-3 pr-4 text-left text-sm font-normal leading-6 text-gray-900">
+                            {{ feature.name }}
+                            <div v-if="featureIdx !== section.features.length - 1" class="absolute inset-x-8 mt-3 h-px bg-gray-200" />
+                          </th>
+                          <td v-for="tier in pricing.tiers" :key="tier.id" class="relative w-1/4 px-4 py-0 text-center">
+                            <span class="relative h-full w-full py-3">
+                              <span v-if="typeof feature.tiers[tier.name] === 'string'" :class="[tier.featured ? 'font-semibold text-indigo-600' : 'text-gray-900', 'text-sm leading-6']">{{ feature.tiers[tier.name] }}</span>
+                              <template v-else>
+                                <CheckIcon v-if="feature.tiers[tier.name] === true" class="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                <XMarkIconMini v-else class="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
+                                <span class="sr-only">{{ feature.tiers[tier.name] === true ? 'Yes' : 'No' }}</span>
+                              </template>
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Fake card borders -->
+                    <div class="pointer-events-none absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block" aria-hidden="true">
+                      <div v-for="tier in pricing.tiers" :key="tier.id" :class="[tier.featured ? 'ring-2 ring-indigo-600' : 'ring-1 ring-gray-900/10', 'rounded-lg']" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ section -->
+      <div class="mx-auto mt-24 max-w-7xl divide-y divide-gray-900/10 px-6 sm:mt-56 lg:px-8">
+        <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+        <dl class="mt-10 space-y-8 divide-y divide-gray-900/10">
+          <div v-for="faq in faqs" :key="faq.id" class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+            <dt class="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">{{ faq.question }}</dt>
+            <dd class="mt-4 lg:col-span-7 lg:mt-0">
+              <p class="text-base leading-7 text-gray-600">{{ faq.answer }}</p>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-24 sm:mt-56" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="sr-only">Footer</h2>
+      <div class="mx-auto max-w-7xl px-6 pb-8 lg:px-8">
+        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div class="space-y-8">
+            <img class="h-7" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Company name" />
+            <p class="text-sm leading-6 text-gray-600">Making the world a better place through constructing elegant hierarchies.</p>
+            <div class="flex space-x-6">
+              <a v-for="item in footerNavigation.social" :key="item.name" :href="item.href" class="text-gray-400 hover:text-gray-500">
+                <span class="sr-only">{{ item.name }}</span>
+                <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 class="text-sm font-semibold leading-6 text-gray-900">Solutions</h3>
+                <ul role="list" class="mt-6 space-y-4">
+                  <li v-for="item in footerNavigation.solutions" :key="item.name">
+                    <a :href="item.href" class="text-sm leading-6 text-gray-600 hover:text-gray-900">{{ item.name }}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <h3 class="text-sm font-semibold leading-6 text-gray-900">Support</h3>
+                <ul role="list" class="mt-6 space-y-4">
+                  <li v-for="item in footerNavigation.support" :key="item.name">
+                    <a :href="item.href" class="text-sm leading-6 text-gray-600 hover:text-gray-900">{{ item.name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 class="text-sm font-semibold leading-6 text-gray-900">Company</h3>
+                <ul role="list" class="mt-6 space-y-4">
+                  <li v-for="item in footerNavigation.company" :key="item.name">
+                    <a :href="item.href" class="text-sm leading-6 text-gray-600 hover:text-gray-900">{{ item.name }}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <h3 class="text-sm font-semibold leading-6 text-gray-900">Legal</h3>
+                <ul role="list" class="mt-6 space-y-4">
+                  <li v-for="item in footerNavigation.legal" :key="item.name">
+                    <a :href="item.href" class="text-sm leading-6 text-gray-600 hover:text-gray-900">{{ item.name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
+          <p class="text-xs leading-5 text-gray-500">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   </div>
 </template>
 
-<script>
-import { defineComponent, h } from 'vue'
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
-import {
-  BookmarkAltIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  SupportIcon,
-  ViewGridIcon,
-  XIcon,
-} from '@heroicons/vue/outline'
-import { CheckIcon, ChevronDownIcon, MinusIcon } from '@heroicons/vue/solid'
+<script setup>
+import { defineComponent, h, ref } from 'vue'
+import { Dialog, DialogPanel, RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon as XMarkIconOutline } from '@heroicons/vue/24/outline'
+import { CheckIcon, XMarkIcon as XMarkIconMini } from '@heroicons/vue/20/solid'
 
-const solutions = [
-  {
-    name: 'Analytics',
-    description: 'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
-  },
-  {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-    icon: CursorClickIcon,
-  },
-  { name: 'Security', description: "Your customers' data will be safe and secure.", href: '#', icon: ShieldCheckIcon },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Automations',
-    description: 'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-    icon: RefreshIcon,
-  },
+const navigation = [
+  { name: 'Product', href: '#' },
+  { name: 'Features', href: '#' },
+  { name: 'Marketplace', href: '#' },
+  { name: 'Company', href: '#' },
 ]
-const callsToAction = [
-  { name: 'Watch Demo', href: '#', icon: PlayIcon },
-  { name: 'Contact Sales', href: '#', icon: PhoneIcon },
-]
-const resources = [
-  {
-    name: 'Help Center',
-    description: 'Get all of your questions answered in our forums or contact support.',
-    href: '#',
-    icon: SupportIcon,
-  },
-  {
-    name: 'Guides',
-    description: 'Learn how to maximize our platform to get the most out of it.',
-    href: '#',
-    icon: BookmarkAltIcon,
-  },
-  {
-    name: 'Events',
-    description: 'See what meet-ups and other events we might be planning near you.',
-    href: '#',
-    icon: CalendarIcon,
-  },
-  { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
-]
-const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
-]
-const tiers = [
-  { name: 'Basic', href: '#', priceMonthly: 9, description: 'Quis suspendisse ut fermentum neque vivamus non tellus.' },
-  {
-    name: 'Essential',
-    href: '#',
-    priceMonthly: 29,
-    description: 'Quis eleifend a tincidunt pellentesque. A tempor in sed.',
-  },
-  {
-    name: 'Premium',
-    href: '#',
-    priceMonthly: 59,
-    description: 'Orci volutpat ut sed sed neque, dui eget. Quis tristique non.',
-  },
-]
-const sections = [
-  {
-    name: 'Features',
-    features: [
-      { name: 'Molestie lobortis massa.', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Urna purus felis.', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Tellus pulvinar sit dictum.', tiers: { Essential: true, Premium: true } },
-      { name: 'Convallis.', tiers: { Essential: 'Up to 20 users', Premium: 'Up to 50 users' } },
-    ],
-  },
-  {
-    name: 'Reporting',
-    features: [
-      { name: 'Adipiscing.', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Eget risus integer.', tiers: { Essential: true, Premium: true } },
-      { name: 'Gravida leo urna velit.', tiers: { Premium: true } },
-      { name: 'Elementum ut dapibus mi feugiat cras nisl.', tiers: { Premium: true } },
-    ],
-  },
-  {
-    name: 'Support',
-    features: [
-      { name: 'Sit dignissim.', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Congue at nibh et.', tiers: { Essential: true, Premium: true } },
-      { name: 'Volutpat feugiat mattis.', tiers: { Essential: true, Premium: true } },
-      { name: 'Tristique pellentesque ornare diam sapien.', tiers: { Premium: true } },
-    ],
-  },
-]
+const pricing = {
+  frequencies: [
+    { value: 'monthly', label: 'Monthly' },
+    { value: 'annually', label: 'Annually' },
+  ],
+  tiers: [
+    {
+      name: 'Starter',
+      id: 'tier-starter',
+      href: '#',
+      featured: false,
+      description: 'All your essential business finances, taken care of.',
+      price: { monthly: '$15', annually: '$144' },
+      mainFeatures: ['Basic invoicing', 'Easy to use accounting', 'Mutli-accounts'],
+    },
+    {
+      name: 'Scale',
+      id: 'tier-scale',
+      href: '#',
+      featured: true,
+      description: 'The best financial services for your thriving business.',
+      price: { monthly: '$60', annually: '$576' },
+      mainFeatures: [
+        'Advanced invoicing',
+        'Easy to use accounting',
+        'Mutli-accounts',
+        'Tax planning toolkit',
+        'VAT & VATMOSS filing',
+        'Free bank transfers',
+      ],
+    },
+    {
+      name: 'Growth',
+      id: 'tier-growth',
+      href: '#',
+      featured: false,
+      description: 'Convenient features to take your business to the next level.',
+      price: { monthly: '$30', annually: '$288' },
+      mainFeatures: ['Basic invoicing', 'Easy to use accounting', 'Mutli-accounts', 'Tax planning toolkit'],
+    },
+  ],
+  sections: [
+    {
+      name: 'Catered for business',
+      features: [
+        { name: 'Tax Savings', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Easy to use accounting', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Multi-accounts', tiers: { Starter: '3 accounts', Scale: 'Unlimited accounts', Growth: '7 accounts' } },
+        { name: 'Invoicing', tiers: { Starter: '3 invoices', Scale: 'Unlimited invoices', Growth: '10 invoices' } },
+        { name: 'Exclusive offers', tiers: { Starter: false, Scale: true, Growth: true } },
+        { name: '6 months free advisor', tiers: { Starter: false, Scale: true, Growth: true } },
+        { name: 'Mobile and web access', tiers: { Starter: false, Scale: true, Growth: false } },
+      ],
+    },
+    {
+      name: 'Other perks',
+      features: [
+        { name: '24/7 customer support', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Instant notifications', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Budgeting tools', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Digital receipts', tiers: { Starter: true, Scale: true, Growth: true } },
+        { name: 'Pots to separate money', tiers: { Starter: false, Scale: true, Growth: true } },
+        { name: 'Free bank transfers', tiers: { Starter: false, Scale: true, Growth: false } },
+        { name: 'Business debit card', tiers: { Starter: false, Scale: true, Growth: false } },
+      ],
+    },
+  ],
+}
 const faqs = [
   {
     id: 1,
@@ -588,35 +380,7 @@ const faqs = [
     answer:
       "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
-  {
-    id: 2,
-    question: 'How do you make holy water?',
-    answer:
-      'You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
-  },
-  {
-    id: 3,
-    question: 'Why do you never see elephants hiding in trees?',
-    answer:
-      "Because they're so good at it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  {
-    id: 4,
-    question: 'What do you call someone with no body and no nose?',
-    answer: 'Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
-  },
-  {
-    id: 5,
-    question: "Why can't you hear a pterodactyl go to the bathroom?",
-    answer:
-      'Because the pee is silent. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
-  },
-  {
-    id: 6,
-    question: 'Why did the invisible man turn down the job offer?',
-    answer:
-      "He couldn't see himself doing it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
+  // More questions...
 ]
 const footerNavigation = {
   solutions: [
@@ -699,14 +463,14 @@ const footerNavigation = {
       }),
     },
     {
-      name: 'Dribbble',
+      name: 'YouTube',
       href: '#',
       icon: defineComponent({
         render: () =>
           h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
             h('path', {
               'fill-rule': 'evenodd',
-              d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z',
+              d: 'M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z',
               'clip-rule': 'evenodd',
             }),
           ]),
@@ -715,29 +479,6 @@ const footerNavigation = {
   ],
 }
 
-export default {
-  components: {
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-    CheckIcon,
-    ChevronDownIcon,
-    MenuIcon,
-    MinusIcon,
-    XIcon,
-  },
-  setup() {
-    return {
-      solutions,
-      callsToAction,
-      resources,
-      recentPosts,
-      tiers,
-      sections,
-      faqs,
-      footerNavigation,
-    }
-  },
-}
+const mobileMenuOpen = ref(false)
+const frequency = ref(pricing.frequencies[0])
 </script>

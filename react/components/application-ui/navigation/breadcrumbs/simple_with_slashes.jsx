@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { HomeIcon } from '@heroicons/react/solid'
+import { HomeIcon } from '@heroicons/react/20/solid'
 
 const pages = [
   { name: 'Projects', href: '#', current: false },
@@ -13,7 +12,7 @@ export default function Example() {
         <li>
           <div>
             <a href="#" className="text-gray-400 hover:text-gray-500">
-              <HomeIcon className="flex-shrink-0 h-5 w-5" aria-hidden="true" />
+              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <span className="sr-only">Home</span>
             </a>
           </div>
@@ -22,8 +21,7 @@ export default function Example() {
           <li key={page.name}>
             <div className="flex items-center">
               <svg
-                className="flex-shrink-0 h-5 w-5 text-gray-300"
-                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 flex-shrink-0 text-gray-300"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 aria-hidden="true"

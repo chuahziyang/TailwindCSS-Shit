@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 const products = [
   {
     id: 1,
@@ -15,22 +14,23 @@ const products = [
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="md:flex md:items-center md:justify-between">
-          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Trending products</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">Trending products</h2>
           <a href="#" className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
-            Shop the collection<span aria-hidden="true"> &rarr;</span>
+            Shop the collection
+            <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
           {products.map((product) => (
             <div key={product.id} className="group relative">
-              <div className="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
+              <div className="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
-                  className="w-full h-full object-center object-cover"
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
               <h3 className="mt-4 text-sm text-gray-700">
@@ -47,7 +47,8 @@ export default function Example() {
 
         <div className="mt-8 text-sm md:hidden">
           <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-            Shop the collection<span aria-hidden="true"> &rarr;</span>
+            Shop the collection
+            <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
       </div>

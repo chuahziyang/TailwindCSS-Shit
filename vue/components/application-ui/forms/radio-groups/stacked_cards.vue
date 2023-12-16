@@ -1,36 +1,33 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <RadioGroup v-model="selected">
-    <RadioGroupLabel class="sr-only"> Server size </RadioGroupLabel>
+    <RadioGroupLabel class="sr-only">Server size</RadioGroupLabel>
     <div class="space-y-4">
-      <RadioGroupOption as="template" v-for="plan in plans" :key="plan.name" :value="plan" v-slot="{ checked, active }">
-        <div :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500' : '', 'relative block bg-white border rounded-lg shadow-sm px-6 py-4 cursor-pointer sm:flex sm:justify-between focus:outline-none']">
-          <div class="flex items-center">
-            <div class="text-sm">
-              <RadioGroupLabel as="p" class="font-medium text-gray-900">
-                {{ plan.name }}
-              </RadioGroupLabel>
-              <RadioGroupDescription as="div" class="text-gray-500">
-                <p class="sm:inline">{{ plan.ram }} / {{ plan.cpus }}</p>
+      <RadioGroupOption as="template" v-for="plan in plans" :key="plan.name" :value="plan" v-slot="{ active, checked }">
+        <div :class="[active ? 'border-indigo-600 ring-2 ring-indigo-600' : 'border-gray-300', 'relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between']">
+          <span class="flex items-center">
+            <span class="flex flex-col text-sm">
+              <RadioGroupLabel as="span" class="font-medium text-gray-900">{{ plan.name }}</RadioGroupLabel>
+              <RadioGroupDescription as="span" class="text-gray-500">
+                <span class="block sm:inline">{{ plan.ram }} / {{ plan.cpus }}</span>
                 {{ ' ' }}
-                <span class="hidden sm:inline sm:mx-1" aria-hidden="true">&middot;</span>
+                <span class="hidden sm:mx-1 sm:inline" aria-hidden="true">&middot;</span>
                 {{ ' ' }}
-                <p class="sm:inline">{{ plan.disk }}</p>
+                <span class="block sm:inline">{{ plan.disk }}</span>
               </RadioGroupDescription>
-            </div>
-          </div>
-          <RadioGroupDescription as="div" class="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
-            <div class="font-medium text-gray-900">{{ plan.price }}</div>
-            <div class="ml-1 text-gray-500 sm:ml-0">/mo</div>
+            </span>
+          </span>
+          <RadioGroupDescription as="span" class="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right">
+            <span class="font-medium text-gray-900">{{ plan.price }}</span>
+            <span class="ml-1 text-gray-500 sm:ml-0">/mo</span>
           </RadioGroupDescription>
-          <div :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-500' : 'border-transparent', 'absolute -inset-px rounded-lg pointer-events-none']" aria-hidden="true" />
+          <span :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-600' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-lg']" aria-hidden="true" />
         </div>
       </RadioGroupOption>
     </div>
   </RadioGroup>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
@@ -41,20 +38,5 @@ const plans = [
   { name: 'Enterprise', ram: '32GB', cpus: '12 CPUs', disk: '1024 GB SSD disk', price: '$240' },
 ]
 
-export default {
-  components: {
-    RadioGroup,
-    RadioGroupDescription,
-    RadioGroupLabel,
-    RadioGroupOption,
-  },
-  setup() {
-    const selected = ref(plans[0])
-
-    return {
-      plans,
-      selected,
-    }
-  },
-}
+const selected = ref(plans[0])
 </script>

@@ -1,6 +1,5 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="rounded-lg bg-white overflow-hidden shadow">
+  <div class="overflow-hidden rounded-lg bg-white shadow">
     <h2 class="sr-only" id="profile-overview-title">Profile Overview</h2>
     <div class="bg-white p-6">
       <div class="sm:flex sm:items-center sm:justify-between">
@@ -15,12 +14,12 @@
           </div>
         </div>
         <div class="mt-5 flex justify-center sm:mt-0">
-          <a href="#" class="flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> View profile </a>
+          <a href="#" class="flex items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View profile</a>
         </div>
       </div>
     </div>
-    <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-      <div v-for="stat in stats" :key="stat.label" class="px-6 py-5 text-sm font-medium text-center">
+    <div class="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div v-for="stat in stats" :key="stat.label" class="px-6 py-5 text-center text-sm font-medium">
         <span class="text-gray-900">{{ stat.value }}</span>
         {{ ' ' }}
         <span class="text-gray-600">{{ stat.label }}</span>
@@ -29,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 const user = {
   name: 'Rebecca Nicholas',
   role: 'Product Designer',
@@ -41,13 +40,4 @@ const stats = [
   { label: 'Sick days left', value: 4 },
   { label: 'Personal days left', value: 2 },
 ]
-
-export default {
-  setup() {
-    return {
-      user,
-      stats,
-    }
-  },
-}
 </script>

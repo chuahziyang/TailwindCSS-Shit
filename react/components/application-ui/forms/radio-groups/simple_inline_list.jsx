@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -23,11 +21,11 @@ const notificationMethods = [
 export default function Example() {
   return (
     <div>
-      <label className="text-base font-medium text-gray-900">Notifications</label>
-      <p className="text-sm leading-5 text-gray-500">How do you prefer to receive notifications?</p>
+      <label className="text-base font-semibold text-gray-900">Notifications</label>
+      <p className="text-sm text-gray-500">How do you prefer to receive notifications?</p>
       <fieldset className="mt-4">
         <legend className="sr-only">Notification method</legend>
-        <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+        <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
           {notificationMethods.map((notificationMethod) => (
             <div key={notificationMethod.id} className="flex items-center">
               <input
@@ -35,9 +33,9 @@ export default function Example() {
                 name="notification-method"
                 type="radio"
                 defaultChecked={notificationMethod.id === 'email'}
-                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
               />
-              <label htmlFor={notificationMethod.id} className="ml-3 block text-sm font-medium text-gray-700">
+              <label htmlFor={notificationMethod.id} className="ml-3 block text-sm font-medium leading-6 text-gray-900">
                 {notificationMethod.title}
               </label>
             </div>

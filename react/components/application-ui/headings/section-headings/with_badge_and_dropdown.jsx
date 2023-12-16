@@ -1,7 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon } from '@heroicons/react/solid'
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -9,24 +8,24 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="pb-5 border-b border-gray-200">
-      <div className="sm:flex sm:justify-between sm:items-baseline">
+    <div className="border-b border-gray-200 pb-5">
+      <div className="sm:flex sm:items-baseline sm:justify-between">
         <div className="sm:w-0 sm:flex-1">
-          <h1 id="message-heading" className="text-lg font-medium text-gray-900">
+          <h1 id="message-heading" className="text-base font-semibold leading-6 text-gray-900">
             Full-Stack Developer
           </h1>
-          <p className="mt-1 text-sm text-gray-500 truncate">Checkout and Payments Team</p>
+          <p className="mt-1 truncate text-sm text-gray-500">Checkout and Payments Team</p>
         </div>
 
-        <div className="mt-4 flex items-center justify-between sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start">
-          <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+        <div className="mt-4 flex items-center justify-between sm:ml-6 sm:mt-0 sm:flex-shrink-0 sm:justify-start">
+          <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
             Open
           </span>
-          <Menu as="div" className="ml-3 relative inline-block text-left">
+          <Menu as="div" className="relative ml-3 inline-block text-left">
             <div>
-              <Menu.Button className="-my-2 p-2 rounded-full bg-white flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <Menu.Button className="-my-2 flex items-center rounded-full bg-white p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <span className="sr-only">Open options</span>
-                <DotsVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
               </Menu.Button>
             </div>
 
@@ -39,7 +38,7 @@ export default function Example() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
@@ -73,7 +72,7 @@ export default function Example() {
                         type="button"
                         className={classNames(
                           active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                          'w-full flex justify-between px-4 py-2 text-sm'
+                          'flex w-full justify-between px-4 py-2 text-sm'
                         )}
                       >
                         <span>Archive</span>

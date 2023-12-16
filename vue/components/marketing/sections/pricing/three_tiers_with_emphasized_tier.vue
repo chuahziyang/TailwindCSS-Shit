@@ -1,158 +1,96 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="bg-gray-900">
-    <div class="pt-12 px-4 sm:px-6 lg:px-8 lg:pt-20">
-      <div class="text-center">
-        <h2 class="text-lg leading-6 font-semibold text-gray-300 uppercase tracking-wider">Pricing</h2>
-        <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">The right price for you, whoever you are</p>
-        <p class="mt-3 max-w-4xl mx-auto text-xl text-gray-300 sm:mt-5 sm:text-2xl">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos odit doloribus molestiae voluptatum.</p>
+  <div class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+        <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Pricing plans for teams of all sizes</p>
       </div>
-    </div>
-
-    <div class="mt-16 bg-white pb-12 lg:mt-20 lg:pb-20">
-      <div class="relative z-0">
-        <div class="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3" />
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="relative lg:grid lg:grid-cols-7">
-            <div class="mx-auto max-w-md lg:mx-0 lg:max-w-none lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3">
-              <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
-                <div class="flex-1 flex flex-col">
-                  <div class="bg-white px-6 py-10">
-                    <div>
-                      <h3 class="text-center text-2xl font-medium text-gray-900" id="tier-hobby">Hobby</h3>
-                      <div class="mt-4 flex items-center justify-center">
-                        <span class="px-3 flex items-start text-6xl tracking-tight text-gray-900">
-                          <span class="mt-2 mr-2 text-4xl font-medium"> $ </span>
-                          <span class="font-extrabold"> 79 </span>
-                        </span>
-                        <span class="text-xl font-medium text-gray-500"> /month </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
-                    <ul role="list" class="space-y-4">
-                      <li v-for="feature in hobbyFeatures" :key="feature" class="flex items-start">
-                        <div class="flex-shrink-0">
-                          <CheckIcon class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" />
-                        </div>
-                        <p class="ml-3 text-base font-medium text-gray-500">
-                          {{ feature }}
-                        </p>
-                      </li>
-                    </ul>
-                    <div class="mt-8">
-                      <div class="rounded-lg shadow-md">
-                        <a href="#" class="block w-full text-center rounded-lg border border-transparent bg-white px-6 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50" aria-describedby="tier-hobby"> Start your trial </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+      <div class="mt-16 flex justify-center">
+        <RadioGroup v-model="frequency" class="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
+          <RadioGroupLabel class="sr-only">Payment frequency</RadioGroupLabel>
+          <RadioGroupOption as="template" v-for="option in frequencies" :key="option.value" :value="option" v-slot="{ checked }">
+            <div :class="[checked ? 'bg-indigo-600 text-white' : 'text-gray-500', 'cursor-pointer rounded-full px-2.5 py-1']">
+              <span>{{ option.label }}</span>
             </div>
-            <div class="mt-10 max-w-lg mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4">
-              <div class="relative z-10 rounded-lg shadow-xl">
-                <div class="pointer-events-none absolute inset-0 rounded-lg border-2 border-indigo-600" aria-hidden="true" />
-                <div class="absolute inset-x-0 top-0 transform translate-y-px">
-                  <div class="flex justify-center transform -translate-y-1/2">
-                    <span class="inline-flex rounded-full bg-indigo-600 px-4 py-1 text-sm font-semibold tracking-wider uppercase text-white"> Most popular </span>
-                  </div>
-                </div>
-                <div class="bg-white rounded-t-lg px-6 pt-12 pb-10">
-                  <div>
-                    <h3 class="text-center text-3xl font-semibold text-gray-900 sm:-mx-6" id="tier-growth">Growth</h3>
-                    <div class="mt-4 flex items-center justify-center">
-                      <span class="px-3 flex items-start text-6xl tracking-tight text-gray-900 sm:text-6xl">
-                        <span class="mt-2 mr-2 text-4xl font-medium"> $ </span>
-                        <span class="font-extrabold"> 149 </span>
-                      </span>
-                      <span class="text-2xl font-medium text-gray-500"> /month </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="border-t-2 border-gray-100 rounded-b-lg pt-10 pb-8 px-6 bg-gray-50 sm:px-10 sm:py-10">
-                  <ul role="list" class="space-y-4">
-                    <li v-for="feature in growthFeatures" :key="feature" class="flex items-start">
-                      <div class="flex-shrink-0">
-                        <CheckIcon class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" />
-                      </div>
-                      <p class="ml-3 text-base font-medium text-gray-500">
-                        {{ feature }}
-                      </p>
-                    </li>
-                  </ul>
-                  <div class="mt-10">
-                    <div class="rounded-lg shadow-md">
-                      <a href="#" class="block w-full text-center rounded-lg border border-transparent bg-indigo-600 px-6 py-4 text-xl leading-6 font-medium text-white hover:bg-indigo-700" aria-describedby="tier-growth"> Start your trial </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mt-10 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3">
-              <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
-                <div class="flex-1 flex flex-col">
-                  <div class="bg-white px-6 py-10">
-                    <div>
-                      <h3 class="text-center text-2xl font-medium text-gray-900" id="tier-scale">Scale</h3>
-                      <div class="mt-4 flex items-center justify-center">
-                        <span class="px-3 flex items-start text-6xl tracking-tight text-gray-900">
-                          <span class="mt-2 mr-2 text-4xl font-medium"> $ </span>
-                          <span class="font-extrabold"> 349 </span>
-                        </span>
-                        <span class="text-xl font-medium text-gray-500"> /month </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
-                    <ul role="list" class="space-y-4">
-                      <li v-for="feature in scaleFeatures" :key="feature" class="flex items-start">
-                        <div class="flex-shrink-0">
-                          <CheckIcon class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" />
-                        </div>
-                        <p class="ml-3 text-base font-medium text-gray-500">
-                          {{ feature }}
-                        </p>
-                      </li>
-                    </ul>
-                    <div class="mt-8">
-                      <div class="rounded-lg shadow-md">
-                        <a href="#" class="block w-full text-center rounded-lg border border-transparent bg-white px-6 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50" aria-describedby="tier-scale"> Start your trial </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </RadioGroupOption>
+        </RadioGroup>
+      </div>
+      <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div v-for="tier in tiers" :key="tier.id" :class="[tier.featured ? 'bg-gray-900 ring-gray-900' : 'ring-gray-200', 'rounded-3xl p-8 ring-1 xl:p-10']">
+          <h3 :id="tier.id" :class="[tier.featured ? 'text-white' : 'text-gray-900', 'text-lg font-semibold leading-8']">{{ tier.name }}</h3>
+          <p :class="[tier.featured ? 'text-gray-300' : 'text-gray-600', 'mt-4 text-sm leading-6']">{{ tier.description }}</p>
+          <p class="mt-6 flex items-baseline gap-x-1">
+            <span :class="[tier.featured ? 'text-white' : 'text-gray-900', 'text-4xl font-bold tracking-tight']">{{ typeof tier.price === 'string' ? tier.price : tier.price[frequency.value] }}</span>
+            <span v-if="typeof tier.price !== 'string'" :class="[tier.featured ? 'text-gray-300' : 'text-gray-600', 'text-sm font-semibold leading-6']">{{ frequency.priceSuffix }}</span>
+          </p>
+          <a :href="tier.href" :aria-describedby="tier.id" :class="[tier.featured ? 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white' : 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-indigo-600', 'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2']">{{ tier.cta }}</a>
+          <ul role="list" :class="[tier.featured ? 'text-gray-300' : 'text-gray-600', 'mt-8 space-y-3 text-sm leading-6 xl:mt-10']">
+            <li v-for="feature in tier.features" :key="feature" class="flex gap-x-3">
+              <CheckIcon :class="[tier.featured ? 'text-white' : 'text-indigo-600', 'h-6 w-5 flex-none']" aria-hidden="true" />
+              {{ feature }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { CheckIcon } from '@heroicons/vue/outline'
+<script setup>
+import { ref } from 'vue'
+import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+import { CheckIcon } from '@heroicons/vue/20/solid'
 
-const hobbyFeatures = ['Pariatur quod similique', 'Sapiente libero doloribus', 'Vel ipsa esse repudiandae']
-const scaleFeatures = ['Pariatur quod similique', 'Sapiente libero doloribus', 'Vel ipsa esse repudiandae']
-const growthFeatures = [
-  'Quia rem est sed impedit magnam',
-  'Dolorem vero ratione voluptates',
-  'Qui sed ab doloribus voluptatem dolore',
-  'Laborum commodi molestiae id et fugiat',
-  'Nam ut ipsa nesciunt culpa modi dolor',
+const frequencies = [
+  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+]
+const tiers = [
+  {
+    name: 'Freelancer',
+    id: 'tier-freelancer',
+    href: '#',
+    price: { monthly: '$15', annually: '$144' },
+    description: 'The essentials to provide your best work for clients.',
+    features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+    featured: false,
+    cta: 'Buy plan',
+  },
+  {
+    name: 'Startup',
+    id: 'tier-startup',
+    href: '#',
+    price: { monthly: '$30', annually: '$288' },
+    description: 'A plan that scales with your rapidly growing business.',
+    features: [
+      '25 products',
+      'Up to 10,000 subscribers',
+      'Advanced analytics',
+      '24-hour support response time',
+      'Marketing automations',
+    ],
+    featured: false,
+    cta: 'Buy plan',
+  },
+  {
+    name: 'Enterprise',
+    id: 'tier-enterprise',
+    href: '#',
+    price: 'Custom',
+    description: 'Dedicated support and infrastructure for your company.',
+    features: [
+      'Unlimited products',
+      'Unlimited subscribers',
+      'Advanced analytics',
+      '1-hour, dedicated support response time',
+      'Marketing automations',
+      'Custom reporting tools',
+    ],
+    featured: true,
+    cta: 'Contact sales',
+  },
 ]
 
-export default {
-  components: {
-    CheckIcon,
-  },
-  setup() {
-    return {
-      hobbyFeatures,
-      scaleFeatures,
-      growthFeatures,
-    }
-  },
-}
+const frequency = ref(frequencies[0])
 </script>

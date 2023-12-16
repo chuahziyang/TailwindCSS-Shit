@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -15,7 +13,7 @@
   ```
 */
 import { Tab } from '@headlessui/react'
-import { AtSymbolIcon, CodeIcon, LinkIcon } from '@heroicons/react/solid'
+import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -32,9 +30,9 @@ export default function Example() {
                 className={({ selected }) =>
                   classNames(
                     selected
-                      ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                      : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'px-3 py-1.5 border border-transparent text-sm font-medium rounded-md'
+                      ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900',
+                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
                   )
                 }
               >
@@ -44,9 +42,9 @@ export default function Example() {
                 className={({ selected }) =>
                   classNames(
                     selected
-                      ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                      : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'ml-2 px-3 py-1.5 border border-transparent text-sm font-medium rounded-md'
+                      ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900',
+                    'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
                   )
                 }
               >
@@ -59,7 +57,7 @@ export default function Example() {
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
                     >
                       <span className="sr-only">Insert link</span>
                       <LinkIcon className="h-5 w-5" aria-hidden="true" />
@@ -68,16 +66,16 @@ export default function Example() {
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
                     >
                       <span className="sr-only">Insert code</span>
-                      <CodeIcon className="h-5 w-5" aria-hidden="true" />
+                      <CodeBracketIcon className="h-5 w-5" aria-hidden="true" />
                     </button>
                   </div>
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
                     >
                       <span className="sr-only">Mention someone</span>
                       <AtSymbolIcon className="h-5 w-5" aria-hidden="true" />
@@ -87,7 +85,7 @@ export default function Example() {
               ) : null}
             </Tab.List>
             <Tab.Panels className="mt-2">
-              <Tab.Panel className="p-0.5 -m-0.5 rounded-lg">
+              <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
                 <label htmlFor="comment" className="sr-only">
                   Comment
                 </label>
@@ -96,15 +94,15 @@ export default function Example() {
                     rows={5}
                     name="comment"
                     id="comment"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="Add your comment..."
                     defaultValue={''}
                   />
                 </div>
               </Tab.Panel>
-              <Tab.Panel className="p-0.5 -m-0.5 rounded-lg">
+              <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
                 <div className="border-b">
-                  <div className="mx-px mt-px px-3 pt-2 pb-12 text-sm leading-5 text-gray-800">
+                  <div className="mx-px mt-px px-3 pb-12 pt-2 text-sm leading-5 text-gray-800">
                     Preview content will render here.
                   </div>
                 </div>
@@ -116,7 +114,7 @@ export default function Example() {
       <div className="mt-2 flex justify-end">
         <button
           type="submit"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Post
         </button>

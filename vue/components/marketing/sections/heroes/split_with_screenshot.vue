@@ -1,81 +1,36 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
-  <div class="bg-white pb-8 sm:pb-12 lg:pb-12">
-    <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
-      <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
-        <div>
-          <div>
-            <img class="h-11 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
-          </div>
-          <div class="mt-20">
-            <div>
-              <a href="#" class="inline-flex space-x-4">
-                <span class="rounded bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-600 tracking-wide uppercase"> What's new </span>
-                <span class="inline-flex items-center text-sm font-medium text-indigo-600 space-x-1">
-                  <span>Just shipped version 0.1.0</span>
-                  <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
-                </span>
-              </a>
-            </div>
-            <div class="mt-6 sm:max-w-xl">
-              <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Server management for growing teams</h1>
-              <p class="mt-6 text-xl text-gray-500">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</p>
-            </div>
-            <form action="#" class="mt-12 sm:max-w-lg sm:w-full sm:flex">
-              <div class="min-w-0 flex-1">
-                <label for="hero-email" class="sr-only">Email address</label>
-                <input id="hero-email" type="email" class="block w-full border border-gray-300 rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Enter your email" />
-              </div>
-              <div class="mt-4 sm:mt-0 sm:ml-3">
-                <button type="submit" class="block w-full rounded-md border border-transparent px-5 py-3 bg-indigo-600 text-base font-medium text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:px-10">Notify me</button>
-              </div>
-            </form>
-            <div class="mt-6">
-              <div class="inline-flex items-center divide-x divide-gray-300">
-                <div class="flex-shrink-0 flex pr-5">
-                  <StarIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                  <StarIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                  <StarIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                  <StarIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                  <StarIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                </div>
-                <div class="min-w-0 flex-1 pl-5 py-1 text-sm text-gray-500 sm:py-3"><span class="font-medium text-gray-900">Rated 5 stars</span> by over <span class="font-medium text-indigo-600">500 beta users</span></div>
-              </div>
-            </div>
-          </div>
+  <div class="relative isolate overflow-hidden bg-white">
+    <svg class="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+      <defs>
+        <pattern id="0787a7c5-978c-4f66-83c7-11c213f99cb7" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)" />
+    </svg>
+    <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+      <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
+        <img class="h-11" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600" alt="Your Company" />
+        <div class="mt-24 sm:mt-32 lg:mt-16">
+          <a href="#" class="inline-flex space-x-6">
+            <span class="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10">What's new</span>
+            <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
+              <span>Just shipped v1.0</span>
+              <ChevronRightIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+            </span>
+          </a>
+        </div>
+        <h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Deploy to the cloud with confidence</h1>
+        <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+        <div class="mt-10 flex items-center gap-x-6">
+          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
         </div>
       </div>
-
-      <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
-        <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <div class="hidden sm:block">
-            <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full" />
-            <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
-              <defs>
-                <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
-            </svg>
-          </div>
-          <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
-            <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg" alt="" />
+      <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+        <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+          <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+            <img src="https://tailwindui.com/img/component-images/project-app-screenshot.png" alt="App screenshot" width="2432" height="1442" class="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10" />
           </div>
         </div>
       </div>
@@ -83,13 +38,6 @@
   </div>
 </template>
 
-<script>
-import { ChevronRightIcon, StarIcon } from '@heroicons/vue/solid'
-
-export default {
-  components: {
-    ChevronRightIcon,
-    StarIcon,
-  },
-}
+<script setup>
+import { ChevronRightIcon } from '@heroicons/vue/20/solid'
 </script>

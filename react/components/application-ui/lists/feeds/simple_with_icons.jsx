@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { CheckIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid'
+import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
 
 const timeline = [
   {
@@ -19,7 +18,7 @@ const timeline = [
     href: '#',
     date: 'Sep 22',
     datetime: '2020-09-22',
-    icon: ThumbUpIcon,
+    icon: HandThumbUpIcon,
     iconBackground: 'bg-blue-500',
   },
   {
@@ -39,7 +38,7 @@ const timeline = [
     href: '#',
     date: 'Sep 30',
     datetime: '2020-09-30',
-    icon: ThumbUpIcon,
+    icon: HandThumbUpIcon,
     iconBackground: 'bg-blue-500',
   },
   {
@@ -66,7 +65,7 @@ export default function Example() {
           <li key={event.id}>
             <div className="relative pb-8">
               {eventIdx !== timeline.length - 1 ? (
-                <span className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
+                <span className="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
               ) : null}
               <div className="relative flex space-x-3">
                 <div>
@@ -79,7 +78,7 @@ export default function Example() {
                     <event.icon className="h-5 w-5 text-white" aria-hidden="true" />
                   </span>
                 </div>
-                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                   <div>
                     <p className="text-sm text-gray-500">
                       {event.content}{' '}
@@ -88,7 +87,7 @@ export default function Example() {
                       </a>
                     </p>
                   </div>
-                  <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                  <div className="whitespace-nowrap text-right text-sm text-gray-500">
                     <time dateTime={event.datetime}>{event.date}</time>
                   </div>
                 </div>

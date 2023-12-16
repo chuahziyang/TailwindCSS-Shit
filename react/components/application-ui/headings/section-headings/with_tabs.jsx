@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -28,8 +26,8 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="pb-5 border-b border-gray-200 sm:pb-0">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">Candidates</h3>
+    <div className="border-b border-gray-200 pb-5 sm:pb-0">
+      <h3 className="text-base font-semibold leading-6 text-gray-900">Candidates</h3>
       <div className="mt-3 sm:mt-4">
         <div className="sm:hidden">
           <label htmlFor="current-tab" className="sr-only">
@@ -38,7 +36,7 @@ export default function Example() {
           <select
             id="current-tab"
             name="current-tab"
-            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             defaultValue={tabs.find((tab) => tab.current).name}
           >
             {tabs.map((tab) => (
@@ -55,8 +53,8 @@ export default function Example() {
                 className={classNames(
                   tab.current
                     ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                  'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm'
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  'whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}
               >

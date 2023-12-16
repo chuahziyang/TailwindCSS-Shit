@@ -1,106 +1,149 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { CheckIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
+import { RadioGroup } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/20/solid'
 
+const frequencies = [
+  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+]
 const tiers = [
   {
     name: 'Hobby',
+    id: 'tier-hobby',
     href: '#',
-    priceMonthly: 12,
-    description: 'All the basics for starting a new business',
-    includedFeatures: ['Potenti felis, in cras at at ligula nunc.', 'Orci neque eget pellentesque.'],
+    price: { monthly: '$15', annually: '$144' },
+    description: 'The essentials to provide your best work for clients.',
+    features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'],
+    mostPopular: false,
   },
   {
     name: 'Freelancer',
+    id: 'tier-freelancer',
     href: '#',
-    priceMonthly: 24,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-    ],
+    price: { monthly: '$30', annually: '$288' },
+    description: 'The essentials to provide your best work for clients.',
+    features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+    mostPopular: false,
   },
   {
     name: 'Startup',
+    id: 'tier-startup',
     href: '#',
-    priceMonthly: 32,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-      'Faucibus volutpat magna.',
+    price: { monthly: '$60', annually: '$576' },
+    description: 'A plan that scales with your rapidly growing business.',
+    features: [
+      '25 products',
+      'Up to 10,000 subscribers',
+      'Advanced analytics',
+      '24-hour support response time',
+      'Marketing automations',
     ],
+    mostPopular: true,
   },
   {
     name: 'Enterprise',
+    id: 'tier-enterprise',
     href: '#',
-    priceMonthly: 48,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-      'Faucibus volutpat magna.',
-      'Id sed tellus in varius quisque.',
-      'Risus egestas faucibus.',
-      'Risus cursus ullamcorper.',
+    price: { monthly: '$90', annually: '$864' },
+    description: 'Dedicated support and infrastructure for your company.',
+    features: [
+      'Unlimited products',
+      'Unlimited subscribers',
+      'Advanced analytics',
+      '1-hour, dedicated support response time',
+      'Marketing automations',
+      'Custom reporting tools',
     ],
+    mostPopular: false,
   },
 ]
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Example() {
+  const [frequency, setFrequency] = useState(frequencies[0])
+
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
-        <div className="sm:flex sm:flex-col sm:align-center">
-          <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">Pricing Plans</h1>
-          <p className="mt-5 text-xl text-gray-500 sm:text-center">
-            Start building for free, then add a site plan to go live. Account plans unlock additional features.
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+          <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Pricing plans for teams of&nbsp;all&nbsp;sizes
           </p>
-          <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
-            <button
-              type="button"
-              className="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8"
-            >
-              Monthly billing
-            </button>
-            <button
-              type="button"
-              className="ml-0.5 relative w-1/2 border border-transparent rounded-md py-2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8"
-            >
-              Yearly billing
-            </button>
-          </div>
         </div>
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
+          Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer
+          loyalty, and driving sales.
+        </p>
+        <div className="mt-16 flex justify-center">
+          <RadioGroup
+            value={frequency}
+            onChange={setFrequency}
+            className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
+          >
+            <RadioGroup.Label className="sr-only">Payment frequency</RadioGroup.Label>
+            {frequencies.map((option) => (
+              <RadioGroup.Option
+                key={option.value}
+                value={option}
+                className={({ checked }) =>
+                  classNames(
+                    checked ? 'bg-indigo-600 text-white' : 'text-gray-500',
+                    'cursor-pointer rounded-full px-2.5 py-1'
+                  )
+                }
+              >
+                <span>{option.label}</span>
+              </RadioGroup.Option>
+            ))}
+          </RadioGroup>
+        </div>
+        <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
           {tiers.map((tier) => (
-            <div key={tier.name} className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
-              <div className="p-6">
-                <h2 className="text-lg leading-6 font-medium text-gray-900">{tier.name}</h2>
-                <p className="mt-4 text-sm text-gray-500">{tier.description}</p>
-                <p className="mt-8">
-                  <span className="text-4xl font-extrabold text-gray-900">${tier.priceMonthly}</span>{' '}
-                  <span className="text-base font-medium text-gray-500">/mo</span>
-                </p>
-                <a
-                  href={tier.href}
-                  className="mt-8 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
-                >
-                  Buy {tier.name}
-                </a>
-              </div>
-              <div className="pt-6 pb-8 px-6">
-                <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {tier.includedFeatures.map((feature) => (
-                    <li key={feature} className="flex space-x-3">
-                      <CheckIcon className="flex-shrink-0 h-5 w-5 text-green-500" aria-hidden="true" />
-                      <span className="text-sm text-gray-500">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div
+              key={tier.id}
+              className={classNames(
+                tier.mostPopular ? 'ring-2 ring-indigo-600' : 'ring-1 ring-gray-200',
+                'rounded-3xl p-8'
+              )}
+            >
+              <h3
+                id={tier.id}
+                className={classNames(
+                  tier.mostPopular ? 'text-indigo-600' : 'text-gray-900',
+                  'text-lg font-semibold leading-8'
+                )}
+              >
+                {tier.name}
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-gray-600">{tier.description}</p>
+              <p className="mt-6 flex items-baseline gap-x-1">
+                <span className="text-4xl font-bold tracking-tight text-gray-900">{tier.price[frequency.value]}</span>
+                <span className="text-sm font-semibold leading-6 text-gray-600">{frequency.priceSuffix}</span>
+              </p>
+              <a
+                href={tier.href}
+                aria-describedby={tier.id}
+                className={classNames(
+                  tier.mostPopular
+                    ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500'
+                    : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
+                  'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                )}
+              >
+                Buy plan
+              </a>
+              <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex gap-x-3">
+                    <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

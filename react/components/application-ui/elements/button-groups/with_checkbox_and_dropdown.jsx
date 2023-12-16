@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,8 +14,8 @@
 */
 export default function Example() {
   return (
-    <span className="relative z-0 inline-flex shadow-sm rounded-md">
-      <span className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white">
+    <span className="inline-flex rounded-md shadow-sm">
+      <span className="inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2">
         <label htmlFor="select-all" className="sr-only">
           Select all
         </label>
@@ -25,7 +23,7 @@ export default function Example() {
           id="select-all"
           type="checkbox"
           name="select-all"
-          className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
         />
       </span>
       <label htmlFor="message-type" className="sr-only">
@@ -34,7 +32,7 @@ export default function Example() {
       <select
         id="message-type"
         name="message-type"
-        className="-ml-px block w-full pl-3 pr-9 py-2 rounded-l-none rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+        className="-ml-px block w-full rounded-l-none rounded-r-md border-0 bg-white py-1.5 pl-3 pr-9 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       >
         <option>Unread messages</option>
         <option>Sent messages</option>

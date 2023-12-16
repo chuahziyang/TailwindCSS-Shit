@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,7 +14,7 @@
 */
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon, FilterIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon, FunnelIcon } from '@heroicons/react/20/solid'
 
 const filters = {
   price: [
@@ -62,9 +60,9 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="text-center py-16 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Workspace</h1>
-        <p className="mt-4 max-w-xl mx-auto text-base text-gray-500">
+      <div className="px-4 py-16 text-center sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900">Workspace</h1>
+        <p className="mx-auto mt-4 max-w-xl text-base text-gray-500">
           The secret to a tidy desk? Don't get rid of anything, just put it in really really nice looking containers.
         </p>
       </div>
@@ -73,17 +71,17 @@ export default function Example() {
       <Disclosure
         as="section"
         aria-labelledby="filter-heading"
-        className="relative z-10 border-t border-b border-gray-200 grid items-center"
+        className="grid items-center border-b border-t border-gray-200"
       >
         <h2 id="filter-heading" className="sr-only">
           Filters
         </h2>
         <div className="relative col-start-1 row-start-1 py-4">
-          <div className="max-w-7xl mx-auto flex space-x-6 divide-x divide-gray-200 text-sm px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8">
             <div>
-              <Disclosure.Button className="group text-gray-700 font-medium flex items-center">
-                <FilterIcon
-                  className="flex-none w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500"
+              <Disclosure.Button className="group flex items-center font-medium text-gray-700">
+                <FunnelIcon
+                  className="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500"
                   aria-hidden="true"
                 />
                 2 Filters
@@ -97,11 +95,11 @@ export default function Example() {
           </div>
         </div>
         <Disclosure.Panel className="border-t border-gray-200 py-10">
-          <div className="max-w-7xl mx-auto grid grid-cols-2 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8">
-            <div className="grid grid-cols-1 gap-y-10 auto-rows-min md:grid-cols-2 md:gap-x-6">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8">
+            <div className="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
               <fieldset>
                 <legend className="block font-medium">Price</legend>
-                <div className="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                   {filters.price.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center text-base sm:text-sm">
                       <input
@@ -109,7 +107,7 @@ export default function Example() {
                         name="price[]"
                         defaultValue={option.value}
                         type="checkbox"
-                        className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         defaultChecked={option.checked}
                       />
                       <label htmlFor={`price-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -121,7 +119,7 @@ export default function Example() {
               </fieldset>
               <fieldset>
                 <legend className="block font-medium">Color</legend>
-                <div className="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                   {filters.color.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center text-base sm:text-sm">
                       <input
@@ -129,7 +127,7 @@ export default function Example() {
                         name="color[]"
                         defaultValue={option.value}
                         type="checkbox"
-                        className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         defaultChecked={option.checked}
                       />
                       <label htmlFor={`color-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -140,10 +138,10 @@ export default function Example() {
                 </div>
               </fieldset>
             </div>
-            <div className="grid grid-cols-1 gap-y-10 auto-rows-min md:grid-cols-2 md:gap-x-6">
+            <div className="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
               <fieldset>
                 <legend className="block font-medium">Size</legend>
-                <div className="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                   {filters.size.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center text-base sm:text-sm">
                       <input
@@ -151,7 +149,7 @@ export default function Example() {
                         name="size[]"
                         defaultValue={option.value}
                         type="checkbox"
-                        className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         defaultChecked={option.checked}
                       />
                       <label htmlFor={`size-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -163,7 +161,7 @@ export default function Example() {
               </fieldset>
               <fieldset>
                 <legend className="block font-medium">Category</legend>
-                <div className="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                   {filters.category.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center text-base sm:text-sm">
                       <input
@@ -171,7 +169,7 @@ export default function Example() {
                         name="category[]"
                         defaultValue={option.value}
                         type="checkbox"
-                        className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         defaultChecked={option.checked}
                       />
                       <label htmlFor={`category-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -185,13 +183,13 @@ export default function Example() {
           </div>
         </Disclosure.Panel>
         <div className="col-start-1 row-start-1 py-4">
-          <div className="flex justify-end max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl justify-end px-4 sm:px-6 lg:px-8">
             <Menu as="div" className="relative inline-block">
               <div className="flex">
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
                   <ChevronDownIcon
-                    className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                 </Menu.Button>
@@ -206,7 +204,7 @@ export default function Example() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="py-1">
                     {sortOptions.map((option) => (
                       <Menu.Item key={option.name}>

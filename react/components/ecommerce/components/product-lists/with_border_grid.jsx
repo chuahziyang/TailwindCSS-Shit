@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -14,7 +12,7 @@
   }
   ```
 */
-import { StarIcon } from '@heroicons/react/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 
 const products = [
   {
@@ -67,20 +65,20 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
         <h2 className="sr-only">Products</h2>
 
-        <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+        <div className="-mx-px grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
-            <div key={product.id} className="group relative p-4 border-r border-b border-gray-200 sm:p-6">
-              <div className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
+            <div key={product.id} className="group relative border-b border-r border-gray-200 p-4 sm:p-6">
+              <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
-                  className="w-full h-full object-center object-cover"
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
-              <div className="pt-10 pb-4 text-center">
+              <div className="pb-4 pt-10 text-center">
                 <h3 className="text-sm font-medium text-gray-900">
                   <a href={product.href}>
                     <span aria-hidden="true" className="absolute inset-0" />
@@ -95,7 +93,7 @@ export default function Example() {
                         key={rating}
                         className={classNames(
                           product.rating > rating ? 'text-yellow-400' : 'text-gray-200',
-                          'flex-shrink-0 h-5 w-5'
+                          'h-5 w-5 flex-shrink-0'
                         )}
                         aria-hidden="true"
                       />

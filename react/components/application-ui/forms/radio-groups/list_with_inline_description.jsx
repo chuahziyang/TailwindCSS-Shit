@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -27,20 +25,20 @@ export default function Example() {
       <div className="space-y-5">
         {plans.map((plan) => (
           <div key={plan.id} className="relative flex items-start">
-            <div className="flex items-center h-5">
+            <div className="flex h-6 items-center">
               <input
                 id={plan.id}
                 aria-describedby={`${plan.id}-description`}
                 name="plan"
                 type="radio"
                 defaultChecked={plan.id === 'small'}
-                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
               />
             </div>
-            <div className="ml-3 text-sm">
-              <label htmlFor={plan.id} className="font-medium text-gray-700">
+            <div className="ml-3 text-sm leading-6">
+              <label htmlFor={plan.id} className="font-medium text-gray-900">
                 {plan.name}
-              </label>
+              </label>{' '}
               <span id={`${plan.id}-description`} className="text-gray-500">
                 {plan.description}
               </span>

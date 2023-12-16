@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -15,9 +13,9 @@
   ```
 */
 import { useState } from 'react'
-import { StarIcon } from '@heroicons/react/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
-import { CurrencyDollarIcon, GlobeIcon } from '@heroicons/react/outline'
+import { CurrencyDollarIcon, GlobeAmericasIcon } from '@heroicons/react/24/outline'
 
 const product = {
   name: 'Basic Tee',
@@ -73,7 +71,7 @@ const product = {
   ],
 }
 const policies = [
-  { name: 'International delivery', icon: GlobeIcon, description: 'Get your order in 2 years' },
+  { name: 'International delivery', icon: GlobeAmericasIcon, description: 'Get your order in 2 years' },
   { name: 'Loyalty rewards', icon: CurrencyDollarIcon, description: "Don't look at other tees" },
 ]
 
@@ -87,8 +85,8 @@ export default function Example() {
 
   return (
     <div className="bg-white">
-      <div className="pt-6 pb-16 sm:pb-24">
-        <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pb-16 pt-6 sm:pb-24">
+        <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ol role="list" className="flex items-center space-x-4">
             {product.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
@@ -96,12 +94,7 @@ export default function Example() {
                   <a href={breadcrumb.href} className="mr-4 text-sm font-medium text-gray-900">
                     {breadcrumb.name}
                   </a>
-                  <svg
-                    viewBox="0 0 6 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    className="h-5 w-auto text-gray-300"
-                  >
+                  <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
                     <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
                   </svg>
                 </div>
@@ -114,9 +107,9 @@ export default function Example() {
             </li>
           </ol>
         </nav>
-        <div className="mt-8 max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-            <div className="lg:col-start-8 lg:col-span-5">
+        <div className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
+            <div className="lg:col-span-5 lg:col-start-8">
               <div className="flex justify-between">
                 <h1 className="text-xl font-medium text-gray-900">{product.name}</h1>
                 <p className="text-xl font-medium text-gray-900">{product.price}</p>
@@ -154,7 +147,7 @@ export default function Example() {
             </div>
 
             {/* Image gallery */}
-            <div className="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-7 lg:row-start-1 lg:row-span-3">
+            <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
               <h2 className="sr-only">Images</h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
@@ -190,18 +183,18 @@ export default function Example() {
                               color.selectedColor,
                               active && checked ? 'ring ring-offset-1' : '',
                               !active && checked ? 'ring-2' : '',
-                              '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                              'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
                             )
                           }
                         >
-                          <RadioGroup.Label as="p" className="sr-only">
+                          <RadioGroup.Label as="span" className="sr-only">
                             {color.name}
                           </RadioGroup.Label>
                           <span
                             aria-hidden="true"
                             className={classNames(
                               color.bgColor,
-                              'h-8 w-8 border border-black border-opacity-10 rounded-full'
+                              'h-8 w-8 rounded-full border border-black border-opacity-10'
                             )}
                           />
                         </RadioGroup.Option>
@@ -228,17 +221,17 @@ export default function Example() {
                           value={size}
                           className={({ active, checked }) =>
                             classNames(
-                              size.inStock ? 'cursor-pointer focus:outline-none' : 'opacity-25 cursor-not-allowed',
-                              active ? 'ring-2 ring-offset-2 ring-indigo-500' : '',
+                              size.inStock ? 'cursor-pointer focus:outline-none' : 'cursor-not-allowed opacity-25',
+                              active ? 'ring-2 ring-indigo-500 ring-offset-2' : '',
                               checked
-                                ? 'bg-indigo-600 border-transparent text-white hover:bg-indigo-700'
-                                : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50',
-                              'border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1'
+                                ? 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
+                                : 'border-gray-200 bg-white text-gray-900 hover:bg-gray-50',
+                              'flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1'
                             )
                           }
                           disabled={!size.inStock}
                         >
-                          <RadioGroup.Label as="p">{size.name}</RadioGroup.Label>
+                          <RadioGroup.Label as="span">{size.name}</RadioGroup.Label>
                         </RadioGroup.Option>
                       ))}
                     </div>
@@ -247,7 +240,7 @@ export default function Example() {
 
                 <button
                   type="submit"
-                  className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Add to cart
                 </button>
@@ -258,7 +251,7 @@ export default function Example() {
                 <h2 className="text-sm font-medium text-gray-900">Description</h2>
 
                 <div
-                  className="mt-4 prose prose-sm text-gray-500"
+                  className="prose prose-sm mt-4 text-gray-500"
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               </div>
@@ -266,7 +259,7 @@ export default function Example() {
               <div className="mt-8 border-t border-gray-200 pt-8">
                 <h2 className="text-sm font-medium text-gray-900">Fabric &amp; Care</h2>
 
-                <div className="mt-4 prose prose-sm text-gray-500">
+                <div className="prose prose-sm mt-4 text-gray-500">
                   <ul role="list">
                     {product.details.map((item) => (
                       <li key={item}>{item}</li>
@@ -283,7 +276,7 @@ export default function Example() {
 
                 <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   {policies.map((policy) => (
-                    <div key={policy.name} className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+                    <div key={policy.name} className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
                       <dt>
                         <policy.icon className="mx-auto h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                         <span className="mt-4 text-sm font-medium text-gray-900">{policy.name}</span>

@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -36,7 +34,7 @@ export default function Example() {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
@@ -52,7 +50,7 @@ export default function Example() {
               href={tab.href}
               className={classNames(
                 tab.current ? 'bg-gray-200 text-gray-800' : 'text-gray-600 hover:text-gray-800',
-                'px-3 py-2 font-medium text-sm rounded-md'
+                'rounded-md px-3 py-2 text-sm font-medium'
               )}
               aria-current={tab.current ? 'page' : undefined}
             >

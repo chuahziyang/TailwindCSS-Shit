@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -17,16 +15,16 @@
 export default function Example() {
   return (
     <div>
-      <label htmlFor="name" className="ml-px pl-4 block text-sm font-medium text-gray-700">
+      <label htmlFor="name" className="ml-px block pl-4 text-sm font-medium leading-6 text-gray-900">
         Name
       </label>
-      <div className="mt-1">
+      <div className="mt-2">
         <input
           type="text"
           name="name"
           id="name"
-          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 px-4 rounded-full"
-          placeholder="Jane Doe"
+          className="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder="Jane Smith"
         />
       </div>
     </div>

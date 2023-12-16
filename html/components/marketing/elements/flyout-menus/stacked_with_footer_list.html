@@ -1,15 +1,8 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative">
-  <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-  <button type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+  <button type="button" class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" aria-expanded="false">
     <span>Resources</span>
-    <!--
-      Heroicon name: solid/chevron-down
-
-      Item active: "text-gray-600", Item inactive: "text-gray-400"
-    -->
-    <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
     </svg>
   </button>
 
@@ -23,73 +16,80 @@
       From: "opacity-100 translate-y-0"
       To: "opacity-0 translate-y-1"
   -->
-  <div class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0">
-    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-      <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-        <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
-          <!-- Heroicon name: outline/support -->
-          <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <div class="ml-4">
-            <p class="text-base font-medium text-gray-900">Help Center</p>
-            <p class="mt-1 text-sm text-gray-500">Get all of your questions answered in our forums or contact support.</p>
+  <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+    <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+      <div class="p-4">
+        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+          <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+            <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.712 4.33a9.027 9.027 0 011.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 00-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 010 9.424m-4.138-5.976a3.736 3.736 0 00-.88-1.388 3.737 3.737 0 00-1.388-.88m2.268 2.268a3.765 3.765 0 010 2.528m-2.268-4.796a3.765 3.765 0 00-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 01-1.388.88m2.268-2.268l4.138 3.448m0 0a9.027 9.027 0 01-1.306 1.652c-.51.51-1.064.944-1.652 1.306m0 0l-3.448-4.138m3.448 4.138a9.014 9.014 0 01-9.424 0m5.976-4.138a3.765 3.765 0 01-2.528 0m0 0a3.736 3.736 0 01-1.388-.88 3.737 3.737 0 01-.88-1.388m2.268 2.268L7.288 19.67m0 0a9.024 9.024 0 01-1.652-1.306 9.027 9.027 0 01-1.306-1.652m0 0l4.138-3.448M4.33 16.712a9.014 9.014 0 010-9.424m4.138 5.976a3.765 3.765 0 010-2.528m0 0c.181-.506.475-.982.88-1.388a3.736 3.736 0 011.388-.88m-2.268 2.268L4.33 7.288m6.406 1.18L7.288 4.33m0 0a9.024 9.024 0 00-1.652 1.306A9.025 9.025 0 004.33 7.288" />
+            </svg>
           </div>
-        </a>
-
-        <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
-          <!-- Heroicon name: outline/bookmark-alt -->
-          <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <div class="ml-4">
-            <p class="text-base font-medium text-gray-900">Guides</p>
-            <p class="mt-1 text-sm text-gray-500">Learn how to maximize our platform to get the most out of it.</p>
+          <div>
+            <a href="#" class="font-semibold text-gray-900">
+              Help center
+              <span class="absolute inset-0"></span>
+            </a>
+            <p class="mt-1 text-gray-600">Get all of your questions answered</p>
           </div>
-        </a>
-
-        <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
-          <!-- Heroicon name: outline/calendar -->
-          <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <div class="ml-4">
-            <p class="text-base font-medium text-gray-900">Events</p>
-            <p class="mt-1 text-sm text-gray-500">See what meet-ups and other events we might be planning near you.</p>
+        </div>
+        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+          <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+            <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
+            </svg>
           </div>
-        </a>
-
-        <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
-          <!-- Heroicon name: outline/shield-check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          <div class="ml-4">
-            <p class="text-base font-medium text-gray-900">Security</p>
-            <p class="mt-1 text-sm text-gray-500">Understand how we take your privacy seriously.</p>
+          <div>
+            <a href="#" class="font-semibold text-gray-900">
+              Guides
+              <span class="absolute inset-0"></span>
+            </a>
+            <p class="mt-1 text-gray-600">Learn how to maximize our platform</p>
           </div>
-        </a>
+        </div>
+        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+          <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+            <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+            </svg>
+          </div>
+          <div>
+            <a href="#" class="font-semibold text-gray-900">
+              Events
+              <span class="absolute inset-0"></span>
+            </a>
+            <p class="mt-1 text-gray-600">See meet-ups and other events near you</p>
+          </div>
+        </div>
       </div>
-      <div class="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-        <div>
-          <h3 class="text-sm tracking-wide font-medium text-gray-500 uppercase">Recent Posts</h3>
-          <ul role="list" class="mt-4 space-y-4">
-            <li class="text-base truncate">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"> Boost your conversion rate </a>
-            </li>
-
-            <li class="text-base truncate">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"> How to use search engine optimization to drive traffic to your site </a>
-            </li>
-
-            <li class="text-base truncate">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"> Improve your customer experience </a>
-            </li>
-          </ul>
+      <div class="bg-gray-50 p-8">
+        <div class="flex justify-between">
+          <h3 class="text-sm font-semibold leading-6 text-gray-500">Recent posts</h3>
+          <a href="#" class="text-sm font-semibold leading-6 text-indigo-600">See all <span aria-hidden="true">&rarr;</span></a>
         </div>
-        <div class="mt-5 text-sm">
-          <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 transition ease-in-out duration-150"> View all posts <span aria-hidden="true">&rarr;</span></a>
-        </div>
+        <ul role="list" class="mt-6 space-y-6">
+          <li class="relative">
+            <time datetime="2023-03-05" class="block text-xs leading-6 text-gray-600">Mar 5, 2023</time>
+            <a href="#" class="block truncate text-sm font-semibold leading-6 text-gray-900">
+              Boost your conversion rate
+              <span class="absolute inset-0"></span>
+            </a>
+          </li>
+          <li class="relative">
+            <time datetime="2023-02-25" class="block text-xs leading-6 text-gray-600">Feb 25, 2023</time>
+            <a href="#" class="block truncate text-sm font-semibold leading-6 text-gray-900">
+              How to use search engine optimization to drive traffic to your site
+              <span class="absolute inset-0"></span>
+            </a>
+          </li>
+          <li class="relative">
+            <time datetime="2023-02-21" class="block text-xs leading-6 text-gray-600">Feb 21, 2023</time>
+            <a href="#" class="block truncate text-sm font-semibold leading-6 text-gray-900">
+              Improve your customer experience
+              <span class="absolute inset-0"></span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

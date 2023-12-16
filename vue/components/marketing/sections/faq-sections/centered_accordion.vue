@@ -1,25 +1,21 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="bg-gray-50">
-    <div class="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto divide-y-2 divide-gray-200">
-        <h2 class="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">Frequently asked questions</h2>
-        <dl class="mt-6 space-y-6 divide-y divide-gray-200">
+  <div class="bg-white">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+      <div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
+        <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+        <dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
           <Disclosure as="div" v-for="faq in faqs" :key="faq.question" class="pt-6" v-slot="{ open }">
-            <dt class="text-lg">
-              <DisclosureButton class="text-left w-full flex justify-between items-start text-gray-400">
-                <span class="font-medium text-gray-900">
-                  {{ faq.question }}
-                </span>
-                <span class="ml-6 h-7 flex items-center">
-                  <ChevronDownIcon :class="[open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform']" aria-hidden="true" />
+            <dt>
+              <DisclosureButton class="flex w-full items-start justify-between text-left text-gray-900">
+                <span class="text-base font-semibold leading-7">{{ faq.question }}</span>
+                <span class="ml-6 flex h-7 items-center">
+                  <PlusSmallIcon v-if="!open" class="h-6 w-6" aria-hidden="true" />
+                  <MinusSmallIcon v-else class="h-6 w-6" aria-hidden="true" />
                 </span>
               </DisclosureButton>
             </dt>
             <DisclosurePanel as="dd" class="mt-2 pr-12">
-              <p class="text-base text-gray-500">
-                {{ faq.answer }}
-              </p>
+              <p class="text-base leading-7 text-gray-600">{{ faq.answer }}</p>
             </DisclosurePanel>
           </Disclosure>
         </dl>
@@ -28,9 +24,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/outline'
+import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/vue/24/outline'
 
 const faqs = [
   {
@@ -40,18 +36,4 @@ const faqs = [
   },
   // More questions...
 ]
-
-export default {
-  components: {
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-    ChevronDownIcon,
-  },
-  setup() {
-    return {
-      faqs,
-    }
-  },
-}
 </script>

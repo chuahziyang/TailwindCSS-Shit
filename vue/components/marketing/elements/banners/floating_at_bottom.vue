@@ -1,40 +1,23 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-indigo-600 shadow-lg sm:p-3">
-        <div class="flex items-center justify-between flex-wrap">
-          <div class="w-0 flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-indigo-800">
-              <SpeakerphoneIcon class="h-6 w-6 text-white" aria-hidden="true" />
-            </span>
-            <p class="ml-3 font-medium text-white truncate">
-              <span class="md:hidden"> We announced a new product! </span>
-              <span class="hidden md:inline"> Big news! We're excited to announce a brand new product. </span>
-            </p>
-          </div>
-          <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-            <a href="#" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"> Learn more </a>
-          </div>
-          <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
-            <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
-              <span class="sr-only">Dismiss</span>
-              <XIcon class="h-6 w-6 text-white" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-      </div>
+  <!--
+    Make sure you add some bottom padding to pages that include a sticky banner like this to prevent
+    your content from being obscured when the user scrolls to the bottom of the page.
+  -->
+  <div class="pointer-events-none fixed inset-x-0 bottom-0 sm:px-6 sm:pb-5 lg:px-8">
+    <div class="pointer-events-auto flex items-center justify-between gap-x-6 bg-gray-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5">
+      <p class="text-sm leading-6 text-white">
+        <a href="#">
+          <strong class="font-semibold">GeneriCon 2023</strong><svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Join us in Denver from June 7 – 9 to see what’s coming next&nbsp;<span aria-hidden="true">&rarr;</span>
+        </a>
+      </p>
+      <button type="button" class="-m-3 flex-none p-3 focus-visible:outline-offset-[-4px]">
+        <span class="sr-only">Dismiss</span>
+        <XMarkIcon class="h-5 w-5 text-white" aria-hidden="true" />
+      </button>
     </div>
   </div>
 </template>
 
-<script>
-import { SpeakerphoneIcon, XIcon } from '@heroicons/vue/outline'
-
-export default {
-  components: {
-    SpeakerphoneIcon,
-    XIcon,
-  },
-}
+<script setup>
+import { XMarkIcon } from '@heroicons/vue/20/solid'
 </script>

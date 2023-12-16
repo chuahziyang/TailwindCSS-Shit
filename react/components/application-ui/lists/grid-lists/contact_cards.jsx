@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { MailIcon, PhoneIcon } from '@heroicons/react/solid'
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
 
 const people = [
   {
@@ -20,17 +19,17 @@ export default function Example() {
       {people.map((person) => (
         <li
           key={person.email}
-          className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
+          className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
         >
-          <div className="flex-1 flex flex-col p-8">
-            <img className="w-32 h-32 flex-shrink-0 mx-auto rounded-full" src={person.imageUrl} alt="" />
-            <h3 className="mt-6 text-gray-900 text-sm font-medium">{person.name}</h3>
-            <dl className="mt-1 flex-grow flex flex-col justify-between">
+          <div className="flex flex-1 flex-col p-8">
+            <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={person.imageUrl} alt="" />
+            <h3 className="mt-6 text-sm font-medium text-gray-900">{person.name}</h3>
+            <dl className="mt-1 flex flex-grow flex-col justify-between">
               <dt className="sr-only">Title</dt>
-              <dd className="text-gray-500 text-sm">{person.title}</dd>
+              <dd className="text-sm text-gray-500">{person.title}</dd>
               <dt className="sr-only">Role</dt>
               <dd className="mt-3">
-                <span className="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                   {person.role}
                 </span>
               </dd>
@@ -38,22 +37,22 @@ export default function Example() {
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">
-              <div className="w-0 flex-1 flex">
+              <div className="flex w-0 flex-1">
                 <a
                   href={`mailto:${person.email}`}
-                  className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                 >
-                  <MailIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-                  <span className="ml-3">Email</span>
+                  <EnvelopeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  Email
                 </a>
               </div>
-              <div className="-ml-px w-0 flex-1 flex">
+              <div className="-ml-px flex w-0 flex-1">
                 <a
                   href={`tel:${person.telephone}`}
-                  className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+                  className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                 >
-                  <PhoneIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-                  <span className="ml-3">Call</span>
+                  <PhoneIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  Call
                 </a>
               </div>
             </div>

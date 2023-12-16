@@ -1,58 +1,30 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   {
-    name: 'Team',
+    name: 'Teams',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Engineering', href: '#' },
+      { name: 'Human Resources', href: '#' },
+      { name: 'Customer Success', href: '#' },
     ],
   },
   {
     name: 'Projects',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'GraphQL API', href: '#' },
+      { name: 'iOS App', href: '#' },
+      { name: 'Android App', href: '#' },
+      { name: 'New Customer Portal', href: '#' },
     ],
   },
-  {
-    name: 'Calendar',
-    current: false,
-    children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
-    ],
-  },
-  {
-    name: 'Documents',
-    current: false,
-    children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
-    ],
-  },
-  {
-    name: 'Reports',
-    current: false,
-    children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
-    ],
-  },
+  { name: 'Calendar', href: '#', current: false },
+  { name: 'Documents', href: '#', current: false },
+  { name: 'Reports', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -61,74 +33,89 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto">
-      <div className="flex items-center flex-shrink-0 px-4">
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+      <div className="flex h-16 shrink-0 items-center">
         <img
           className="h-8 w-auto"
-          src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-          alt="Workflow"
+          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+          alt="Your Company"
         />
       </div>
-      <div className="mt-5 flex-grow flex flex-col">
-        <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
-          {navigation.map((item) =>
-            !item.children ? (
-              <div key={item.name}>
-                <a
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                    'group w-full flex items-center pl-7 pr-2 py-2 text-sm font-medium rounded-md'
-                  )}
-                >
-                  {item.name}
-                </a>
-              </div>
-            ) : (
-              <Disclosure as="div" key={item.name} className="space-y-1">
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button
+      <nav className="flex flex-1 flex-col">
+        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" className="-mx-2 space-y-1">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  {!item.children ? (
+                    <a
+                      href={item.href}
                       className={classNames(
-                        item.current
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                        'group w-full flex items-center pr-2 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                        'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700'
                       )}
                     >
-                      <svg
-                        className={classNames(
-                          open ? 'text-gray-400 rotate-90' : 'text-gray-300',
-                          'mr-2 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150'
-                        )}
-                        viewBox="0 0 20 20"
-                        aria-hidden="true"
-                      >
-                        <path d="M6 6L14 10L6 14V6Z" fill="currentColor" />
-                      </svg>
                       {item.name}
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="space-y-1">
-                      {item.children.map((subItem) => (
-                        <Disclosure.Button
-                          key={subItem.name}
-                          as="a"
-                          href={subItem.href}
-                          className="group w-full flex items-center pl-10 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
-                        >
-                          {subItem.name}
-                        </Disclosure.Button>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-            )
-          )}
-        </nav>
-      </div>
+                    </a>
+                  ) : (
+                    <Disclosure as="div">
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button
+                            className={classNames(
+                              item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                              'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700'
+                            )}
+                          >
+                            <ChevronRightIcon
+                              className={classNames(
+                                open ? 'rotate-90 text-gray-500' : 'text-gray-400',
+                                'h-5 w-5 shrink-0'
+                              )}
+                              aria-hidden="true"
+                            />
+                            {item.name}
+                          </Disclosure.Button>
+                          <Disclosure.Panel as="ul" className="mt-1 px-2">
+                            {item.children.map((subItem) => (
+                              <li key={subItem.name}>
+                                <Disclosure.Button
+                                  as="a"
+                                  href={subItem.href}
+                                  className={classNames(
+                                    subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                                    'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700'
+                                  )}
+                                >
+                                  {subItem.name}
+                                </Disclosure.Button>
+                              </li>
+                            ))}
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </li>
+          <li className="-mx-6 mt-auto">
+            <a
+              href="#"
+              className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+            >
+              <img
+                className="h-8 w-8 rounded-full bg-gray-50"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <span className="sr-only">Your profile</span>
+              <span aria-hidden="true">Tom Cook</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   )
 }

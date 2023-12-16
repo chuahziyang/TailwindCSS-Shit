@@ -1,23 +1,18 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="bg-gray-50">
-    <div class="max-w-2xl mx-auto py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
       <div class="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
         <div v-for="incentive in incentives" :key="incentive.name">
           <img :src="incentive.imageSrc" alt="" class="h-24 w-auto" />
-          <h3 class="mt-6 text-sm font-medium text-gray-900">
-            {{ incentive.name }}
-          </h3>
-          <p class="mt-2 text-sm text-gray-500">
-            {{ incentive.description }}
-          </p>
+          <h3 class="mt-6 text-sm font-medium text-gray-900">{{ incentive.name }}</h3>
+          <p class="mt-2 text-sm text-gray-500">{{ incentive.description }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 const incentives = [
   {
     name: 'Free Shipping',
@@ -40,12 +35,4 @@ const incentives = [
     imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
   },
 ]
-
-export default {
-  setup() {
-    return {
-      incentives,
-    }
-  },
-}
 </script>

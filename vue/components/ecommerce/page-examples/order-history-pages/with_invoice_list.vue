@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -19,147 +17,139 @@
   <div class="bg-white">
     <!-- Mobile menu -->
     <TransitionRoot as="template" :show="open">
-      <Dialog as="div" class="fixed inset-0 flex z-40 lg:hidden" @close="open = false">
+      <Dialog as="div" class="relative z-40 lg:hidden" @close="open = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
-          <DialogOverlay class="fixed inset-0 bg-black bg-opacity-25" />
+          <div class="fixed inset-0 bg-black bg-opacity-25" />
         </TransitionChild>
 
-        <TransitionChild as="template" enter="transition ease-in-out duration-300 transform" enter-from="-translate-x-full" enter-to="translate-x-0" leave="transition ease-in-out duration-300 transform" leave-from="translate-x-0" leave-to="-translate-x-full">
-          <div class="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
-            <div class="px-4 pt-5 pb-2 flex">
-              <button type="button" class="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400" @click="open = false">
-                <span class="sr-only">Close menu</span>
-                <XIcon class="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-
-            <!-- Links -->
-            <TabGroup as="div" class="mt-2">
-              <div class="border-b border-gray-200">
-                <TabList class="-mb-px flex px-4 space-x-8">
-                  <Tab as="template" v-for="category in navigation.categories" :key="category.name" v-slot="{ selected }">
-                    <button :class="[selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent', 'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium']">
-                      {{ category.name }}
-                    </button>
-                  </Tab>
-                </TabList>
+        <div class="fixed inset-0 z-40 flex">
+          <TransitionChild as="template" enter="transition ease-in-out duration-300 transform" enter-from="-translate-x-full" enter-to="translate-x-0" leave="transition ease-in-out duration-300 transform" leave-from="translate-x-0" leave-to="-translate-x-full">
+            <DialogPanel class="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+              <div class="flex px-4 pb-2 pt-5">
+                <button type="button" class="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400" @click="open = false">
+                  <span class="absolute -inset-0.5" />
+                  <span class="sr-only">Close menu</span>
+                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                </button>
               </div>
-              <TabPanels as="template">
-                <TabPanel v-for="category in navigation.categories" :key="category.name" class="pt-10 pb-8 px-4 space-y-10">
-                  <div class="grid grid-cols-2 gap-x-4">
-                    <div v-for="item in category.featured" :key="item.name" class="group relative text-sm">
-                      <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
-                        <img :src="item.imageSrc" :alt="item.imageAlt" class="object-center object-cover" />
-                      </div>
-                      <a :href="item.href" class="mt-6 block font-medium text-gray-900">
-                        <span class="absolute z-10 inset-0" aria-hidden="true" />
-                        {{ item.name }}
-                      </a>
-                      <p aria-hidden="true" class="mt-1">Shop now</p>
-                    </div>
-                  </div>
-                  <div v-for="section in category.sections" :key="section.name">
-                    <p :id="`${category.id}-${section.id}-heading-mobile`" class="font-medium text-gray-900">
-                      {{ section.name }}
-                    </p>
-                    <ul role="list" :aria-labelledby="`${category.id}-${section.id}-heading-mobile`" class="mt-6 flex flex-col space-y-6">
-                      <li v-for="item in section.items" :key="item.name" class="flow-root">
-                        <a :href="item.href" class="-m-2 p-2 block text-gray-500">
+
+              <!-- Links -->
+              <TabGroup as="div" class="mt-2">
+                <div class="border-b border-gray-200">
+                  <TabList class="-mb-px flex space-x-8 px-4">
+                    <Tab as="template" v-for="category in navigation.categories" :key="category.name" v-slot="{ selected }">
+                      <button :class="[selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900', 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium']">{{ category.name }}</button>
+                    </Tab>
+                  </TabList>
+                </div>
+                <TabPanels as="template">
+                  <TabPanel v-for="category in navigation.categories" :key="category.name" class="space-y-10 px-4 pb-8 pt-10">
+                    <div class="grid grid-cols-2 gap-x-4">
+                      <div v-for="item in category.featured" :key="item.name" class="group relative text-sm">
+                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                          <img :src="item.imageSrc" :alt="item.imageAlt" class="object-cover object-center" />
+                        </div>
+                        <a :href="item.href" class="mt-6 block font-medium text-gray-900">
+                          <span class="absolute inset-0 z-10" aria-hidden="true" />
                           {{ item.name }}
                         </a>
-                      </li>
-                    </ul>
-                  </div>
-                </TabPanel>
-              </TabPanels>
-            </TabGroup>
+                        <p aria-hidden="true" class="mt-1">Shop now</p>
+                      </div>
+                    </div>
+                    <div v-for="section in category.sections" :key="section.name">
+                      <p :id="`${category.id}-${section.id}-heading-mobile`" class="font-medium text-gray-900">{{ section.name }}</p>
+                      <ul role="list" :aria-labelledby="`${category.id}-${section.id}-heading-mobile`" class="mt-6 flex flex-col space-y-6">
+                        <li v-for="item in section.items" :key="item.name" class="flow-root">
+                          <a :href="item.href" class="-m-2 block p-2 text-gray-500">{{ item.name }}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </TabPanel>
+                </TabPanels>
+              </TabGroup>
 
-            <div class="border-t border-gray-200 py-6 px-4 space-y-6">
-              <div v-for="page in navigation.pages" :key="page.name" class="flow-root">
-                <a :href="page.href" class="-m-2 p-2 block font-medium text-gray-900">{{ page.name }}</a>
+              <div class="space-y-6 border-t border-gray-200 px-4 py-6">
+                <div v-for="page in navigation.pages" :key="page.name" class="flow-root">
+                  <a :href="page.href" class="-m-2 block p-2 font-medium text-gray-900">{{ page.name }}</a>
+                </div>
               </div>
-            </div>
 
-            <div class="border-t border-gray-200 py-6 px-4 space-y-6">
-              <div class="flow-root">
-                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
+              <div class="space-y-6 border-t border-gray-200 px-4 py-6">
+                <div class="flow-root">
+                  <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Sign in</a>
+                </div>
+                <div class="flow-root">
+                  <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Create account</a>
+                </div>
               </div>
-              <div class="flow-root">
-                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Create account</a>
-              </div>
-            </div>
 
-            <div class="border-t border-gray-200 py-6 px-4">
-              <a href="#" class="-m-2 p-2 flex items-center">
-                <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="w-5 h-auto block flex-shrink-0" />
-                <span class="ml-3 block text-base font-medium text-gray-900"> CAD </span>
-                <span class="sr-only">, change currency</span>
-              </a>
-            </div>
-          </div>
-        </TransitionChild>
+              <div class="border-t border-gray-200 px-4 py-6">
+                <a href="#" class="-m-2 flex items-center p-2">
+                  <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="block h-auto w-5 flex-shrink-0" />
+                  <span class="ml-3 block text-base font-medium text-gray-900">CAD</span>
+                  <span class="sr-only">, change currency</span>
+                </a>
+              </div>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
       </Dialog>
     </TransitionRoot>
 
     <header class="relative bg-white">
-      <p class="bg-indigo-600 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
+      <p class="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
 
-      <nav aria-label="Top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Top" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="border-b border-gray-200">
-          <div class="h-16 flex items-center">
-            <button type="button" class="bg-white p-2 rounded-md text-gray-400 lg:hidden" @click="open = true">
+          <div class="flex h-16 items-center">
+            <button type="button" class="relative rounded-md bg-white p-2 text-gray-400 lg:hidden" @click="open = true">
+              <span class="absolute -inset-0.5" />
               <span class="sr-only">Open menu</span>
-              <MenuIcon class="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon class="h-6 w-6" aria-hidden="true" />
             </button>
 
             <!-- Logo -->
             <div class="ml-4 flex lg:ml-0">
               <a href="#">
-                <span class="sr-only">Workflow</span>
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="" />
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
               </a>
             </div>
 
             <!-- Flyout menus -->
             <PopoverGroup class="hidden lg:ml-8 lg:block lg:self-stretch">
-              <div class="h-full flex space-x-8">
+              <div class="flex h-full space-x-8">
                 <Popover v-for="category in navigation.categories" :key="category.name" class="flex" v-slot="{ open }">
                   <div class="relative flex">
-                    <PopoverButton :class="[open ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px']">
-                      {{ category.name }}
-                    </PopoverButton>
+                    <PopoverButton :class="[open ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out']">{{ category.name }}</PopoverButton>
                   </div>
 
                   <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                    <PopoverPanel class="absolute b top-full inset-x-0 text-sm text-gray-500">
+                    <PopoverPanel class="absolute inset-x-0 top-full text-sm text-gray-500">
                       <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
                       <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
                       <div class="relative bg-white">
-                        <div class="max-w-7xl mx-auto px-8">
-                          <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                        <div class="mx-auto max-w-7xl px-8">
+                          <div class="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                             <div class="col-start-2 grid grid-cols-2 gap-x-8">
                               <div v-for="item in category.featured" :key="item.name" class="group relative text-base sm:text-sm">
-                                <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
-                                  <img :src="item.imageSrc" :alt="item.imageAlt" class="object-center object-cover" />
+                                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                  <img :src="item.imageSrc" :alt="item.imageAlt" class="object-cover object-center" />
                                 </div>
                                 <a :href="item.href" class="mt-6 block font-medium text-gray-900">
-                                  <span class="absolute z-10 inset-0" aria-hidden="true" />
+                                  <span class="absolute inset-0 z-10" aria-hidden="true" />
                                   {{ item.name }}
                                 </a>
                                 <p aria-hidden="true" class="mt-1">Shop now</p>
                               </div>
                             </div>
-                            <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                            <div class="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                               <div v-for="section in category.sections" :key="section.name">
-                                <p :id="`${section.name}-heading`" class="font-medium text-gray-900">
-                                  {{ section.name }}
-                                </p>
+                                <p :id="`${section.name}-heading`" class="font-medium text-gray-900">{{ section.name }}</p>
                                 <ul role="list" :aria-labelledby="`${section.name}-heading`" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                   <li v-for="item in section.items" :key="item.name" class="flex">
-                                    <a :href="item.href" class="hover:text-gray-800">
-                                      {{ item.name }}
-                                    </a>
+                                    <a :href="item.href" class="hover:text-gray-800">{{ item.name }}</a>
                                   </li>
                                 </ul>
                               </div>
@@ -183,9 +173,9 @@
               </div>
 
               <div class="hidden lg:ml-8 lg:flex">
-                <a href="#" class="text-gray-700 hover:text-gray-800 flex items-center">
-                  <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="w-5 h-auto block flex-shrink-0" />
-                  <span class="ml-3 block text-sm font-medium"> CAD </span>
+                <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
+                  <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="block h-auto w-5 flex-shrink-0" />
+                  <span class="ml-3 block text-sm font-medium">CAD</span>
                   <span class="sr-only">, change currency</span>
                 </a>
               </div>
@@ -194,14 +184,14 @@
               <div class="flex lg:ml-6">
                 <a href="#" class="p-2 text-gray-400 hover:text-gray-500">
                   <span class="sr-only">Search</span>
-                  <SearchIcon class="w-6 h-6" aria-hidden="true" />
+                  <MagnifyingGlassIcon class="h-6 w-6" aria-hidden="true" />
                 </a>
               </div>
 
               <!-- Cart -->
               <div class="ml-4 flow-root lg:ml-6">
-                <a href="#" class="group -m-2 p-2 flex items-center">
-                  <ShoppingBagIcon class="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                <a href="#" class="group -m-2 flex items-center p-2">
+                  <ShoppingBagIcon class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                   <span class="sr-only">items in cart, view bag</span>
                 </a>
@@ -212,10 +202,10 @@
       </nav>
     </header>
 
-    <main class="pt-16 pb-14 sm:pt-24 sm:pb-20 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
+    <main class="pb-14 pt-16 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
+      <div class="mx-auto max-w-4xl">
         <div class="px-4 sm:px-0">
-          <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Order history</h1>
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Order history</h1>
           <p class="mt-2 text-sm text-gray-500">Check the status of recent orders, manage returns, and download invoices.</p>
         </div>
 
@@ -229,12 +219,10 @@
               </h3>
 
               <div class="bg-gray-50 px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-6 lg:space-x-8">
-                <dl class="divide-y divide-gray-200 space-y-4 text-sm text-gray-600 flex-auto md:divide-y-0 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-6 lg:w-1/2 lg:flex-none lg:gap-x-8">
+                <dl class="flex-auto space-y-4 divide-y divide-gray-200 text-sm text-gray-600 md:grid md:grid-cols-3 md:gap-x-6 md:space-y-0 md:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
                   <div class="flex justify-between md:block">
                     <dt class="font-medium text-gray-900">Order number</dt>
-                    <dd class="md:mt-1">
-                      {{ order.number }}
-                    </dd>
+                    <dd class="md:mt-1">{{ order.number }}</dd>
                   </div>
                   <div class="flex justify-between pt-4 md:block md:pt-0">
                     <dt class="font-medium text-gray-900">Date placed</dt>
@@ -244,17 +232,15 @@
                   </div>
                   <div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
                     <dt>Total amount</dt>
-                    <dd class="md:mt-1">
-                      {{ order.total }}
-                    </dd>
+                    <dd class="md:mt-1">{{ order.total }}</dd>
                   </div>
                 </dl>
-                <div class="space-y-4 mt-6 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
-                  <a :href="order.href" class="w-full flex items-center justify-center bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 md:w-auto">
+                <div class="mt-6 space-y-4 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
+                  <a :href="order.href" class="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:w-auto">
                     View Order
                     <span class="sr-only">{{ order.number }}</span>
                   </a>
-                  <a :href="order.invoiceHref" class="w-full flex items-center justify-center bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 md:w-auto">
+                  <a :href="order.invoiceHref" class="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:w-auto">
                     View Invoice
                     <span class="sr-only">for order {{ order.number }}</span>
                   </a>
@@ -269,20 +255,20 @@
                         <div class="sm:flex">
                           <div>
                             <h4 class="font-medium text-gray-900">{{ product.name }}</h4>
-                            <p class="hidden mt-2 text-sm text-gray-500 sm:block">{{ product.description }}</p>
+                            <p class="mt-2 hidden text-sm text-gray-500 sm:block">{{ product.description }}</p>
                           </div>
-                          <p class="mt-1 font-medium text-gray-900 sm:mt-0 sm:ml-6">{{ product.price }}</p>
+                          <p class="mt-1 font-medium text-gray-900 sm:ml-6 sm:mt-0">{{ product.price }}</p>
                         </div>
                         <div class="mt-2 flex text-sm font-medium sm:mt-4">
                           <a :href="product.href" class="text-indigo-600 hover:text-indigo-500">View Product</a>
-                          <div class="border-l border-gray-200 ml-4 pl-4 sm:ml-6 sm:pl-6">
+                          <div class="ml-4 border-l border-gray-200 pl-4 sm:ml-6 sm:pl-6">
                             <a href="#" class="text-indigo-600 hover:text-indigo-500">Buy Again</a>
                           </div>
                         </div>
                       </div>
                       <div class="mt-6 font-medium">
                         <div v-if="product.status === 'delivered'" class="flex space-x-2">
-                          <CheckIcon class="flex-none w-6 h-6 text-green-500" aria-hidden="true" />
+                          <CheckIcon class="h-6 w-6 flex-none text-green-500" aria-hidden="true" />
                           <p>
                             Delivered<span class="hidden sm:inline">
                               on <time :datetime="product.datetime">{{ product.date }}</time></span
@@ -293,8 +279,8 @@
                         <p v-else-if="product.status === 'cancelled'" class="text-gray-500">Cancelled</p>
                       </div>
                     </div>
-                    <div class="ml-4 flex-shrink-0 sm:m-0 sm:mr-6 sm:order-first">
-                      <img :src="product.imageSrc" :alt="product.imageAlt" class="col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52" />
+                    <div class="ml-4 flex-shrink-0 sm:order-first sm:m-0 sm:mr-6">
+                      <img :src="product.imageSrc" :alt="product.imageAlt" class="col-start-2 col-end-3 h-20 w-20 rounded-lg object-cover object-center sm:col-start-1 sm:row-span-2 sm:row-start-1 sm:h-40 sm:w-40 lg:h-52 lg:w-52" />
                     </div>
                   </div>
                 </div>
@@ -307,24 +293,22 @@
 
     <footer aria-labelledby="footer-heading" class="bg-white">
       <h2 id="footer-heading" class="sr-only">Footer</h2>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="border-t border-gray-200 py-20">
-          <div class="grid grid-cols-1 md:grid-cols-12 md:grid-flow-col md:gap-x-8 md:gap-y-16 md:auto-rows-min">
+          <div class="grid grid-cols-1 md:grid-flow-col md:auto-rows-min md:grid-cols-12 md:gap-x-8 md:gap-y-16">
             <!-- Image section -->
-            <div class="col-span-1 md:col-span-2 lg:row-start-1 lg:col-start-1">
-              <img src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto" />
+            <div class="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
+              <img src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto" />
             </div>
 
             <!-- Sitemap sections -->
-            <div class="mt-10 col-span-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:mt-0 md:row-start-1 md:col-start-3 md:col-span-8 lg:col-start-2 lg:col-span-6">
+            <div class="col-span-6 mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-8 md:col-start-3 md:row-start-1 md:mt-0 lg:col-span-6 lg:col-start-2">
               <div class="grid grid-cols-1 gap-y-12 sm:col-span-2 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                   <h3 class="text-sm font-medium text-gray-900">Products</h3>
                   <ul role="list" class="mt-6 space-y-6">
                     <li v-for="item in footerNavigation.products" :key="item.name" class="text-sm">
-                      <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                        {{ item.name }}
-                      </a>
+                      <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{ item.name }}</a>
                     </li>
                   </ul>
                 </div>
@@ -332,9 +316,7 @@
                   <h3 class="text-sm font-medium text-gray-900">Company</h3>
                   <ul role="list" class="mt-6 space-y-6">
                     <li v-for="item in footerNavigation.company" :key="item.name" class="text-sm">
-                      <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                        {{ item.name }}
-                      </a>
+                      <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{ item.name }}</a>
                     </li>
                   </ul>
                 </div>
@@ -343,23 +325,21 @@
                 <h3 class="text-sm font-medium text-gray-900">Customer Service</h3>
                 <ul role="list" class="mt-6 space-y-6">
                   <li v-for="item in footerNavigation.customerService" :key="item.name" class="text-sm">
-                    <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                      {{ item.name }}
-                    </a>
+                    <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{ item.name }}</a>
                   </li>
                 </ul>
               </div>
             </div>
 
             <!-- Newsletter section -->
-            <div class="mt-12 md:mt-0 md:row-start-2 md:col-start-3 md:col-span-8 lg:row-start-1 lg:col-start-9 lg:col-span-4">
+            <div class="mt-12 md:col-span-8 md:col-start-3 md:row-start-2 md:mt-0 lg:col-span-4 lg:col-start-9 lg:row-start-1">
               <h3 class="text-sm font-medium text-gray-900">Sign up for our newsletter</h3>
               <p class="mt-6 text-sm text-gray-500">The latest deals and savings, sent to your inbox weekly.</p>
               <form class="mt-2 flex sm:max-w-md">
                 <label for="email-address" class="sr-only">Email address</label>
-                <input id="email-address" type="text" autocomplete="email" required="" class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
+                <input id="email-address" type="text" autocomplete="email" required="" class="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500" />
                 <div class="ml-4 flex-shrink-0">
-                  <button type="submit" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign up</button>
+                  <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign up</button>
                 </div>
               </form>
             </div>
@@ -367,18 +347,18 @@
         </div>
 
         <div class="border-t border-gray-100 py-10 text-center">
-          <p class="text-sm text-gray-500">&copy; 2021 Workflow, Inc. All rights reserved.</p>
+          <p class="text-sm text-gray-500">&copy; 2021 Your Company, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import {
   Dialog,
-  DialogOverlay,
+  DialogPanel,
   Popover,
   PopoverButton,
   PopoverGroup,
@@ -391,7 +371,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
-import { CheckIcon, MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/vue/outline'
+import { Bars3Icon, CheckIcon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = {
   categories: [
@@ -569,36 +549,5 @@ const footerNavigation = {
   ],
 }
 
-export default {
-  components: {
-    Dialog,
-    DialogOverlay,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-    Tab,
-    TabGroup,
-    TabList,
-    TabPanel,
-    TabPanels,
-    TransitionChild,
-    TransitionRoot,
-    CheckIcon,
-    MenuIcon,
-    SearchIcon,
-    ShoppingBagIcon,
-    XIcon,
-  },
-  setup() {
-    const open = ref(false)
-
-    return {
-      navigation,
-      orders,
-      footerNavigation,
-      open,
-    }
-  },
-}
+const open = ref(false)
 </script>

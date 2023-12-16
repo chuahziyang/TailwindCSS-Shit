@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 const user = {
   name: 'Rebecca Nicholas',
   role: 'Product Designer',
@@ -13,7 +12,7 @@ const stats = [
 
 export default function Example() {
   return (
-    <div className="rounded-lg bg-white overflow-hidden shadow">
+    <div className="overflow-hidden rounded-lg bg-white shadow">
       <h2 className="sr-only" id="profile-overview-title">
         Profile Overview
       </h2>
@@ -32,16 +31,16 @@ export default function Example() {
           <div className="mt-5 flex justify-center sm:mt-0">
             <a
               href="#"
-              className="flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              className="flex items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
               View profile
             </a>
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+      <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         {stats.map((stat) => (
-          <div key={stat.label} className="px-6 py-5 text-sm font-medium text-center">
+          <div key={stat.label} className="px-6 py-5 text-center text-sm font-medium">
             <span className="text-gray-900">{stat.value}</span> <span className="text-gray-600">{stat.label}</span>
           </div>
         ))}

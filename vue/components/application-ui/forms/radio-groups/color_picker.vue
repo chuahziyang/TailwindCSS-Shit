@@ -1,19 +1,18 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <RadioGroup v-model="selectedColor">
-    <RadioGroupLabel class="block text-sm font-medium text-gray-700">Choose a label color</RadioGroupLabel>
+    <RadioGroupLabel class="block text-sm font-medium leading-6 text-gray-900">Choose a label color</RadioGroupLabel>
     <div class="mt-4 flex items-center space-x-3">
       <RadioGroupOption as="template" v-for="color in colors" :key="color.name" :value="color" v-slot="{ active, checked }">
-        <div :class="[color.selectedColor, active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '', '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none']">
-          <RadioGroupLabel as="p" class="sr-only">{{ color.name }}</RadioGroupLabel>
-          <span aria-hidden="true" :class="[color.bgColor, 'h-8 w-8 border border-black border-opacity-10 rounded-full']" />
+        <div :class="[color.selectedColor, active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '', 'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none']">
+          <RadioGroupLabel as="span" class="sr-only">{{ color.name }}</RadioGroupLabel>
+          <span aria-hidden="true" :class="[color.bgColor, 'h-8 w-8 rounded-full border border-black border-opacity-10']" />
         </div>
       </RadioGroupOption>
     </div>
   </RadioGroup>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
@@ -25,19 +24,5 @@ const colors = [
   { name: 'Yellow', bgColor: 'bg-yellow-500', selectedColor: 'ring-yellow-500' },
 ]
 
-export default {
-  components: {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupOption,
-  },
-  setup() {
-    const selectedColor = ref(colors[1])
-
-    return {
-      colors,
-      selectedColor,
-    }
-  },
-}
+const selectedColor = ref(colors[1])
 </script>

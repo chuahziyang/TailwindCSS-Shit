@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,11 +14,11 @@
 -->
 <template>
   <Combobox as="div" v-model="selectedPerson">
-    <ComboboxLabel class="block text-sm font-medium text-gray-700">Assigned to</ComboboxLabel>
-    <div class="relative mt-1">
-      <ComboboxInput class="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" @change="query = $event.target.value" :display-value="(person) => person.name" />
+    <ComboboxLabel class="block text-sm font-medium leading-6 text-gray-900">Assigned to</ComboboxLabel>
+    <div class="relative mt-2">
+      <ComboboxInput class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" @change="query = $event.target.value" :display-value="(person) => person?.name" />
       <ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-        <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+        <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
       </ComboboxButton>
 
       <ComboboxOptions v-if="filteredPeople.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
@@ -45,9 +43,9 @@
   </Combobox>
 </template>
 
-<script>
+<script setup>
 import { computed, ref } from 'vue'
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 import {
   Combobox,
   ComboboxButton,
@@ -62,33 +60,13 @@ const people = [
   // More users...
 ]
 
-export default {
-  components: {
-    CheckIcon,
-    Combobox,
-    ComboboxButton,
-    ComboboxInput,
-    ComboboxLabel,
-    ComboboxOption,
-    ComboboxOptions,
-    SelectorIcon,
-  },
-  setup() {
-    const query = ref('')
-    const selectedPerson = ref()
-    const filteredPeople = computed(() =>
-      query.value === ''
-        ? people
-        : people.filter((person) => {
-            return person.name.toLowerCase().includes(query.value.toLowerCase())
-          })
-    )
-
-    return {
-      query,
-      selectedPerson,
-      filteredPeople,
-    }
-  },
-}
+const query = ref('')
+const selectedPerson = ref(null)
+const filteredPeople = computed(() =>
+  query.value === ''
+    ? people
+    : people.filter((person) => {
+        return person.name.toLowerCase().includes(query.value.toLowerCase())
+      })
+)
 </script>

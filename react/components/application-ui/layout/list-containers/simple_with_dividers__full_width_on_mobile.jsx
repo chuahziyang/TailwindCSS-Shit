@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 const items = [
   { id: 1 },
   // More items...

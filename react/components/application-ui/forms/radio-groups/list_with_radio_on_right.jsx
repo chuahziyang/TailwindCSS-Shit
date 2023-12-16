@@ -1,6 +1,4 @@
 /*
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -23,29 +21,29 @@ const accounts = [
 export default function Example() {
   return (
     <div>
-      <h2 className="text-lg leading-6 font-medium text-gray-900">Transfer funds</h2>
+      <h2 className="text-base font-semibold text-gray-900">Transfer funds</h2>
       <p className="mt-1 text-sm text-gray-500">Transfer your balance to your bank account.</p>
       <fieldset className="mt-2">
         <legend className="sr-only">Bank account</legend>
         <div className="divide-y divide-gray-200">
           {accounts.map((account, accountIdx) => (
-            <div key={accountIdx} className="relative flex items-start py-4">
-              <div className="min-w-0 flex-1 text-sm">
-                <label htmlFor={`account-${account.id}`} className="font-medium text-gray-700">
+            <div key={accountIdx} className="relative flex items-start pb-4 pt-3.5">
+              <div className="min-w-0 flex-1 text-sm leading-6">
+                <label htmlFor={`account-${account.id}`} className="font-medium text-gray-900">
                   {account.name}
                 </label>
                 <p id={`account-${account.id}-description`} className="text-gray-500">
                   {account.description}
                 </p>
               </div>
-              <div className="ml-3 flex items-center h-5">
+              <div className="ml-3 flex h-6 items-center">
                 <input
                   id={`account-${account.id}`}
                   aria-describedby={`account-${account.id}-description`}
                   name="account"
                   type="radio"
                   defaultChecked={account.id === 'checking'}
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
               </div>
             </div>

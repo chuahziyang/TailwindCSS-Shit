@@ -1,101 +1,102 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="bg-white">
-    <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
-      <div class="sm:flex sm:flex-col sm:align-center">
-        <h1 class="text-5xl font-extrabold text-gray-900 sm:text-center">Pricing Plans</h1>
-        <p class="mt-5 text-xl text-gray-500 sm:text-center">Start building for free, then add a site plan to go live. Account plans unlock additional features.</p>
-        <div class="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
-          <button type="button" class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8">Monthly billing</button>
-          <button type="button" class="ml-0.5 relative w-1/2 border border-transparent rounded-md py-2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8">Yearly billing</button>
-        </div>
+  <div class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+        <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Pricing plans for teams of&nbsp;all&nbsp;sizes</p>
       </div>
-      <div class="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
-        <div v-for="tier in tiers" :key="tier.name" class="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
-          <div class="p-6">
-            <h2 class="text-lg leading-6 font-medium text-gray-900">{{ tier.name }}</h2>
-            <p class="mt-4 text-sm text-gray-500">{{ tier.description }}</p>
-            <p class="mt-8">
-              <span class="text-4xl font-extrabold text-gray-900">${{ tier.priceMonthly }}</span>
-              {{ ' ' }}
-              <span class="text-base font-medium text-gray-500">/mo</span>
-            </p>
-            <a :href="tier.href" class="mt-8 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900">Buy {{ tier.name }}</a>
-          </div>
-          <div class="pt-6 pb-8 px-6">
-            <h3 class="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
-            <ul role="list" class="mt-6 space-y-4">
-              <li v-for="feature in tier.includedFeatures" :key="feature" class="flex space-x-3">
-                <CheckIcon class="flex-shrink-0 h-5 w-5 text-green-500" aria-hidden="true" />
-                <span class="text-sm text-gray-500">{{ feature }}</span>
-              </li>
-            </ul>
-          </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.</p>
+      <div class="mt-16 flex justify-center">
+        <RadioGroup v-model="frequency" class="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
+          <RadioGroupLabel class="sr-only">Payment frequency</RadioGroupLabel>
+          <RadioGroupOption as="template" v-for="option in frequencies" :key="option.value" :value="option" v-slot="{ checked }">
+            <div :class="[checked ? 'bg-indigo-600 text-white' : 'text-gray-500', 'cursor-pointer rounded-full px-2.5 py-1']">
+              <span>{{ option.label }}</span>
+            </div>
+          </RadioGroupOption>
+        </RadioGroup>
+      </div>
+      <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
+        <div v-for="tier in tiers" :key="tier.id" :class="[tier.mostPopular ? 'ring-2 ring-indigo-600' : 'ring-1 ring-gray-200', 'rounded-3xl p-8']">
+          <h3 :id="tier.id" :class="[tier.mostPopular ? 'text-indigo-600' : 'text-gray-900', 'text-lg font-semibold leading-8']">{{ tier.name }}</h3>
+          <p class="mt-4 text-sm leading-6 text-gray-600">{{ tier.description }}</p>
+          <p class="mt-6 flex items-baseline gap-x-1">
+            <span class="text-4xl font-bold tracking-tight text-gray-900">{{ tier.price[frequency.value] }}</span>
+            <span class="text-sm font-semibold leading-6 text-gray-600">{{ frequency.priceSuffix }}</span>
+          </p>
+          <a :href="tier.href" :aria-describedby="tier.id" :class="[tier.mostPopular ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500' : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300', 'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600']">Buy plan</a>
+          <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+            <li v-for="feature in tier.features" :key="feature" class="flex gap-x-3">
+              <CheckIcon class="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
+              {{ feature }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { CheckIcon } from '@heroicons/vue/solid'
+<script setup>
+import { ref } from 'vue'
+import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+import { CheckIcon } from '@heroicons/vue/20/solid'
 
+const frequencies = [
+  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+]
 const tiers = [
   {
     name: 'Hobby',
+    id: 'tier-hobby',
     href: '#',
-    priceMonthly: 12,
-    description: 'All the basics for starting a new business',
-    includedFeatures: ['Potenti felis, in cras at at ligula nunc.', 'Orci neque eget pellentesque.'],
+    price: { monthly: '$15', annually: '$144' },
+    description: 'The essentials to provide your best work for clients.',
+    features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'],
+    mostPopular: false,
   },
   {
     name: 'Freelancer',
+    id: 'tier-freelancer',
     href: '#',
-    priceMonthly: 24,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-    ],
+    price: { monthly: '$30', annually: '$288' },
+    description: 'The essentials to provide your best work for clients.',
+    features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+    mostPopular: false,
   },
   {
     name: 'Startup',
+    id: 'tier-startup',
     href: '#',
-    priceMonthly: 32,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-      'Faucibus volutpat magna.',
+    price: { monthly: '$60', annually: '$576' },
+    description: 'A plan that scales with your rapidly growing business.',
+    features: [
+      '25 products',
+      'Up to 10,000 subscribers',
+      'Advanced analytics',
+      '24-hour support response time',
+      'Marketing automations',
     ],
+    mostPopular: true,
   },
   {
     name: 'Enterprise',
+    id: 'tier-enterprise',
     href: '#',
-    priceMonthly: 48,
-    description: 'All the basics for starting a new business',
-    includedFeatures: [
-      'Potenti felis, in cras at at ligula nunc. ',
-      'Orci neque eget pellentesque.',
-      'Donec mauris sit in eu tincidunt etiam.',
-      'Faucibus volutpat magna.',
-      'Id sed tellus in varius quisque.',
-      'Risus egestas faucibus.',
-      'Risus cursus ullamcorper.',
+    price: { monthly: '$90', annually: '$864' },
+    description: 'Dedicated support and infrastructure for your company.',
+    features: [
+      'Unlimited products',
+      'Unlimited subscribers',
+      'Advanced analytics',
+      '1-hour, dedicated support response time',
+      'Marketing automations',
+      'Custom reporting tools',
     ],
+    mostPopular: false,
   },
 ]
 
-export default {
-  components: {
-    CheckIcon,
-  },
-  setup() {
-    return {
-      tiers,
-    }
-  },
-}
+const frequency = ref(frequencies[0])
 </script>

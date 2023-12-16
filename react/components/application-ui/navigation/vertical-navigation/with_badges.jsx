@@ -1,9 +1,8 @@
-/* This example requires Tailwind CSS v2.0+ */
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true, count: '5' },
+  { name: 'Dashboard', href: '#', count: '5', current: true },
   { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false, count: '19' },
-  { name: 'Calendar', href: '#', current: false, count: '20+' },
+  { name: 'Projects', href: '#', count: '12', current: false },
+  { name: 'Calendar', href: '#', count: '20+', current: false },
   { name: 'Documents', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
@@ -14,30 +13,30 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <nav className="space-y-1" aria-label="Sidebar">
-      {navigation.map((item) => (
-        <a
-          key={item.name}
-          href={item.href}
-          className={classNames(
-            item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-            'group flex items-center px-3 py-2 text-sm font-medium rounded-md'
-          )}
-          aria-current={item.current ? 'page' : undefined}
-        >
-          <span className="truncate">{item.name}</span>
-          {item.count ? (
-            <span
+    <nav className="flex flex-1 flex-col" aria-label="Sidebar">
+      <ul role="list" className="-mx-2 space-y-1">
+        {navigation.map((item) => (
+          <li key={item.name}>
+            <a
+              href={item.href}
               className={classNames(
-                item.current ? 'bg-white' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200',
-                'ml-auto inline-block py-0.5 px-3 text-xs rounded-full'
+                item.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                'group flex gap-x-3 rounded-md p-2 pl-3 text-sm leading-6 font-semibold'
               )}
             >
-              {item.count}
-            </span>
-          ) : null}
-        </a>
-      ))}
+              {item.name}
+              {item.count ? (
+                <span
+                  className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
+                  aria-hidden="true"
+                >
+                  {item.count}
+                </span>
+              ) : null}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   )
 }

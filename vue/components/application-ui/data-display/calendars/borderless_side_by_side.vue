@@ -1,9 +1,8 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
     <div class="md:pr-14">
       <div class="flex items-center">
-        <h2 class="flex-auto font-semibold text-gray-900">January 2022</h2>
+        <h2 class="flex-auto text-sm font-semibold text-gray-900">January 2022</h2>
         <button type="button" class="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
           <span class="sr-only">Previous month</span>
           <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
@@ -31,9 +30,9 @@
       </div>
     </div>
     <section class="mt-12 md:mt-0 md:pl-14">
-      <h2 class="font-semibold text-gray-900">Schedule for <time datetime="2022-01-21">January 21, 2022</time></h2>
+      <h2 class="text-base font-semibold leading-6 text-gray-900">Schedule for <time datetime="2022-01-21">January 21, 2022</time></h2>
       <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
-        <li v-for="meeting in meetings" :key="meeting.id" class="group flex items-center space-x-4 rounded-xl py-2 px-4 focus-within:bg-gray-100 hover:bg-gray-100">
+        <li v-for="meeting in meetings" :key="meeting.id" class="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
           <img :src="meeting.imageUrl" alt="" class="h-10 w-10 flex-none rounded-full" />
           <div class="flex-auto">
             <p class="text-gray-900">{{ meeting.name }}</p>
@@ -46,12 +45,12 @@
             <div>
               <MenuButton class="-m-2 flex items-center rounded-full p-1.5 text-gray-500 hover:text-gray-600">
                 <span class="sr-only">Open options</span>
-                <DotsVerticalIcon class="h-6 w-6" aria-hidden="true" />
+                <EllipsisVerticalIcon class="h-6 w-6" aria-hidden="true" />
               </MenuButton>
             </div>
 
             <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-              <MenuItems class="focus:outline-none absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <MenuItems class="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="py-1">
                   <MenuItem v-slot="{ active }">
                     <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Edit</a>
@@ -69,10 +68,10 @@
   </div>
 </template>
 
-<script>
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
+<script setup>
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { DotsVerticalIcon } from '@heroicons/vue/outline'
+import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline'
 
 const days = [
   { date: '2021-12-27' },
@@ -131,22 +130,4 @@ const meetings = [
   },
   // More meetings...
 ]
-
-export default {
-  components: {
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    DotsVerticalIcon,
-  },
-  setup() {
-    return {
-      days,
-      meetings,
-    }
-  },
-}
 </script>

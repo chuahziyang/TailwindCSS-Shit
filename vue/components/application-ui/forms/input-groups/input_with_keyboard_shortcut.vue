@@ -1,6 +1,4 @@
 <!--
-  This example requires Tailwind CSS v2.0+ 
-  
   This example requires some changes to your config:
   
   ```
@@ -16,11 +14,11 @@
 -->
 <template>
   <div>
-    <label for="search" class="block text-sm font-medium text-gray-700">Quick search</label>
-    <div class="mt-1 relative flex items-center">
-      <input type="text" name="search" id="search" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md" />
+    <label for="search" class="block text-sm font-medium leading-6 text-gray-900">Quick search</label>
+    <div class="relative mt-2 flex items-center">
+      <input type="text" name="search" id="search" class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
       <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-        <kbd class="inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
+        <kbd class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">⌘K</kbd>
       </div>
     </div>
   </div>

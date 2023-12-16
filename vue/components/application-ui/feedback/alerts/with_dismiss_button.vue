@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="rounded-md bg-green-50 p-4">
     <div class="flex">
@@ -10,9 +9,9 @@
       </div>
       <div class="ml-auto pl-3">
         <div class="-mx-1.5 -my-1.5">
-          <button type="button" class="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
+          <button type="button" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50">
             <span class="sr-only">Dismiss</span>
-            <XIcon class="h-5 w-5" aria-hidden="true" />
+            <XMarkIcon class="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -20,13 +19,6 @@
   </div>
 </template>
 
-<script>
-import { CheckCircleIcon, XIcon } from '@heroicons/vue/solid'
-
-export default {
-  components: {
-    CheckCircleIcon,
-    XIcon,
-  },
-}
+<script setup>
+import { CheckCircleIcon, XMarkIcon } from '@heroicons/vue/20/solid'
 </script>

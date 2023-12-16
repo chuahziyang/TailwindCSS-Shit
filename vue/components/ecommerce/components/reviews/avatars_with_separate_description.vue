@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="bg-white">
     <div>
@@ -6,7 +5,7 @@
 
       <div class="space-y-10">
         <div v-for="review in reviews" :key="review.id" class="flex flex-col sm:flex-row">
-          <div class="mt-6 order-2 sm:mt-0 sm:ml-16">
+          <div class="order-2 mt-6 sm:ml-16 sm:mt-0">
             <h3 class="text-sm font-medium text-gray-900">{{ review.title }}</h3>
             <p class="sr-only">{{ review.rating }} out of 5 stars</p>
 
@@ -29,8 +28,8 @@
   </div>
 </template>
 
-<script>
-import { StarIcon } from '@heroicons/vue/solid'
+<script setup>
+import { StarIcon } from '@heroicons/vue/20/solid'
 
 const reviews = [
   {
@@ -67,15 +66,4 @@ const reviews = [
       'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   },
 ]
-
-export default {
-  components: {
-    StarIcon,
-  },
-  setup() {
-    return {
-      reviews,
-    }
-  },
-}
 </script>

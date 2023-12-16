@@ -1,19 +1,25 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/outline'
+import {
+  CalendarIcon,
+  ChartPieIcon,
+  DocumentDuplicateIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+} from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+  { name: 'Dashboard', href: '#', icon: HomeIcon, count: '5', current: true },
   { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  { name: 'Projects', href: '#', icon: FolderIcon, count: '12', current: false },
+  { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', current: false },
+  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
 const secondaryNavigation = [
-  { name: 'Website redesign', href: '#' },
-  { name: 'GraphQL API', href: '#' },
-  { name: 'Customer migration guides', href: '#' },
-  { name: 'Profit sharing program', href: '#' },
+  { name: 'Website redesign', href: '#', initial: 'W', current: false },
+  { name: 'GraphQL API', href: '#', initial: 'G', current: false },
+  { name: 'Customer migration guides', href: '#', initial: 'C', current: false },
+  { name: 'Profit sharing program', href: '#', initial: 'P', current: false },
 ]
 
 function classNames(...classes) {
@@ -22,45 +28,73 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <nav aria-label="Sidebar">
-      <div className="space-y-1">
-        {navigation.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className={classNames(
-              item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'group flex items-center px-3 py-2 text-sm font-medium rounded-md'
-            )}
-            aria-current={item.current ? 'page' : undefined}
-          >
-            <item.icon
-              className={classNames(
-                item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
-              )}
-              aria-hidden="true"
-            />
-            <span className="truncate">{item.name}</span>
-          </a>
-        ))}
-      </div>
-      <div className="mt-8">
-        <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
-          Projects
-        </h3>
-        <div className="mt-1 space-y-1" aria-labelledby="projects-headline">
-          {secondaryNavigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
-            >
-              <span className="truncate">{item.name}</span>
-            </a>
-          ))}
-        </div>
-      </div>
+    <nav className="flex flex-1 flex-col" aria-label="Sidebar">
+      <ul role="list" className="flex flex-1 flex-col gap-y-7">
+        <li>
+          <ul role="list" className="-mx-2 space-y-1">
+            {navigation.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  className={classNames(
+                    item.current
+                      ? 'bg-gray-50 text-indigo-600'
+                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                  )}
+                >
+                  <item.icon
+                    className={classNames(
+                      item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                      'h-6 w-6 shrink-0'
+                    )}
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                  {item.count ? (
+                    <span
+                      className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
+                      aria-hidden="true"
+                    >
+                      {item.count}
+                    </span>
+                  ) : null}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+        <li>
+          <div className="text-xs font-semibold leading-6 text-gray-400">Projects</div>
+          <ul role="list" className="-mx-2 mt-2 space-y-1">
+            {secondaryNavigation.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  className={classNames(
+                    item.current
+                      ? 'bg-gray-50 text-indigo-600'
+                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                  )}
+                >
+                  <span
+                    className={classNames(
+                      item.current
+                        ? 'text-indigo-600 border-indigo-600'
+                        : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                      'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
+                    )}
+                  >
+                    {item.initial}
+                  </span>
+                  <span className="truncate">{item.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
     </nav>
   )
 }
